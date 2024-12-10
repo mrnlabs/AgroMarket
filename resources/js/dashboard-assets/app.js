@@ -21,17 +21,17 @@ class App {
 
         window.addEventListener('scroll', function () {
             if (window.pageYOffset > 72) {
-                mybutton.classList.add('flex');
-                mybutton.classList.remove('hidden');
+                mybutton?.classList.add('flex');
+                mybutton?.classList.remove('hidden');
 
             } else {
-                mybutton.classList.remove('flex');
-                mybutton.classList.add('hidden');
+                mybutton?.classList.remove('flex');
+                mybutton?.classList.add('hidden');
 
             }
         });
 
-        mybutton.addEventListener('click', function (e) {
+        mybutton?.addEventListener('click', function (e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -68,8 +68,8 @@ class App {
     }
 
     init() {
-        // this.initComponents();
-        // this.initfullScreenListener();
+        this.initComponents();
+        this.initfullScreenListener();
     }
 }
 
@@ -409,5 +409,5 @@ class ThemeCustomizer {
     }
 }
 
-// new App().init();
+new App().init();
 // new ThemeCustomizer().init();

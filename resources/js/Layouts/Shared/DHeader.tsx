@@ -44,25 +44,25 @@ export default function DHeader() {
         </button>
         <div className="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
             {/* <!-- item--> */}
-            <a href="javascript:void(0);" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/germany.jpg" alt="user-image" className="h-4"/>
                 <span className="align-middle">German</span>
             </a>
 
             {/* <!-- item--> */}
-            <a href="javascript:void(0);" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/italy.jpg" alt="user-image" className="h-4"/>
                 <span className="align-middle">Italian</span>
             </a>
 
             {/* <!-- item--> */}
-            <a href="javascript:void(0);" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/spain.jpg" alt="user-image" className="h-4"/>
                 <span className="align-middle">Spanish</span>
             </a>
 
             {/* <!-- item--> */}
-            <a href="javascript:void(0);" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <img src="/images/flags/russia.jpg" alt="user-image" className="h-4"/>
                 <span className="align-middle">Russian</span>
             </a>
@@ -92,7 +92,7 @@ export default function DHeader() {
             <div className="p-2 border-b border-dashed border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                     <h6 className="text-sm"> Notification</h6>
-                    <a href="javascript: void(0);" className="text-gray-500 underline">
+                    <a href="#!" className="text-gray-500 underline">
                         <small>Clear All</small>
                     </a>
                 </div>
@@ -102,7 +102,7 @@ export default function DHeader() {
 
                 <h5 className="text-xs text-gray-500 mb-2">Today</h5>
 
-                <a href="javascript:void(0);" className="block mb-4">
+                <a href="#!" className="block mb-4">
                     <div className="card-body">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -118,7 +118,7 @@ export default function DHeader() {
                     </div>
                 </a>
 
-                <a href="javascript:void(0);" className="block mb-4">
+                <a href="#!" className="block mb-4">
                     <div className="card-body">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -134,7 +134,7 @@ export default function DHeader() {
                     </div>
                 </a>
 
-                <a href="javascript:void(0);" className="block mb-4">
+                <a href="#!" className="block mb-4">
                     <div className="card-body">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -150,7 +150,7 @@ export default function DHeader() {
 
                 <h5 className="text-xs text-gray-500 mb-2">Yesterday</h5>
 
-                <a href="javascript:void(0);" className="block mb-4">
+                <a href="#!" className="block mb-4">
                     <div className="card-body">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -166,7 +166,7 @@ export default function DHeader() {
                     </div>
                 </a>
 
-                <a href="javascript:void(0);" className="block">
+                <a href="#!" className="block">
                     <div className="card-body">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -181,7 +181,7 @@ export default function DHeader() {
                 </a>
             </div>
 
-            <a href="javascript:void(0);" className="p-2 border-t border-dashed border-gray-200 dark:border-gray-700 block text-center text-primary underline font-semibold">
+            <a href="#!" className="p-2 border-t border-dashed border-gray-200 dark:border-gray-700 block text-center text-primary underline font-semibold">
                 View All
             </a>
         </div>

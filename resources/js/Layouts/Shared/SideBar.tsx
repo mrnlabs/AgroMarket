@@ -8,14 +8,14 @@ export default function SideBar() {
     <a href="{{ route('any', 'index') }}" className="logo-box">
         {/* <!-- Light Brand Logo --> */}
         <div className="logo-light">
-            <img src="/images/logo-light.png" className="logo-lg h-6" alt="Light logo" />
-            <img src="/images/logo-sm.png" className="logo-sm" alt="Small logo"/>
+            <img src="https://coderthemes.com/konrix/layouts/assets/images/logo-light.png" className="logo-lg h-6" alt="Light logo" />
+            <img src="https://coderthemes.com/konrix/layouts/assets/images/logo-light.png" className="logo-sm" alt="Small logo"/>
         </div>
 
         {/* <!-- Dark Brand Logo --> */}
         <div className="logo-dark">
-            <img src="/images/logo-dark.png" className="logo-lg h-6" alt="Dark logo"/>
-            <img src="/images/logo-sm.png" className="logo-sm" alt="Small logo"/>
+            <img src="https://coderthemes.com/konrix/layouts/assets/images/logo-light.png" className="logo-lg h-6" alt="Dark logo"/>
+            <img src="https://coderthemes.com/konrix/layouts/assets/images/logo-light.png" className="logo-sm" alt="Small logo"/>
         </div>
     </a>
 
@@ -68,7 +68,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_building_2_line"></i></span>
                     <span className="menu-text"> Project </span>
                     <span className="menu-arrow"></span>
@@ -96,7 +96,7 @@ export default function SideBar() {
             <li className="menu-title">Custom</li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_user_3_line"></i></span>
                     <span className="menu-text"> Auth Pages </span>
                     <span className="menu-arrow"></span>
@@ -127,7 +127,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_box_3_line"></i></span>
                     <span className="menu-text"> Extra Pages </span>
                     <span className="menu-arrow"></span>
@@ -193,7 +193,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_layout_line"></i></span>
                     <span className="menu-text"> Layout </span>
                     <span className="menu-arrow"></span>
@@ -231,7 +231,7 @@ export default function SideBar() {
             <li className="menu-title">Elements</li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_classify_2_line"></i></span>
                     <span className="menu-text"> Components </span>
                     <span className="menu-arrow"></span>
@@ -347,7 +347,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_box_3_line"></i></span>
                     <span className="menu-text"> Extended </span>
                     <span className="menu-arrow"></span>
@@ -408,7 +408,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_file_check_line"></i></span>
                     <span className="menu-text"> Forms </span>
                     <span className="menu-arrow"></span>
@@ -464,7 +464,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_layout_grid_line"></i></span>
                     <span className="menu-text"> Tables </span>
                     <span className="menu-arrow"></span>
@@ -485,7 +485,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_dribbble_line"></i></span>
                     <span className="menu-text"> Icons </span>
                     <span className="menu-arrow"></span>
@@ -518,7 +518,7 @@ export default function SideBar() {
             </li>
 
             <li className="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse" className="menu-link">
+                <a href="#!" data-fc-type="collapse" className="menu-link">
                     <span className="menu-icon"><i className="mgc_location_line"></i></span>
                     <span className="menu-text"> Maps </span>
                     <span className="menu-arrow"></span>
@@ -539,13 +539,13 @@ export default function SideBar() {
             <div className="help-box p-6 bg-black/5 text-center rounded-md">
                 <div className="flex justify-center mb-4">
                     <svg width="30" height="18" aria-hidden="true">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 0c-4 0-6.5 2-7.5 6 1.5-2 3.25-2.75 5.25-2.25 1.141.285 1.957 1.113 2.86 2.03C17.08 7.271 18.782 9 22.5 9c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.141-.285-1.957-1.113-2.86-2.03C20.42 1.728 18.718 0 15 0ZM7.5 9C3.5 9 1 11 0 15c1.5-2 3.25-2.75 5.25-2.25 1.141.285 1.957 1.113 2.86 2.03C9.58 16.271 11.282 18 15 18c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.141-.285-1.957-1.113-2.86-2.03C12.92 10.729 11.218 9 7.5 9Z"
+                        <path fillRule="evenodd" clipRule="evenodd" d="M15 0c-4 0-6.5 2-7.5 6 1.5-2 3.25-2.75 5.25-2.25 1.141.285 1.957 1.113 2.86 2.03C17.08 7.271 18.782 9 22.5 9c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.141-.285-1.957-1.113-2.86-2.03C20.42 1.728 18.718 0 15 0ZM7.5 9C3.5 9 1 11 0 15c1.5-2 3.25-2.75 5.25-2.25 1.141.285 1.957 1.113 2.86 2.03C9.58 16.271 11.282 18 15 18c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.141-.285-1.957-1.113-2.86-2.03C12.92 10.729 11.218 9 7.5 9Z"
                             fill="#38BDF8"></path>
                     </svg>
                 </div>
                 <h5 className="mb-2">Unlimited Access</h5>
                 <p className="mb-3">Upgrade to plan to get access to unlimited reports</p>
-                <a href="javascript: void(0);" className="btn btn-sm bg-secondary text-white">Upgrade</a>
+                <a href="#!" className="btn btn-sm bg-secondary text-white">Upgrade</a>
             </div>
         </div>
     </div>

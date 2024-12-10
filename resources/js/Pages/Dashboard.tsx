@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { Clock, Ellipsis } from 'lucide-react';
 
 export default function Dashboard() {
     return (
@@ -19,21 +20,21 @@ export default function Dashboard() {
 
                             <div>
                                 <button className="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="left-start" type="button">
-                                    <i className="mgc_more_1_fill text-xl"></i>
+                                    <Ellipsis className="text-xl" />
                                 </button>
 
                                 <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_add_circle_line"></i> Add
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_edit_line"></i> Edit
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                         <i className="mgc_copy_2_line"></i> Copy
                                     </a>
                                     <div className="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="#!">
                                         <i className="mgc_delete_line"></i> Delete
                                     </a>
                                 </div>
@@ -42,14 +43,15 @@ export default function Dashboard() {
 
                         <div className="flex items-end">
                             <div className="flex-grow">
-                                <p className="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i className="mgc_alarm_2_line"></i> 4 Hrs ago</p>
+                                <p className="text-[13px] flex items-center  text-gray-400 dark:text-gray-500 font-semibold">
+                                <Clock size={12} className="mr-1" /> 4 Hrs ago</p>
                             </div>
                             <div className="flex">
-                                <a href="javascript:void(0);">
-                                    <img src="/images/users/avatar-1.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
-                                <a href="javascript:void(0);" className="-ms-2">
-                                    <img src="/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!" className="-ms-2">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
                             </div>
                         </div>
@@ -69,17 +71,17 @@ export default function Dashboard() {
                                 </button>
 
                                 <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_add_circle_line"></i> Add
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_edit_line"></i> Edit
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                         <i className="mgc_copy_2_line"></i> Copy
                                     </a>
                                     <div className="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="#!">
                                         <i className="mgc_delete_line"></i> Delete
                                     </a>
                                 </div>
@@ -91,11 +93,11 @@ export default function Dashboard() {
                                 <p className="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i className="mgc_alarm_2_line"></i> 3 Hrs ago</p>
                             </div>
                             <div className="flex">
-                                <a href="javascript:void(0);">
-                                    <img src="/images/users/avatar-3.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
-                                <a href="javascript:void(0);" className="-ms-2">
-                                    <img src="/images/users/avatar-4.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!" className="-ms-2">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
                             </div>
                         </div>
@@ -115,17 +117,17 @@ export default function Dashboard() {
                                 </button>
 
                                 <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_add_circle_line"></i> Add
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_edit_line"></i> Edit
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                         <i className="mgc_copy_2_line"></i> Copy
                                     </a>
                                     <div className="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="#!">
                                         <i className="mgc_delete_line"></i> Delete
                                     </a>
                                 </div>
@@ -137,11 +139,11 @@ export default function Dashboard() {
                                 <p className="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i className="mgc_alarm_2_line"></i> 5 Hrs ago</p>
                             </div>
                             <div className="flex">
-                                <a href="javascript:void(0);">
-                                    <img src="/images/users/avatar-5.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
-                                <a href="javascript:void(0);" className="-ms-2">
-                                    <img src="/images/users/avatar-6.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!" className="-ms-2">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
                             </div>
                         </div>
@@ -161,17 +163,17 @@ export default function Dashboard() {
                                 </button>
 
                                 <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_add_circle_line"></i> Add
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_edit_line"></i> Edit
                                     </a>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                         <i className="mgc_copy_2_line"></i> Copy
                                     </a>
                                     <div className="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
-                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="javascript:void(0)">
+                                    <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="#!">
                                         <i className="mgc_delete_line"></i> Delete
                                     </a>
                                 </div>
@@ -183,11 +185,11 @@ export default function Dashboard() {
                                 <p className="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i className="mgc_alarm_2_line"></i> 1 Day ago</p>
                             </div>
                             <div className="flex">
-                                <a href="javascript:void(0);">
-                                    <img src="/images/users/avatar-7.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
-                                <a href="javascript:void(0);" className="-ms-2">
-                                    <img src="/images/users/avatar-8.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
+                                <a href="#!" className="-ms-2">
+                                    <img src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" className="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700" alt="friend"/>
                                 </a>
                             </div>
                         </div>
@@ -257,17 +259,17 @@ export default function Dashboard() {
                         </button>
 
                         <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                 <i className="mgc_add_circle_line"></i> Add
                             </a>
-                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                 <i className="mgc_edit_line"></i> Edit
                             </a>
-                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                 <i className="mgc_copy_2_line"></i> Copy
                             </a>
                             <div className="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
-                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="javascript:void(0)">
+                            <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5" href="#!">
                                 <i className="mgc_delete_line"></i> Delete
                             </a>
                         </div>
@@ -367,7 +369,13 @@ export default function Dashboard() {
                     <h5 className="text-gray-600 dark:text-gray-300">65%</h5>
                 </div>
                 <div className="flex w-full h-1 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700 ">
-                    <div className="flex flex-col justify-center overflow-hidden bg-primary w-1/4" role="progressbar" aria-valuenow={25} aria-valuemin="0" aria-valuemax={100}></div>
+                <div 
+                className="flex flex-col justify-center overflow-hidden bg-primary w-1/4" 
+                role="progressbar" 
+                aria-valuenow={25} 
+                aria-valuemin={0} 
+                aria-valuemax={100}
+                ></div>
                 </div>
             </div>
         </div>
@@ -393,16 +401,16 @@ export default function Dashboard() {
                             </button>
 
                             <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Today
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Yesterday
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Week
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Month
                                 </a>
                             </div>
@@ -431,16 +439,16 @@ export default function Dashboard() {
                             </button>
 
                             <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Today
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Yesterday
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Week
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Month
                                 </a>
                             </div>
@@ -469,16 +477,16 @@ export default function Dashboard() {
                             </button>
 
                             <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Today
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Yesterday
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Week
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Month
                                 </a>
                             </div>
@@ -507,16 +515,16 @@ export default function Dashboard() {
                             </button>
 
                             <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Today
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Yesterday
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Week
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Month
                                 </a>
                             </div>
@@ -539,16 +547,16 @@ export default function Dashboard() {
                             </button>
 
                             <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Today
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                     Yesterday
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Week
                                 </a>
-                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript:void(0)">
+                                <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="#!">
                                     Last Month
                                 </a>
                             </div>
@@ -639,7 +647,7 @@ export default function Dashboard() {
                         <h4 className="card-title">Daily Task</h4>
                         <div>
                             <select className="form-input form-select-sm">
-                                <option selected>Today</option>
+                                <option defaultValue={'1'}>Today</option>
                                 <option value="1">Yesterday</option>
                                 <option value="2">Tomorrow</option>
                             </select>
@@ -652,7 +660,7 @@ export default function Dashboard() {
                         <div className="space-y-4">
                             <div className="border border-gray-200 dark:border-gray-700 rounded p-2">
                                 <ul className="flex items-center gap-2 mb-2">
-                                    <a href="javascript:void(0);" className="text-base text-gray-600 dark:text-gray-400">Landing Page Design</a>
+                                    <a href="#!" className="text-base text-gray-600 dark:text-gray-400">Landing Page Design</a>
                                     <i className="mgc_round_fill text-[5px]"></i>
                                     <h5 className="text-sm font-semibold">2 Hrs ago</h5>
                                 </ul>
@@ -662,7 +670,7 @@ export default function Dashboard() {
 
                             <div className="border border-gray-200 dark:border-gray-700 rounded p-2">
                                 <ul className="flex items-center gap-2 mb-2">
-                                    <a href="javascript:void(0);" className="text-base text-gray-600 dark:text-gray-400">Admin Dashboard</a>
+                                    <a href="#!" className="text-base text-gray-600 dark:text-gray-400">Admin Dashboard</a>
                                     <i className="mgc_round_fill text-[5px]"></i>
                                     <h5 className="text-sm font-semibold">3 Hrs ago</h5>
                                 </ul>
@@ -672,7 +680,7 @@ export default function Dashboard() {
 
                             <div className="border border-gray-200 dark:border-gray-700 rounded p-2">
                                 <ul className="flex items-center gap-2 mb-2">
-                                    <a href="javascript:void(0);" className="text-base text-gray-600 dark:text-gray-400">Client Work</a>
+                                    <a href="#!" className="text-base text-gray-600 dark:text-gray-400">Client Work</a>
                                     <i className="mgc_round_fill text-[5px]"></i>
                                     <h5 className="text-sm font-semibold">5 Hrs ago</h5>
                                 </ul>
@@ -682,7 +690,7 @@ export default function Dashboard() {
 
                             <div className="border border-gray-200 dark:border-gray-700 rounded p-2">
                                 <ul className="flex items-center gap-2 mb-2">
-                                    <a href="javascript:void(0);" className="text-base text-gray-600 dark:text-gray-400">UI/UX Design</a>
+                                    <a href="#!" className="text-base text-gray-600 dark:text-gray-400">UI/UX Design</a>
                                     <i className="mgc_round_fill text-[5px]"></i>
                                     <h5 className="text-sm font-semibold">6 Hrs ago</h5>
                                 </ul>
@@ -707,7 +715,7 @@ export default function Dashboard() {
                     <h4 className="card-title">Team Members</h4>
                     <div>
                         <select className="form-select form-select-sm">
-                            <option selected>Active</option>
+                            <option  defaultValue={""}>Active</option>
                             <option value="1">Offline</option>
                         </select>
                     </div>
@@ -717,9 +725,9 @@ export default function Dashboard() {
                     <div className="px-6" data-simplebar style={{ maxHeight: '304px' }}>
                         <div className="space-y-6">
                             <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="/images/users/avatar-1.jpg" width="40" alt="Generic placeholder image"/>
+                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
                                 <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="javascript:void(0);" className="text-gray-600 dark:text-gray-400">Risa Pearson</a></h5>
+                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Risa Pearson</a></h5>
                                     <div className="flex items-center gap-2">
                                         <div>UI/UX Designer</div>
                                         <i className="mgc_round_fill text-[5px]"></i>
@@ -729,9 +737,9 @@ export default function Dashboard() {
                             </div>
 
                             <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
+                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
                                 <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="javascript:void(0);" className="text-gray-600 dark:text-gray-400">Margaret D. Evans</a></h5>
+                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Margaret D. Evans</a></h5>
                                     <div className="flex items-center gap-2">
                                         <div>PHP Developer</div>
                                         <i className="mgc_round_fill text-[5px]"></i>
@@ -741,9 +749,9 @@ export default function Dashboard() {
                             </div>
 
                             <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="/images/users/avatar-3.jpg" width="40" alt="Generic placeholder image"/>
+                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
                                 <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="javascript:void(0);" className="text-gray-600 dark:text-gray-400">Bryan J. Luellen</a></h5>
+                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Bryan J. Luellen</a></h5>
                                     <div className="flex items-center gap-2">
                                         <div>Front end Developer</div>
                                         <i className="mgc_round_fill text-[5px]"></i>
@@ -753,9 +761,9 @@ export default function Dashboard() {
                             </div>
 
                             <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="/images/users/avatar-4.jpg" width="40" alt="Generic placeholder image"/>
+                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
                                 <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="javascript:void(0);" className="text-gray-600 dark:text-gray-400">Kathryn S. Collier</a></h5>
+                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Kathryn S. Collier</a></h5>
                                     <div className="flex items-center gap-2">
                                         <div>UI/UX Designer</div>
                                         <i className="mgc_round_fill text-[5px]"></i>
@@ -765,9 +773,9 @@ export default function Dashboard() {
                             </div>
 
                             <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="/images/users/avatar-5.jpg" width="40" alt="Generic placeholder image"/>
+                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
                                 <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="javascript:void(0);" className="text-gray-600 dark:text-gray-400">Timothy Kauper</a></h5>
+                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Timothy Kauper</a></h5>
                                     <div className="flex items-center gap-2">
                                         <div>Backend Developer</div>
                                         <i className="mgc_round_fill text-[5px]"></i>
@@ -777,9 +785,9 @@ export default function Dashboard() {
                             </div>
 
                             <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="/images/users/avatar-6.jpg" width="40" alt="Generic placeholder image"/>
+                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
                                 <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="javascript:void(0);" className="text-gray-600 dark:text-gray-400">Zara Raws</a></h5>
+                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Zara Raws</a></h5>
                                     <div className="flex items-center gap-2">
                                         <div>Python Developer</div>
                                         <i className="mgc_round_fill text-[5px]"></i>
