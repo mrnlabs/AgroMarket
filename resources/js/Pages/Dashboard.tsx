@@ -1,8 +1,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { Clock, Ellipsis } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Dashboard() {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     return (
         <AuthenticatedLayout>
             <Head title="Dashboard" />
@@ -19,11 +21,12 @@ export default function Dashboard() {
                             </div>
 
                             <div>
-                                <button className="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="left-start" type="button">
+                                <button onClick={() => { setDropdownOpen(!dropdownOpen) }} className="text-gray-600 dark:text-gray-400" type="button">
                                     <Ellipsis className="text-xl" />
                                 </button>
 
-                                <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+                                {dropdownOpen && (
+                                    <div className="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
                                     <a className="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200" href="#!">
                                         <i className="mgc_add_circle_line"></i> Add
                                     </a>
@@ -38,6 +41,7 @@ export default function Dashboard() {
                                         <i className="mgc_delete_line"></i> Delete
                                     </a>
                                 </div>
+                                )}
                             </div>
                         </div>
 
@@ -678,25 +682,6 @@ export default function Dashboard() {
                                 <p className="text-gray-500 dark:text-gray-400 text-sm"><i className="mgc_group_line text-xl me-1 align-middle"></i> <b>2</b> People</p>
                             </div>
 
-                            <div className="border border-gray-200 dark:border-gray-700 rounded p-2">
-                                <ul className="flex items-center gap-2 mb-2">
-                                    <a href="#!" className="text-base text-gray-600 dark:text-gray-400">Client Work</a>
-                                    <i className="mgc_round_fill text-[5px]"></i>
-                                    <h5 className="text-sm font-semibold">5 Hrs ago</h5>
-                                </ul>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">Create a new Power Project (Sktech design)</p>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm"><i className="mgc_group_line text-xl me-1 align-middle"></i> <b>2</b> People</p>
-                            </div>
-
-                            <div className="border border-gray-200 dark:border-gray-700 rounded p-2">
-                                <ul className="flex items-center gap-2 mb-2">
-                                    <a href="#!" className="text-base text-gray-600 dark:text-gray-400">UI/UX Design</a>
-                                    <i className="mgc_round_fill text-[5px]"></i>
-                                    <h5 className="text-sm font-semibold">6 Hrs ago</h5>
-                                </ul>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">Create a new UI Kit in figma</p>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm"><i className="mgc_group_line text-xl me-1 align-middle"></i> <b>3</b> People</p>
-                            </div>
 
                             <div className="flex items-center justify-center">
                                 <div className="animate-spin flex">
@@ -784,17 +769,6 @@ export default function Dashboard() {
                                 </div>
                             </div>
 
-                            <div className="flex items-center">
-                                <img className="me-3 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg" width="40" alt="Generic placeholder image"/>
-                                <div className="w-full overflow-hidden">
-                                    <h5 className="font-semibold"><a href="#!" className="text-gray-600 dark:text-gray-400">Zara Raws</a></h5>
-                                    <div className="flex items-center gap-2">
-                                        <div>Python Developer</div>
-                                        <i className="mgc_round_fill text-[5px]"></i>
-                                        <div>1 Year Experience</div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

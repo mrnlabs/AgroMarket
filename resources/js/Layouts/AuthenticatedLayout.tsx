@@ -31,10 +31,10 @@ export default function Authenticated({
         appScript.async = true;
         document.body.appendChild(appScript);
 
-        const dashScript = document.createElement('script');
-        dashScript.src = '../dashboard-assets/app.js';
-        dashScript.async = true;
-        document.body.appendChild(dashScript);
+        // const dashScript = document.createElement('script');
+        // dashScript.src = '../dashboard-assets/app.js';
+        // dashScript.async = true;
+        // document.body.appendChild(dashScript);
 
 
         // Cleanup scripts when the component unmounts

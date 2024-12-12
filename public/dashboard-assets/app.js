@@ -1,8 +1,3 @@
-/**
-* Theme: Konrix - Responsive Tailwind Admin Dashboard
-* Author: coderthemes
-* Module/App: App js
-*/
 
 
 
