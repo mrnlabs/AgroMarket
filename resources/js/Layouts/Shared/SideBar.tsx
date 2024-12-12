@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react'
+import { CircleDollarSign, House, Menu, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -22,7 +24,8 @@ export default function SideBar() {
     {/* <!-- Sidenav Menu Toggle Button --> */}
     <button id="button-hover-toggle" className="absolute top-5 end-2 rounded-full p-1.5">
         <span className="sr-only">Menu Toggle Button</span>
-        <i className="mgc_round_line text-xl"></i>
+        {/* <i className="mgc_round_line text-xl"></i> */}
+        <Menu size={20} />
     </button>
 
     {/* <!--- Menu --> */}
@@ -32,99 +35,29 @@ export default function SideBar() {
 
             <li className="menu-item">
                 <a href="{{ route('any', 'index') }}" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_home_3_line"></i></span>
+                <House size={20} />
                     <span className="menu-text"> Dashboard </span>
                 </a>
             </li>
 
-            <li className="menu-title">Apps</li>
+            <li className="menu-title">Users</li>
 
             <li className="menu-item">
-                <a href="{{ route('second', ['apps', 'calendar']) }}" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_calendar_line"></i></span>
-                    <span className="menu-text"> Calendar </span>
-                </a>
+                <Link href={route('users.index')} className="menu-link">
+                    <Users size={20} />
+                    <span className="menu-text"> Users </span>
+                </Link>
             </li>
+
 
             <li className="menu-item">
-                <a href="{{ route('second', ['apps', 'tickets']) }}" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_coupon_line"></i></span>
-                    <span className="menu-text"> Tickets </span>
-                </a>
+                <Link href={route('subscriptions.index')} className="menu-link">
+                <CircleDollarSign size={20} />
+                    <span className="menu-text"> Subscriptions </span>
+                </Link>
             </li>
 
-            <li className="menu-item">
-                <a href="{{ route('second', ['apps', 'file-manager']) }}" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_folder_2_line"></i></span>
-                    <span className="menu-text"> File Manager </span>
-                </a>
-            </li>
-
-            <li className="menu-item">
-                <a href="{{ route('second', ['apps', 'kanban']) }}" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_task_2_line"></i></span>
-                    <span className="menu-text">Kanban</span>
-                </a>
-            </li>
-
-            <li className="menu-item">
-                <a href="#!" data-fc-type="collapse" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_building_2_line"></i></span>
-                    <span className="menu-text"> Project </span>
-                    <span className="menu-arrow"></span>
-                </a>
-
-                <ul className="sub-menu hidden">
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['project', 'list']) }}" className="menu-link">
-                            <span className="menu-text">List</span>
-                        </a>
-                    </li>
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['project', 'detail']) }}" className="menu-link">
-                            <span className="menu-text">Detail</span>
-                        </a>
-                    </li>
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['project', 'create']) }}" className="menu-link">
-                            <span className="menu-text">Create</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li className="menu-title">Custom</li>
-
-            <li className="menu-item">
-                <a href="#!" data-fc-type="collapse" className="menu-link">
-                    <span className="menu-icon"><i className="mgc_user_3_line"></i></span>
-                    <span className="menu-text"> Auth Pages </span>
-                    <span className="menu-arrow"></span>
-                </a>
-
-                <ul className="sub-menu hidden">
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['auth', 'login']) }}" className="menu-link">
-                            <span className="menu-text">Log In</span>
-                        </a>
-                    </li>
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['auth', 'register']) }}" className="menu-link">
-                            <span className="menu-text">Register</span>
-                        </a>
-                    </li>
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['auth', 'recoverpw']) }}" className="menu-link">
-                            <span className="menu-text">Recover Password</span>
-                        </a>
-                    </li>
-                    <li className="menu-item">
-                        <a href="{{ route('second', ['auth', 'lock-screen']) }}" className="menu-link">
-                            <span className="menu-text">Lock Screen</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+          
 
             <li className="menu-item">
                 <a href="#!" data-fc-type="collapse" className="menu-link">

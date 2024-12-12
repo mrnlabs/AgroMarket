@@ -1,3 +1,4 @@
+import { Menu } from 'lucide-react'
 import React from 'react'
 
 export default function DHeader() {
@@ -8,7 +9,7 @@ export default function DHeader() {
     <button id="button-toggle-menu" className="nav-link p-2">
         <span className="sr-only">Menu Toggle Button</span>
         <span className="flex items-center justify-center h-6 w-6">
-            <i className="mgc_menu_line text-xl"></i>
+        <Menu size={20} />
         </span>
     </button>
 

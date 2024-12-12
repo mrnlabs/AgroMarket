@@ -1,6 +1,6 @@
 
 
-
+(function () {
 class App {
 
     // Components
@@ -402,3 +402,4 @@ class ThemeCustomizer {
 
 new App().init();
 new ThemeCustomizer().init();
+})();
