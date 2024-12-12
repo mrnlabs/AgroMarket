@@ -4,17 +4,13 @@
 * Module/App: App js
 */
 
-import "@frostui/tailwindcss"
 
-import feather from 'feather-icons';
 
 class App {
 
     // Components
     initComponents() {
 
-        // Feather Icons
-        feather.replace()
 
         // Back To Top
         const mybutton = document.querySelector('[data-toggle="back-to-top"]');
@@ -82,7 +78,6 @@ class ThemeCustomizer {
     }
 
     initConfig() {
-        console.log(window);
         this.defaultConfig = JSON.parse(JSON.stringify(window.defaultConfig));
         this.config = JSON.parse(JSON.stringify(window.config));
         this.setSwitchFromConfig();
@@ -268,9 +263,8 @@ class ThemeCustomizer {
 
         // Menu Toggle Button ( Placed in Topbar)
         var menuToggleBtn = document.querySelector('#button-toggle-menu');
-        console.log('menuToggleBtn', menuToggleBtn);
         if (menuToggleBtn) {
-            menuToggleBtn.addEventListener('click', function () {alert('click');
+            menuToggleBtn.addEventListener('click', function () {
                 var configView = self.config.sidenav.view;
                 var view = self.html.getAttribute('data-sidenav-view', configView);
 
