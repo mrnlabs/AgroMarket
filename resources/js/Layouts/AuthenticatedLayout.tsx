@@ -16,18 +16,20 @@ export default function Authenticated({
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
-
+    const jsPath = usePage().props.dashboard_js_path;
 
     useEffect(() => {
         // Load config.js
         const configScript = document.createElement('script');
-        configScript.src = '../dashboard-assets/config.js';
+        // @ts-ignore
+        configScript.src = jsPath[0];
         configScript.async = true;
         document.body.appendChild(configScript);
 
         //Load app.js
         const appScript = document.createElement('script');
-        appScript.src = '../dashboard-assets/app.js';
+        // @ts-ignore
+        appScript.src = jsPath[1];
         appScript.async = true;
         document.body.appendChild(appScript);
 

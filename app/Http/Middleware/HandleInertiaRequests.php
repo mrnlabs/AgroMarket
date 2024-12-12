@@ -34,6 +34,10 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'dashboard_js_path' => [
+                getenv('ASSET_URL') . '/dashboard-assets/config.js',
+                getenv('ASSET_URL') . '/dashboard-assets/app.js'
+            ],
         ];
     }
 }

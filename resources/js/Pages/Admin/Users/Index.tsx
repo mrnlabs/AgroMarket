@@ -1,7 +1,6 @@
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { Link } from '@inertiajs/react'
 import { Trash2 } from 'lucide-react'
-import React from 'react'
 
 export default function Users() {
   return (

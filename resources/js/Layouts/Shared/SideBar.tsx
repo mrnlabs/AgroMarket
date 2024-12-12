@@ -7,7 +7,7 @@ export default function SideBar() {
     <div className="app-menu">
 
     {/* <!-- Sidenav Brand Logo --> */}
-    <a href="{{ route('any', 'index') }}" className="logo-box">
+    <a href="/" className="logo-box">
         {/* <!-- Light Brand Logo --> */}
         <div className="logo-light">
             <img src="https://coderthemes.com/konrix/layouts/assets/images/logo-light.png" className="logo-lg h-6" alt="Light logo" />
@@ -34,7 +34,7 @@ export default function SideBar() {
             <li className="menu-title">Menu</li>
 
             <li className="menu-item">
-                <a href="{{ route('any', 'index') }}" className="menu-link">
+                <a href="/dashboard" className="menu-link">
                 <House size={20} />
                     <span className="menu-text"> Dashboard </span>
                 </a>
@@ -466,21 +466,6 @@ export default function SideBar() {
                 </ul>
             </li>
         </ul>
-
-        {/* <!-- Help Box Widget --> */}
-        <div className="my-10 mx-5">
-            <div className="help-box p-6 bg-black/5 text-center rounded-md">
-                <div className="flex justify-center mb-4">
-                    <svg width="30" height="18" aria-hidden="true">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M15 0c-4 0-6.5 2-7.5 6 1.5-2 3.25-2.75 5.25-2.25 1.141.285 1.957 1.113 2.86 2.03C17.08 7.271 18.782 9 22.5 9c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.141-.285-1.957-1.113-2.86-2.03C20.42 1.728 18.718 0 15 0ZM7.5 9C3.5 9 1 11 0 15c1.5-2 3.25-2.75 5.25-2.25 1.141.285 1.957 1.113 2.86 2.03C9.58 16.271 11.282 18 15 18c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.141-.285-1.957-1.113-2.86-2.03C12.92 10.729 11.218 9 7.5 9Z"
-                            fill="#38BDF8"></path>
-                    </svg>
-                </div>
-                <h5 className="mb-2">Unlimited Access</h5>
-                <p className="mb-3">Upgrade to plan to get access to unlimited reports</p>
-                <a href="#!" className="btn btn-sm bg-secondary text-white">Upgrade</a>
-            </div>
-        </div>
     </div>
 </div>
 

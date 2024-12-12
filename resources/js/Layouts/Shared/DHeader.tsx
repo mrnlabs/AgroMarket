@@ -37,38 +37,6 @@ export default function DHeader() {
     </button>
 
     {/* <!-- Language Dropdown Button --> */}
-    <div className="relative">
-        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" className="nav-link p-2 fc-dropdown">
-            <span className="flex items-center justify-center h-6 w-6">
-                <img src="/images/flags/us.jpg" alt="user-image" className="h-4 w-6"/>
-            </span>
-        </button>
-        <div className="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-            {/* <!-- item--> */}
-            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <img src="/images/flags/germany.jpg" alt="user-image" className="h-4"/>
-                <span className="align-middle">German</span>
-            </a>
-
-            {/* <!-- item--> */}
-            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <img src="/images/flags/italy.jpg" alt="user-image" className="h-4"/>
-                <span className="align-middle">Italian</span>
-            </a>
-
-            {/* <!-- item--> */}
-            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <img src="/images/flags/spain.jpg" alt="user-image" className="h-4"/>
-                <span className="align-middle">Spanish</span>
-            </a>
-
-            {/* <!-- item--> */}
-            <a href="#!" className="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <img src="/images/flags/russia.jpg" alt="user-image" className="h-4"/>
-                <span className="align-middle">Russian</span>
-            </a>
-        </div>
-    </div>
 
     {/* <!-- Fullscreen Toggle Button --> */}
     <div className="md:flex hidden">

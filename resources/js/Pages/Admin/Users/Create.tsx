@@ -7,137 +7,124 @@ import React from 'react'
 export default function Create() {
   return (
     <Authenticated>
-<div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
-	<div className="card">
-		<div className="p-5">
-			<div className="flex justify-between">
-				<div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-primary/25 ">
-					<i className="mgc_tag_line text-4xl text-primary"></i>
-				</div>
-				<div className="text-right">
-					<h3 className="text-gray-700 mt-1 text-2xl font-bold mb-5 dark:text-gray-300">3947</h3>
-					<p className="text-gray-500 mb-1 truncate dark:text-gray-400">Total Tickets</p>
-				</div>
-			</div>
-		</div>
-	</div>
+<div className="grid lg:grid-cols-4 gap-6">
+        <div className="col-span-1 flex flex-col gap-6">
+            <div className="card p-6">
+                <div className="flex justify-between items-center mb-4">
+                    <h4 className="card-title">Add Avatar Images</h4>
+                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                        <i className="mgc_add_line"></i>
+                    </div>
+                </div>
 
-	<div className="card">
-		<div className="p-5">
-			<div className="flex justify-between">
-				<div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-yellow-100">
-					<i className="mgc_alarm_2_line text-4xl text-yellow-500"></i>
-				</div>
-				<div className="text-right">
-					<h3 className="text-gray-700 mt-1 text-2xl font-bold mb-5 dark:text-gray-300">624</h3>
-					<p className="text-gray-500 mb-1 truncate dark:text-gray-400">Pending Tickets</p>
-				</div>
-			</div>
-		</div>
-	</div>
+                <form action="#" className="dropzone text-gray-700 dark:text-gray-300 h-52">
+                    <div className="fallback">
+                        <input name="file" type="file" multiple={true}/>
+                    </div>
+                    <div className="dz-message needsclick w-full h-full flex items-center justify-center">
+                        <i className="mgc_pic_2_line text-8xl"></i>
+                    </div>
+                </form>
 
-	<div className="card">
-		<div className="p-5">
-			<div className="flex justify-between">
-				<div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-green-100">
-					<i className="mgc_check_line text-4xl text-green-500"></i>
-				</div>
-				<div className="text-right">
-					<h3 className="text-gray-700 mt-1 text-2xl font-bold mb-5 dark:text-gray-300">3195</h3>
-					<p className="text-gray-500 mb-1 truncate dark:text-gray-400">Closed Tickets</p>
-				</div>
-			</div>
-		</div>
-	</div>
+                <div className=""></div>
+            </div>
 
-	<div className="card">
-		<div className="p-5">
-			<div className="flex justify-between">
-				<div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-red-100">
-					<i className="mgc_delete_line text-4xl text-red-500"></i>
-				</div>
-				<div className="text-right">
-					<h3 className="text-gray-700 mt-1 text-2xl font-bold mb-5 dark:text-gray-300">128</h3>
-					<p className="text-gray-500 mb-1 truncate dark:text-gray-400">Deleted Tickets</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+            <div className="card p-6">
+                <div className="flex justify-between items-center mb-4">
+                    <p className="card-title">Team Members</p>
+                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                        <i className="mgc_compass_line"></i>
+                    </div>
+                </div>
 
-<div className="mt-6">
-	<div className="card">
-		<div className="flex flex-wrap justify-between items-center gap-2 p-6">
-			<Link href={route('users.create')} className="btn bg-danger/20 text-sm font-medium text-danger hover:text-white hover:bg-danger">
-				<i className="mgc_add_circle_line me-3"></i>
-				Add Customers
-            </Link>
-			<div className="flex flex-wrap gap-2">
-				<button type="button" className="btn bg-success/25 text-lg font-medium text-success hover:text-white hover:bg-success">
-					<i className="mgc_settings_3_line"></i>
-				</button>
-				<button type="button" className="btn bg-dark/25 text-sm font-medium text-slate-900 dark:text-slate-200/70 hover:text-white hover:bg-dark/90">Import</button>
-				<button type="button" className="btn bg-dark/25 text-sm font-medium text-slate-900 dark:text-slate-200/70 hover:text-white hover:bg-dark/90">Export</button>
-			</div>
-		</div>
-		<div className="relative overflow-x-auto">
-			<table className="w-full divide-y divide-gray-300 dark:divide-gray-700">
-				<thead className="bg-slate-300 bg-opacity-20 border-t dark:bg-slate-800 divide-gray-300 dark:border-gray-700">
-					<tr>
-						<th scope="col" className="py-3.5 ps-4 pe-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">ID</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Requested By</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Subject</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Assignee</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Priority</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Status</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Created Date</th>
-						<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">Due Date</th>
-						<th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900 dark:text-gray-200">Action</th>
-					</tr>
-				</thead>
-				<tbody className="divide-y divide-gray-200 dark:divide-gray-700 ">
+                <div className="flex flex-col gap-3">
+                    <div className="">
+                        <label htmlFor="select-label-catagory" className="mb-2 block">Catagory</label>
+                        <select id="select-label-catagory" className="form-select">
+                            <option defaultValue="">Select</option>
+                            <option>Mary Scott</option>
+                            <option>Holly Campbell</option>
+                            <option>Mary Scott</option>
+                            <option>Melinda Gills</option>
+                            <option>Linda Garza</option>
+                        </select>
+                    </div>
 
-					<tr>
-						<td className="whitespace-nowrap py-4 ps-4 pe-3 text-sm font-medium text-gray-900 dark:text-gray-200">
-							<b>#1256</b>
-						</td>
-						<td className="whitespace-nowrap py-4 pe-3 text-sm">
-							<div className="flex items-center">
-								<div className="h-10 w-10 flex-shrink-0">
-									<img className="h-10 w-10 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-9.jpg" alt="user" />
-								</div>
-								<div className="font-medium text-gray-900 dark:text-gray-200 ms-4">Jerry Geiger</div>
-							</div>
-						</td>
-						<td className="whitespace-nowrap py-4 pe-3 text-sm font-medium text-gray-900 dark:text-gray-200">
-							Support for theme</td>
-						<td className="whitespace-nowrap py-4 px-3 text-sm">
-							<img className="h-10 w-10 rounded-full" src="https://coderthemes.com/konrix/layouts/assets/images/users/avatar-9.jpg" alt=""/>
-						</td>
-						<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-							<div className="inline-flex items-center gap-1.5 py-1 px-3 rounded text-xs font-medium bg-dark/25 text-slate-900 dark:text-slate-200/90">Low</div>
-						</td>
-						<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-							<div className="inline-flex items-center gap-1.5 py-1 px-3 rounded text-xs font-medium bg-success/90 text-white">Open</div>
-						</td>
-						<td className="whitespace-nowrap py-4 pe-3 text-sm font-medium text-gray-900 dark:text-gray-200">28/07/2020</td>
-						<td className="whitespace-nowrap py-4 pe-3 text-sm font-medium text-gray-900 dark:text-gray-200">28/07/2020</td>
-						<td className="whitespace-nowrap py-4 px-3 text-center text-sm font-medium">
-							<a href="#!" className="me-0.5">
-								<i className="mgc_edit_line text-lg"></i>
-							</a>
-							<a href="#!" className="ms-0.5">
-                                <Trash2 className="text-xl" />
-							</a>
-						</td>
-					</tr>
+                    <div className="flex gap-3">
+                        <div className="flex -space-x-2">
+                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-9.jpg" alt="Image Description"/>
+                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-8.jpg" alt="Image Description"/>
+                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-7.jpg" alt="Image Description"/>
+                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-6.jpg" alt="Image Description"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-				
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+        <div className="lg:col-span-3 space-y-6">
+            <div className="card p-6">
+                <div className="flex justify-between items-center mb-4">
+                    <p className="card-title">Genrel Product Data</p>
+                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                        <i className="mgc_transfer_line"></i>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                    <div className="">
+                        <label htmlFor="project-name" className="mb-2 block">Project Name</label>
+                        <input type="email" id="project-name" className="form-input" placeholder="Enter Title" aria-describedby="input-helper-text"/>
+                    </div>
+
+                    <div className="">
+                        <label htmlFor="project-description" className="mb-2 block">Project Description
+                            <span className="text-red-500">*</span>
+                        </label>
+                        <textarea id="project-description" className="form-input" rows={8}></textarea>
+                    </div>
+
+
+                    <div className="grid md:grid-cols-2 gap-3">
+                        <div className="">
+                            <label htmlFor="start-date" className="mb-2 block">Start Date</label>
+                            <input type="date" id="start-date" className="form-input"></input>
+                        </div>
+
+                        <div className="">
+                            <label htmlFor="due-date" className="mb-2 block">Due Date</label>
+                            <input type="date" id="due-date" className="form-input"></input>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="select-label" className="mb-2 block">Label</label>
+                        <select id="select-label" className="form-select">
+                            <option defaultValue="0">Open this select menu</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="budget" className="mb-2 block">Budget</label>
+                        <input type="text" id="budget" className="form-input" placeholder="Enter Project Budget"></input>
+                    </div>
+                </div>
+            </div>
+            <div className="lg:col-span-4 mt-5">
+                <div className="flex justify-end gap-3">
+                    <button type="button" className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none">
+                        Cancle
+                    </button>
+                    <button type="button" className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </Authenticated>
   )
 }
