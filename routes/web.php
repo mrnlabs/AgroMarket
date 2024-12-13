@@ -31,5 +31,13 @@ Route::prefix('products')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/file-manager', function () {return Inertia::render('Admin/FileManager/Index');});
+
+
 require __DIR__.'/auth.php';
 require __DIR__.'/subscription.php';
+
+Route::middleware('auth')->group(function () {
+    require __DIR__.'/task.php';
+});

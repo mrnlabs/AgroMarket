@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react'
-import { CircleDollarSign, House, Menu, Users } from 'lucide-react'
+import { CircleDollarSign, ClipboardCheck, FolderClosed, House, Menu, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -54,6 +54,20 @@ export default function SideBar() {
                 <Link href={route('subscriptions.index')} className="menu-link">
                 <CircleDollarSign size={20} />
                     <span className="menu-text"> Subscriptions </span>
+                </Link>
+            </li>
+
+            <li className="menu-item">
+                <Link href="/file-manager" className="menu-link">
+                <FolderClosed size={20} />
+                    <span className="menu-text"> File Manager </span>
+                </Link>
+            </li>
+
+            <li className="menu-item">
+                <Link href={route('tasks.index')} className="menu-link">
+                <ClipboardCheck size={20} />
+                    <span className="menu-text"> Tasks </span>
                 </Link>
             </li>
 
