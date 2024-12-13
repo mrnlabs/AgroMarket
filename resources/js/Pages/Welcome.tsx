@@ -91,7 +91,8 @@ export default function Welcome({
                         <li className="common-dropdown__item nav-submenu__item"><a href="blog-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Blog Details</a></li>
                      </ul>
                   </li>
-                  <li className="nav-menu__item"><a href="contact.html" className="nav-menu__link">Contact Us</a></li>
+                  <li className="nav-menu__item">
+                     <a href="contact.html" className="nav-menu__link">Contact Us</a></li>
                </ul>
             </div>
          </div>
@@ -188,7 +189,7 @@ export default function Welcome({
                   </div>
                </form>
                <div className="header-right items-center xl:block hidden">
-                  <div className="flex items-center flex-wrap gap-12"><button type="button" className="search-icon flex items-center xl:hidden flex gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative item-hover__text"><i className="ph ph-magnifying-glass"></i></span></button> <a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="ph ph-heart"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Wishlist</span> </a><a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="ph ph-shopping-cart-simple"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Cart</span></a></div>
+                  <div className="flex items-center flex-wrap gap-12"><button type="button" className="search-icon flex items-center xl:hidden flex gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative item-hover__text"><i className="ph ph-magnifying-glass"></i></span></button> <a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="ph ph-heart"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Wishlist</span> </a><a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="fluent--chat-20-regular-simple"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Cart</span></a></div>
                </div>
             </nav>
          </div>
@@ -357,7 +358,7 @@ export default function Welcome({
                      01- 234 567 890
                   </a>
                   <div className="me-16 xl:hidden block">
-                     <div className="flex items-center flex-wrap gap-12"><button type="button" className="search-icon flex items-center xl:hidden flex gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative item-hover__text"><i className="ph ph-magnifying-glass"></i></span></button> <a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="ph ph-heart"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Wishlist</span> </a><a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="ph ph-shopping-cart-simple"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Cart</span></a></div>
+                     <div className="flex items-center flex-wrap gap-12"><button type="button" className="search-icon flex items-center xl:hidden flex gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative item-hover__text"><i className="ph ph-magnifying-glass"></i></span></button> <a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="ph ph-heart"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Wishlist</span> </a><a href="cart.html" className="flex items-center gap-4 item-hover"><span className="text-2xl text-gray-700 flex relative me-6 mt-6 item-hover__text"><i className="fluent--chat-20-regular-simple"></i> <span className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-main-600 text-white text-xs absolute top-n6 end-n4">2</span> </span><span className="text-md text-gray-500 item-hover__text hidden xl:flex">Cart</span></a></div>
                   </div>
                   <button type="button" className="toggle-mobileMenu xl:hidden ms-3n text-gray-800 text-4xl flex"><i className="ph ph-list"></i></button>
                </div>
@@ -375,7 +376,7 @@ export default function Welcome({
                      <div className="banner-slider__inner flex-between relative">
                         <div className="banner-item__content">
                            <h1 className="banner-item__title wow bounceInDown" data-wow-duration="1s">Daily Grocery Order and Get Express Delivery</h1>
-                           <a href="shop.html" className="btn btn-main inline-flex items-center rounded-[50rem] gap-8 wow bounceInUp" data-wow-duration="1s">Explore Shop <span className="icon text-xl flex"><i className="ph ph-shopping-cart-simple"></i></span></a>
+                           <a href="shop.html" className="btn btn-main inline-flex items-center rounded-[50rem] gap-8 wow bounceInUp" data-wow-duration="1s">Explore Shop <span className="icon text-xl flex"><i className="fluent--chat-20-regular-simple"></i></span></a>
                         </div>
                         <div className="banner-item__thumb wow bounceIn" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06"><img src="images/banner-img1.png" alt="Image" /></div>
                      </div>
@@ -384,7 +385,7 @@ export default function Welcome({
                      <div className="banner-slider__inner flex-between relative">
                         <div className="banner-item__content">
                            <h1 className="banner-item__title wow bounceInDown" data-wow-duration="1s">Daily Grocery Order and Get Express Delivery</h1>
-                           <a href="shop.html" className="btn btn-main inline-flex items-center rounded-[50rem] gap-8 wow bounceIn" data-wow-duration="1s">Explore Shop <span className="icon text-xl flex"><i className="ph ph-shopping-cart-simple"></i></span></a>
+                           <a href="shop.html" className="btn btn-main inline-flex items-center rounded-[50rem] gap-8 wow bounceIn" data-wow-duration="1s">Explore Shop <span className="icon text-xl flex"><i className="fluent--chat-20-regular-simple"></i></span></a>
                         </div>
                         <div className="banner-item__thumb wow bounceIn" data-wow-duration="1s" data-tilt data-tilt-max="12" data-tilt-speed="500" data-tilt-perspective="5000" data-tilt-scale="1.06"><img src="images/banner-img3.png" alt="Image" /></div>
                      </div>
@@ -598,7 +599,7 @@ export default function Welcome({
             <div className="row g-4 g-12">
                <div className="custom-2xl:w-2/12 flex-grow-0 flex-shrink-0 basis-auto xl:w-3/12 flex-grow-0 flex-shrink-0 basis-auto md:w-4/12 flex-grow-0 flex-shrink-0 basis-auto w-6/12 flex-grow-0 flex-shrink-0 basis-auto" data-aos="fade-up" data-aos-duration="200">
                   <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="ph ph-shopping-cart"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img1.png" alt="Image" /></a>
+                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="fluent--chat-20-regular"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img1.png" alt="Image" /></a>
                      <div className="product-card__content mt-12">
                         <div className="product-card__price mb-16"><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
                         <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
@@ -619,7 +620,7 @@ export default function Welcome({
                </div>
                <div className="custom-2xl:w-2/12 flex-grow-0 flex-shrink-0 basis-auto xl:w-3/12 flex-grow-0 flex-shrink-0 basis-auto md:w-4/12 flex-grow-0 flex-shrink-0 basis-auto w-6/12 flex-grow-0 flex-shrink-0 basis-auto" data-aos="fade-up" data-aos-duration="400">
                   <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="ph ph-shopping-cart"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img2.png" alt="Image" /></a>
+                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="fluent--chat-20-regular"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img2.png" alt="Image" /></a>
                      <div className="product-card__content mt-12">
                         <div className="product-card__price mb-16"><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
                         <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
@@ -637,7 +638,7 @@ export default function Welcome({
                </div>
                <div className="custom-2xl:w-2/12 flex-grow-0 flex-shrink-0 basis-auto xl:w-3/12 flex-grow-0 flex-shrink-0 basis-auto md:w-4/12 flex-grow-0 flex-shrink-0 basis-auto w-6/12 flex-grow-0 flex-shrink-0 basis-auto" data-aos="fade-up" data-aos-duration="600">
                   <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="ph ph-shopping-cart"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img3.png" alt="Image" /></a>
+                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="fluent--chat-20-regular"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img3.png" alt="Image" /></a>
                      <div className="product-card__content mt-12">
                         <div className="product-card__price mb-16"><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
                         <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
@@ -654,7 +655,7 @@ export default function Welcome({
                </div>
                <div className="custom-2xl:w-2/12 flex-grow-0 flex-shrink-0 basis-auto xl:w-3/12 flex-grow-0 flex-shrink-0 basis-auto md:w-4/12 flex-grow-0 flex-shrink-0 basis-auto w-6/12 flex-grow-0 flex-shrink-0 basis-auto" data-aos="fade-up" data-aos-duration="800">
                   <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="ph ph-shopping-cart"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img1.png" alt="Image" /></a>
+                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="fluent--chat-20-regular"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img1.png" alt="Image" /></a>
                      <div className="product-card__content mt-12">
                         <div className="product-card__price mb-16"><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
                         <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
@@ -671,7 +672,7 @@ export default function Welcome({
                </div>
                <div className="custom-2xl:w-2/12 flex-grow-0 flex-shrink-0 basis-auto xl:w-3/12 flex-grow-0 flex-shrink-0 basis-auto md:w-4/12 flex-grow-0 flex-shrink-0 basis-auto w-6/12 flex-grow-0 flex-shrink-0 basis-auto" data-aos="fade-up" data-aos-duration="1000">
                   <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="ph ph-shopping-cart"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img5.png" alt="Image" /></a>
+                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="fluent--chat-20-regular"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img5.png" alt="Image" /></a>
                      <div className="product-card__content mt-12">
                         <div className="product-card__price mb-16"><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
                         <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
@@ -688,7 +689,7 @@ export default function Welcome({
                </div>
                <div className="custom-2xl:w-2/12 flex-grow-0 flex-shrink-0 basis-auto xl:w-3/12 flex-grow-0 flex-shrink-0 basis-auto md:w-4/12 flex-grow-0 flex-shrink-0 basis-auto w-6/12 flex-grow-0 flex-shrink-0 basis-auto" data-aos="fade-up" data-aos-duration="1200">
                   <div className="product-card px-8 py-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="ph ph-shopping-cart"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img6.png" alt="Image" /></a>
+                     <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 absolute inset-block-start-0 right-0 me-16 mt-16">Add <i className="fluent--chat-20-regular"></i> </a><a href="product-details.html" className="product-card__thumb flex items-center justify-center"><img src="images/product-img6.png" alt="Image" /></a>
                      <div className="product-card__content mt-12">
                         <div className="product-card__price mb-16"><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
                         <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
@@ -762,7 +763,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -776,7 +777,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -790,7 +791,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -804,7 +805,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -818,7 +819,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -832,7 +833,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -846,7 +847,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -860,7 +861,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -874,7 +875,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -888,7 +889,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -902,7 +903,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -916,7 +917,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -934,7 +935,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -948,7 +949,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -962,7 +963,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -976,7 +977,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -990,7 +991,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1004,7 +1005,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1018,7 +1019,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1032,7 +1033,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1046,7 +1047,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1060,7 +1061,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1074,7 +1075,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1088,7 +1089,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1106,7 +1107,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1120,7 +1121,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1134,7 +1135,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1148,7 +1149,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1162,7 +1163,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1176,7 +1177,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1190,7 +1191,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1204,7 +1205,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1218,7 +1219,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1232,7 +1233,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1246,7 +1247,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1260,7 +1261,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1278,7 +1279,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1292,7 +1293,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1306,7 +1307,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1320,7 +1321,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1334,7 +1335,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1348,7 +1349,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1362,7 +1363,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1376,7 +1377,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1390,7 +1391,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1404,7 +1405,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1418,7 +1419,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1432,7 +1433,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1450,7 +1451,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1464,7 +1465,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1478,7 +1479,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1492,7 +1493,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1506,7 +1507,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1520,7 +1521,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1534,7 +1535,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1548,7 +1549,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1562,7 +1563,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1576,7 +1577,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1590,7 +1591,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1604,7 +1605,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1622,7 +1623,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1636,7 +1637,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1650,7 +1651,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1664,7 +1665,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1678,7 +1679,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1692,7 +1693,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1706,7 +1707,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1720,7 +1721,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1734,7 +1735,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1748,7 +1749,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1762,7 +1763,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1776,7 +1777,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1794,7 +1795,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1808,7 +1809,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1822,7 +1823,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1836,7 +1837,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1850,7 +1851,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1864,7 +1865,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1878,7 +1879,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1892,7 +1893,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1906,7 +1907,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1920,7 +1921,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1934,7 +1935,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1948,7 +1949,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -1999,7 +2000,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -2013,7 +2014,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -2027,7 +2028,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -2041,7 +2042,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -2055,7 +2056,7 @@ export default function Welcome({
                               <div className="product-card__content mt-12">
                                  <div className="product-card__price mb-8"><span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span> </span><span className="text-gray-400 text-md font-[600] text-decoration-line-through">$28.99</span></div>
                                  <div className="flex items-center gap-6"><span className="text-xs font-[700] text-gray-600">4.8</span> <span className="text-15 font-[700] text-warning-600 flex"><i className="ph-fill ph-star"></i></span> <span className="text-xs font-[700] text-gray-600">(17k)</span></div>
-                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                                 <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                               </div>
                            </div>
                         </div>
@@ -2239,7 +2240,7 @@ export default function Welcome({
                                  </div> */}
                                  <span className="text-gray-900 text-xs font-[500] mt-8">Sold: 18/35</span>
                               </div>
-                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                            </div>
                         </div>
                      </div>
@@ -2267,7 +2268,7 @@ export default function Welcome({
                                  </div> */}
                                  <span className="text-gray-900 text-xs font-[500] mt-8">Sold: 18/35</span>
                               </div>
-                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                            </div>
                         </div>
                      </div>
@@ -2295,7 +2296,7 @@ export default function Welcome({
                                  </div> */}
                                  <span className="text-gray-900 text-xs font-[500] mt-8">Sold: 18/35</span>
                               </div>
-                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                            </div>
                         </div>
                      </div>
@@ -2323,7 +2324,7 @@ export default function Welcome({
                                  </div> */}
                                  <span className="text-gray-900 text-xs font-[500] mt-8">Sold: 18/35</span>
                               </div>
-                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="ph ph-shopping-cart"></i></a>
+                              <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8 mt-24 w-full justify-center">Contact <i className="fluent--chat-20-regular"></i></a>
                            </div>
                         </div>
                      </div>
@@ -2393,7 +2394,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2407,7 +2408,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2421,7 +2422,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2435,7 +2436,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2449,7 +2450,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2463,7 +2464,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2477,7 +2478,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2848,7 +2849,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2862,7 +2863,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2876,7 +2877,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2890,7 +2891,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2904,7 +2905,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2918,7 +2919,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
@@ -2932,7 +2933,7 @@ export default function Welcome({
                         <div className="flex items-center gap-4"><span className="text-main-600 text-md flex"><i className="ph-fill ph-storefront"></i></span> <span className="text-gray-500 text-xs">By Lucky Supermarket</span></div>
                         <div className="flex-between gap-8 mt-24 flex-wrap">
                            <div className="product-card__price"><span className="text-gray-400 text-md font-[600] text-decoration-line-through block">$28.99</span> <span className="text-heading text-md font-[600]">$14.99 <span className="text-gray-500 font-normal">/Qty</span></span></div>
-                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="ph ph-shopping-cart"></i></a>
+                           <a href="cart.html" className="product-card__cart btn btn-main py-11 px-24 rounded-[50rem] flex items-center gap-8">Add <i className="fluent--chat-20-regular"></i></a>
                         </div>
                      </div>
                   </div>
