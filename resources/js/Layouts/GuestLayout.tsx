@@ -1,19 +1,37 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
-import { PropsWithChildren } from 'react';
+import { Link, usePage } from '@inertiajs/react';
+import { PropsWithChildren, useEffect } from 'react';
+import "../frontend-assets/css/app.min.css"
 
-export default function Guest({ children }: PropsWithChildren) {
+
+export default function GuestLayout({ children }: PropsWithChildren) {
+
+
+
+    const jsPath = usePage().props.frontend_js_path;
+
+    useEffect(() => {
+        console.log(jsPath + "loade --------------------")
+        // Load config.js
+        const configScriptApp = document.createElement('script');
+        // @ts-ignore
+        configScriptApp.src = jsPath;
+        configScriptApp.async = true;
+        document.body.appendChild(configScriptApp);
+
+        console.log(configScriptApp + "loade --------------------")
+        
+        return () => {
+            document.body.removeChild(configScriptApp);
+          
+        };
+    }, []);
+
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
-            </div>
-
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+        <>
+            
                 {children}
-            </div>
-        </div>
+          
+        </>
     );
 }

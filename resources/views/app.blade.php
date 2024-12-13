@@ -5,7 +5,7 @@ data-sidenav-view="default" data-mode="dark"
 
 > -->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-data-mode="dark"
+
 
 >
     <head>

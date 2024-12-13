@@ -1,7 +1,7 @@
+import GuestLayout from '@/Layouts/GuestLayout';
 import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import "../frontend-assets/css/app.min.css"
-import  FfooterLinks  from "../Layouts/Shared/FfooterLinks.jsx"
+
 
 
 export default function Welcome({
@@ -22,7 +22,8 @@ export default function Welcome({
    
 
     return (
-        <>
+        <GuestLayout>
+        
             <Head title="Welcome" />
 {/* 
       <div className="preloader fixed inset-0 z-[9999] flex justify-center items-center bg-white">
@@ -3084,7 +3085,7 @@ export default function Welcome({
             </div>
          </div>
       </div>
-   <FfooterLinks />
-        </>
+   
+        </GuestLayout>
     );
 }
