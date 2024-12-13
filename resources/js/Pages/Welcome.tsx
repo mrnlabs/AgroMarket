@@ -1,7 +1,8 @@
 import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import "../frontend-assets/css/app.min.css"
-import "../frontend-assets/js/app.bundle"
+import  FfooterLinks  from "../Layouts/Shared/FfooterLinks.jsx"
+
 
 export default function Welcome({
     auth,
@@ -19,13 +20,12 @@ export default function Welcome({
         document.getElementById('background')?.classList.add('!hidden');
     };
    
-    const getImage = (name) => require(`./assets/${name}.png`);
+
     return (
         <>
             <Head title="Welcome" />
-
-            <body>
-      {/* <div className="preloader fixed inset-0 z-[9999] flex justify-center items-center bg-white">
+{/* 
+      <div className="preloader fixed inset-0 z-[9999] flex justify-center items-center bg-white">
          <img src="images/preloader.gif" alt="Image" />
          </div> */}
       <div className="overlay"></div>
@@ -50,7 +50,7 @@ export default function Welcome({
             <div className="mobile-menu__menu">
                <ul className="nav-menu flex items-center nav-menu--mobile">
                   <li className="on-hover-item nav-menu__item has-submenu activePage">
-                     <a href="javascript:void(0)" className="nav-menu__link">Home</a>
+                     <a href="#!" className="nav-menu__link">Home</a>
                      <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                         <li className="common-dropdown__item nav-submenu__item activePage"><a href="index.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Grocery</a></li>
                         <li className="common-dropdown__item nav-submenu__item"><a href="index-two.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Electronics</a></li>
@@ -58,7 +58,7 @@ export default function Welcome({
                      </ul>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
-                     <a href="javascript:void(0)" className="nav-menu__link">Shop</a>
+                     <a href="#!" className="nav-menu__link">Shop</a>
                      <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                         <li className="common-dropdown__item nav-submenu__item"><a href="shop.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop</a></li>
                         <li className="common-dropdown__item nav-submenu__item"><a href="product-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop Details</a></li>
@@ -66,7 +66,7 @@ export default function Welcome({
                      </ul>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
-                     <span className="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="javascript:void(0)" className="nav-menu__link">Pages</a>
+                     <span className="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="#!" className="nav-menu__link">Pages</a>
                      <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                         <li className="common-dropdown__item nav-submenu__item"><a href="cart.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Cart</a></li>
                         <li className="common-dropdown__item nav-submenu__item"><a href="wishlist.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Wishlist</a></li>
@@ -76,7 +76,7 @@ export default function Welcome({
                      </ul>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
-                     <span className="badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="javascript:void(0)" className="nav-menu__link">Vendors</a>
+                     <span className="badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="#!" className="nav-menu__link">Vendors</a>
                      <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                         <li className="common-dropdown__item nav-submenu__item"><a href="vendor.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Vendors</a></li>
                         <li className="common-dropdown__item nav-submenu__item"><a href="vendor-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Vendor Details</a></li>
@@ -85,7 +85,7 @@ export default function Welcome({
                      </ul>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
-                     <a href="javascript:void(0)" className="nav-menu__link">Blog</a>
+                     <a href="#!" className="nav-menu__link">Blog</a>
                      <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                         <li className="common-dropdown__item nav-submenu__item"><a href="blog.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Blog</a></li>
                         <li className="common-dropdown__item nav-submenu__item"><a href="blog-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Blog Details</a></li>
@@ -107,32 +107,32 @@ export default function Welcome({
                </ul>
                <ul className="header-top__right flex items-center flex-wrap">
                   <li className="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-                     <a href="javascript:void(0)" className="text-white text-sm py-8">Help Center</a>
+                     <a href="#!" className="text-white text-sm py-8">Help Center</a>
                      <ul className="on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
                         <li className="nav-submenu__item"><a href="index.html" className="nav-submenu__link hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><span className="text-sm flex"><i className="ph ph-headset"></i></span> Call Center</a></li>
                         <li className="nav-submenu__item"><a href="index.html" className="nav-submenu__link hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><span className="text-sm flex"><i className="ph ph-chat-circle-dots"></i></span> Live Chat</a></li>
                      </ul>
                   </li>
                   <li className="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-                     <a href="javascript:void(0)" className="selected-text text-white text-sm py-8">Eng</a>
+                     <a href="#!" className="selected-text text-white text-sm py-8">Eng</a>
                      <ul className="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag1.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> English</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag2.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Japan</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag3.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> French</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag4.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Germany</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag6.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Bangladesh</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag5.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> South Korea</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag1.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> English</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag2.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Japan</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag3.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> French</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag4.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Germany</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag6.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Bangladesh</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag5.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> South Korea</a></li>
                      </ul>
                   </li>
                   <li className="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-                     <a href="javascript:void(0)" className="selected-text text-white text-sm py-8">USD</a>
+                     <a href="#!" className="selected-text text-white text-sm py-8">USD</a>
                      <ul className="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag1.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> USD</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag2.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Yen</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag3.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Franc</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag4.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> EURO</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag6.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> BDT</a></li>
-                        <li><a href="javascript:void(0)" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag5.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> WON</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag1.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> USD</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag2.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Yen</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag3.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> Franc</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag4.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> EURO</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag6.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> BDT</a></li>
+                        <li><a href="#!" className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex items-center gap-8 rounded-none"><img src="images/flag5.png" alt="Image" className="w-16 h-12 rounded-4 border border-gray-100" /> WON</a></li>
                      </ul>
                   </li>
                   <li className="border-right-item"><a href="account.html" className="text-white text-sm py-8 flex items-center gap-6"><span className="icon text-md flex"><i className="ph ph-user-circle"></i> </span><span className="hover-text-decoration-underline">My Account</span></a></li>
@@ -204,7 +204,7 @@ export default function Welcome({
                         <div className="logo px-16 xl:hidden block"><a href="index.html" className="link"><img src="images/logo.png" alt="Logo" /></a></div>
                         <ul className="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-carrot"></i></span> <span>Vegetables &amp; Fruit</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-carrot"></i></span> <span>Vegetables &amp; Fruit</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Vegetables &amp; Fruit</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -220,7 +220,7 @@ export default function Welcome({
                               </div>
                            </li>
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Beverages</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Beverages</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Beverages</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -234,7 +234,7 @@ export default function Welcome({
                               </div>
                            </li>
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Meats & Seafood</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Meats & Seafood</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Meats & Seafood</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -246,7 +246,7 @@ export default function Welcome({
                               </div>
                            </li>
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Breakfast & Dairy</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Breakfast & Dairy</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Breakfast & Dairy</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -260,7 +260,7 @@ export default function Welcome({
                               </div>
                            </li>
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Frozen Foods</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Frozen Foods</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Frozen Foods</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -273,7 +273,7 @@ export default function Welcome({
                               </div>
                            </li>
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Biscuits & Snacks</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Biscuits & Snacks</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Biscuits & Snacks</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -286,7 +286,7 @@ export default function Welcome({
                               </div>
                            </li>
                            <li className="has-submenus-submenu">
-                              <a href="javascript:void(0)" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Grocery & Staples</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
+                              <a href="#!" className="text-gray-500 text-15 py-12 px-16 flex items-center gap-8 rounded-none"><span className="text-xl flex"><i className="ph ph-brandy"></i></span> <span>Grocery & Staples</span> <span className="icon text-md flex ms-auto"><i className="ph ph-caret-right"></i></span></a>
                               <div className="submenus-submenu py-16">
                                  <h6 className="text-lg px-16 submenus-submenu__title">Grocery & Staples</h6>
                                  <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
@@ -306,7 +306,7 @@ export default function Welcome({
                   <div className="header-menu xl:block hidden">
                      <ul className="nav-menu flex items-center">
                         <li className="on-hover-item nav-menu__item has-submenu activePage">
-                           <a href="javascript:void(0)" className="nav-menu__link">Home</a>
+                           <a href="#!" className="nav-menu__link">Home</a>
                            <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                               <li className="common-dropdown__item nav-submenu__item activePage"><a href="index.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Grocery</a></li>
                               <li className="common-dropdown__item nav-submenu__item"><a href="index-two.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Electronics</a></li>
@@ -314,7 +314,7 @@ export default function Welcome({
                            </ul>
                         </li>
                         <li className="on-hover-item nav-menu__item has-submenu">
-                           <a href="javascript:void(0)" className="nav-menu__link">Shop</a>
+                           <a href="#!" className="nav-menu__link">Shop</a>
                            <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                               <li className="common-dropdown__item nav-submenu__item"><a href="shop.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop</a></li>
                               <li className="common-dropdown__item nav-submenu__item"><a href="product-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop Details</a></li>
@@ -322,7 +322,7 @@ export default function Welcome({
                            </ul>
                         </li>
                         <li className="on-hover-item nav-menu__item has-submenu">
-                           <span className="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="javascript:void(0)" className="nav-menu__link">Pages</a>
+                           <span className="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="#!" className="nav-menu__link">Pages</a>
                            <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                               <li className="common-dropdown__item nav-submenu__item"><a href="cart.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Cart</a></li>
                               <li className="common-dropdown__item nav-submenu__item"><a href="wishlist.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Wishlist</a></li>
@@ -332,7 +332,7 @@ export default function Welcome({
                            </ul>
                         </li>
                         <li className="on-hover-item nav-menu__item has-submenu">
-                           <span className="badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="javascript:void(0)" className="nav-menu__link">Vendors</a>
+                           <span className="badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="#!" className="nav-menu__link">Vendors</a>
                            <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                               <li className="common-dropdown__item nav-submenu__item"><a href="vendor.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Vendors</a></li>
                               <li className="common-dropdown__item nav-submenu__item"><a href="vendor-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Vendor Details</a></li>
@@ -341,7 +341,7 @@ export default function Welcome({
                            </ul>
                         </li>
                         <li className="on-hover-item nav-menu__item has-submenu">
-                           <a href="javascript:void(0)" className="nav-menu__link">Blog</a>
+                           <a href="#!" className="nav-menu__link">Blog</a>
                            <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
                               <li className="common-dropdown__item nav-submenu__item"><a href="blog.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Blog</a></li>
                               <li className="common-dropdown__item nav-submenu__item"><a href="blog-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Blog Details</a></li>
@@ -3083,7 +3083,7 @@ export default function Welcome({
             </div>
          </div>
       </div>
-   </body>
+   <FfooterLinks />
         </>
     );
 }
