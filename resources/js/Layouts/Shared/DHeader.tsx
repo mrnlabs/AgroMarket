@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react'
 import { Menu } from 'lucide-react'
 import React from 'react'
 
@@ -168,9 +169,9 @@ export default function DHeader() {
 
     {/* <!-- Profile Dropdown Button --> */}
     <div className="relative">
-        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" className="nav-link">
+        <Link href={route('profile.show')} type="button" className="nav-link">
             <img src="/images/users/user-6.jpg" alt="user-image" className="rounded-full h-10"/>
-        </button>
+        </Link>
         <div className="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
             <a className="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="pages-gallery.html">
                 <i className="mgc_pic_2_line  me-2"></i>
