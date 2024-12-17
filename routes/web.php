@@ -40,4 +40,5 @@ require __DIR__.'/subscription.php';
 
 Route::middleware('auth')->group(function () {
     require __DIR__.'/task.php';
+    require __DIR__.'/role.php';
 });

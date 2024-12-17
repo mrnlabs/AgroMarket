@@ -1,6 +1,6 @@
 import MenuItem from '@/Components/dashboard/MenuItem'
 import { Link } from '@inertiajs/react'
-import { CircleDollarSign, ClipboardCheck, FolderClosed, House, Menu, Users } from 'lucide-react'
+import { CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, Menu, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -65,6 +65,13 @@ export default function SideBar() {
                 href="tasks.index" 
                 icon={ClipboardCheck} 
                 label="Tasks" 
+                isRoute={true}
+            />
+            <li className="menu-title">User Roles</li>
+            <MenuItem 
+                href="roles.index" 
+                icon={LockKeyhole} 
+                label="Roles" 
                 isRoute={true}
             />
 
