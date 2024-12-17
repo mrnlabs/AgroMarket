@@ -9,7 +9,7 @@ export default function Index() {
 	<div id="default-offcanvas" className="lg:block hidden top-0 left-0 transform h-full min-w-[16rem] me-6 card rounded-none lg:rounded-md fc-offcanvas-open:translate-x-0 lg:z-0 z-50 fixed lg:static lg:translate-x-0 -translate-x-full transition-all duration-300" tabIndex={-1}>
 		<div className="p-5">
 			<div className="relative">
-				<a href="javascript:void(0)" data-fc-type="dropdown" data-fc-placement="bottom" type="button" className="btn inline-flex justify-center items-center bg-primary text-white w-full">
+				<a href="#!" data-fc-type="dropdown" data-fc-placement="bottom" type="button" className="btn inline-flex justify-center items-center bg-primary text-white w-full">
 					<i className="mgc_add_line text-lg me-2"></i> Create New
 				</a>
 
@@ -34,35 +34,35 @@ export default function Index() {
 			</div>
 
 			<div className="space-y-2 mt-4">
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="home" className="me-3.5 w-4"></i>
 					<span>Home</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="file-text" className="me-3.5 w-4"></i>
 					<span>Documents</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="download" className="me-3.5 w-4"></i>
 					<span>Downloads</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="music" className="me-3.5 w-4"></i>
 					<span>Music</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="image" className="me-3.5 w-4"></i>
 					<span>Pictures</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="video" className="me-3.5 w-4"></i>
 					<span>Video</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="clock" className="me-3.5 w-4"></i>
 					<span>Recent</span>
 				</a>
-				<a href="javascript:void(0);" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+				<a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
 					<i data-feather="trash" className="me-3.5 w-4"></i>
 					<span>Bin</span>
 				</a>
