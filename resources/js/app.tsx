@@ -1,5 +1,5 @@
 import '../css/app.scss';
-import '../css/dashboard.min.css';
+// import '../css/dashboard.min.css';
 import './bootstrap';
 
 // import "./frontend-assets/js/app.jsx"

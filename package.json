@@ -29,12 +29,16 @@
     },
     "dependencies": {
         "@frostui/tailwindcss": "^0.1.5",
+        "@radix-ui/react-dialog": "^1.1.4",
+        "@radix-ui/react-slot": "^1.1.1",
         "@simonwep/pickr": "^1.8.2",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/typography": "^0.5.9",
         "animate.css": "^4.1.1",
         "aos": "^2.3.4",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
         "gridjs": "^5.1.0",
         "lucide": "^0.468.0",
         "lucide-react": "^0.468.0",
@@ -44,6 +48,8 @@
         "shepherd.js": "^11.0.1",
         "simplebar": "^6.2.5",
         "swiper": "^8.4.4",
+        "tailwind-merge": "^2.5.5",
+        "tailwindcss-animate": "^1.0.7",
         "wnumb": "^1.2.0"
     }
 }

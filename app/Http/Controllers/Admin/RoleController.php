@@ -12,7 +12,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Roles/Index', [
+        return Inertia::render('Admin/Roles/Index', [
             'roles' => Role::with('users')->get(),
         ]);
     }
@@ -34,8 +34,7 @@ class RoleController extends Controller
             'guard_name' => $validated['guard_name'] ?? 'web',
         ]);
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+        return back()->with('success', 'Role created successfully');
     }
 
     public function edit(Role $role)
