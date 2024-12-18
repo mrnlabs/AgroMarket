@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('document_type');
             $table->string('document_name');
             $table->string('document_path');
+            $table->dateTime('verified_at')->nullable();
             $table->timestamps();
         });
     }

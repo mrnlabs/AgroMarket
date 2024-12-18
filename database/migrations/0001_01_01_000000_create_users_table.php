@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('isActive')->default(0);
             $table->string('address')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->string('password');
             $table->string('slug')->unique();
