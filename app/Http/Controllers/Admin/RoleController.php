@@ -44,8 +44,9 @@ class RoleController extends Controller
         ]);
     }
 
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $roleId)
     {
+        $role = Role::findOrFail($roleId);
         $validated = $request->validate([
             'name' => 'required|unique:roles,name,' . $role->id,
         ]);
@@ -56,8 +57,9 @@ class RoleController extends Controller
             ->with('success', 'Role updated successfully');
     }
 
-    public function destroy(Role $role)
+    public function destroy($roleParam)
     {
+        $role = Role::findOrFail($roleParam);
         // Prevent deleting roles with users
         if ($role->users()->count() > 0) {
             return back()->with('error', 'Cannot delete role with assigned users');
@@ -65,7 +67,7 @@ class RoleController extends Controller
 
         $role->delete();
 
-        return redirect()->route('roles.index')
+        return back()
             ->with('success', 'Role deleted successfully');
     }
 
