@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('alt_phone')->nullable();
             $table->string('photo_path', 2048)->nullable();
             $table->string('location')->nullable();
-            $table->string('isActive')->default(0);
+            $table->string('isActive')->default(1);
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('verified_at')->nullable();
