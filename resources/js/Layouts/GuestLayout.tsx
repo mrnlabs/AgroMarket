@@ -2,6 +2,9 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, useEffect } from 'react';
 import "../frontend-assets/css/app.min.css"
+import Nav from './Shared/Nav';
+import NewsLetter from './Shared/NewsLetter';
+import Footer from './Shared/Footer';
 
 
 export default function GuestLayout({ children }: PropsWithChildren) {
@@ -29,8 +32,12 @@ export default function GuestLayout({ children }: PropsWithChildren) {
 
     return (
         <>
+         <Nav />
             
                 {children}
+
+                <NewsLetter />
+                <Footer />
           
         </>
     );
