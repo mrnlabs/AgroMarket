@@ -5,6 +5,17 @@ export interface User {
     email_verified_at?: string;
 }
 
+export type Category = {
+    id?: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export type CategoriesTableProps = {
+    categories: Category[];
+}
+
 export type Task = {
     id: number;
     title: string;
@@ -23,6 +34,7 @@ export type Role = {
 
 export type RolesIndexProps = {
     roles: PaginatedRoles;
+    categories?: Category[];
     auth: {
         user: {
         id: number;

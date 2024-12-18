@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -14,6 +15,11 @@ class RoleController extends Controller
     {
         return Inertia::render('Admin/Roles/Index', [
             'roles' => Role::with('users')->get(),
+            'categories' => Category::get([
+                'id',
+                'name',
+                'image'
+            ]),
         ]);
     }
 
