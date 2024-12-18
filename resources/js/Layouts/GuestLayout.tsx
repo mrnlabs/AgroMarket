@@ -14,7 +14,7 @@ export default function GuestLayout({ children }: PropsWithChildren) {
     const jsPath = usePage().props.frontend_js_path;
 
     useEffect(() => {
-        console.log(jsPath + "loade --------------------")
+       
         // Load config.js
         const configScriptApp = document.createElement('script');
         // @ts-ignore
@@ -22,7 +22,6 @@ export default function GuestLayout({ children }: PropsWithChildren) {
         configScriptApp.async = true;
         document.body.appendChild(configScriptApp);
 
-        console.log(configScriptApp + "loade --------------------")
         
         return () => {
             document.body.removeChild(configScriptApp);
