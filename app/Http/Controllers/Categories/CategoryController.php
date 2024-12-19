@@ -30,4 +30,13 @@ class CategoryController extends Controller
     }
         return back()->with('error', 'Failed to create category.');
      }
+
+     function destroy($id) {
+        $category = Category::find($id);
+        if($category){
+            $category->delete();
+            return back()->with('success', 'Category deleted successfully.');
+        }
+        return back()->with('error', 'Failed to delete category.');
+     }
 }

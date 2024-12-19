@@ -5,6 +5,7 @@ use App\Http\Controllers\Categories\CategoryController;
 
     Route::prefix('categories')->group(function () {
         Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+        Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     });
 
 

@@ -181,7 +181,7 @@ export default function RolesTable({roles}:RolesIndexProps) {
 </div>
 
 </div>
-<Suspense fallback={<div>Loading...</div>}>
+<Suspense fallback={''}>
 <ConfirmDialog 
     message="Are you sure you want to delete this role?"
     dialogOpen={dialogOpen} 

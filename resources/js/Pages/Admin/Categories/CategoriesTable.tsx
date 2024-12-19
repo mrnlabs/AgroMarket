@@ -1,14 +1,49 @@
 import React, { FormEvent, lazy, Suspense, useState } from 'react';
-import { Link, useForm } from '@inertiajs/react';
-import { CategoriesTableProps } from '@/types';
+import { Link, useForm, usePage } from '@inertiajs/react';
+import { CategoriesTableProps, Category } from '@/types';
 import { SquarePen, Trash2 } from 'lucide-react';
 import { Button } from '@/Components/ui/button';
+import ConfirmDialog from '@/Components/ConfirmDialog';
+import { useToast } from '@/hooks/use-toast';
 
 const CategoryModal = lazy(() => import("../Categories/CategoryModal"));
 
 const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const { toast } = useToast();
+    const filePath = usePage().props.filePath;
+
+    const [category, setCategoryId] = useState<Category | null>(null);
+
+    const { data, setData, post, patch, delete: destroy, processing, errors } = useForm({
+                //
+            });
+
+    const deleteCategory = () => {
+        destroy(route('categories.destroy', category?.id),{
+            onSuccess: () => {
+                setDialogOpen(false);
+                setCategoryId(null);
+                toast({
+                    title: "Success",
+                    description: "Category has been deleted successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                setDialogOpen(false);
+                setCategoryId(null);
+                toast({
+                    title: "Error",
+                    description: "Failed to delete role",
+                    variant: "destructive",
+                })
+            }
+        });
+    }
 
     return (
         <>
@@ -32,13 +67,22 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
             {categories && categories.map((category) => (
                 <tr key={category.id}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                    <img className="me-3 rounded-full" src="https://avatars.githubusercontent.com/u/56942052?s=96&v=4" width="40" alt="Generic placeholder image"/>
+                    <img className="me-3 rounded-full" 
+                     src={category.image ? `${filePath}${category.image}` 
+                     : 'https://avatars.githubusercontent.com/u/56942052?s=96&v=4'} 
+                      width="40" alt="Generic placeholder image"/>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{category.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
                     <td className="flex float-end px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                         <div className="cursor-pointer text-primary hover:text-primary" ><SquarePen /></div>
-                        <div className="text-red-500 cursor-pointer hover:text-red-500" ><Trash2 /></div>
+                        <div onClick={() => {
+                                    setCategoryId(category)
+                                    setDialogOpen(true)
+                                    }} 
+                                    className="text-red-500 cursor-pointer hover:text-red-500" >
+                            <Trash2 />
+                         </div>
                     </td>
                 </tr>
                 ))} 
@@ -47,7 +91,14 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
         </table>
         <Suspense fallback={""}>
               <CategoryModal open={modalOpen} setOpen={setModalOpen} />
+              <ConfirmDialog 
+                message="Are you sure you want to delete this category?"
+                dialogOpen={dialogOpen} 
+                setDialogOpen={setDialogOpen}
+                onContinue={deleteCategory}
+             />
         </Suspense>
+        
     </div>
 
     </>

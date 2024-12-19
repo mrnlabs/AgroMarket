@@ -1,6 +1,6 @@
 import MenuItem from '@/Components/dashboard/MenuItem'
 import { Link } from '@inertiajs/react'
-import { CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, Menu, Users } from 'lucide-react'
+import { ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, Menu, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -70,8 +70,8 @@ export default function SideBar() {
             <li className="menu-title">User Roles</li>
             <MenuItem 
                 href="roles.index" 
-                icon={LockKeyhole} 
-                label="Roles" 
+                icon={ChartBarStacked} 
+                label="Miscellaneous" 
                 isRoute={true}
             />
 

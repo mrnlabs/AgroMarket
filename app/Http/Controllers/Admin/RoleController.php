@@ -15,11 +15,7 @@ class RoleController extends Controller
     {
         return Inertia::render('Admin/Roles/Index', [
             'roles' => Role::with('users')->get(),
-            'categories' => Category::get([
-                'id',
-                'name',
-                'image'
-            ]),
+            'categories' => Category::get(),
         ]);
     }
 

@@ -8,6 +8,7 @@ export interface User {
 export type Category = {
     id?: number;
     name: string;
+    image?: string;
     created_at: string;
     updated_at: string;
 }
