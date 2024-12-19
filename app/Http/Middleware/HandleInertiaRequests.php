@@ -39,6 +39,8 @@ class HandleInertiaRequests extends Middleware
                 getenv('ASSET_URL') . '/dashboard-assets/app.js'
             ],
             'frontend_js_path' => getenv('ASSET_URL') . '/frontend-assets/js/app.jsx',
+            'success' => $request->session()->get('success'),
+            'error' => $request->session()->get('error'),
         ];
     }
 }
