@@ -1,12 +1,23 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, lazy, Suspense, useState } from 'react';
 import { Link, useForm } from '@inertiajs/react';
-import { CategoriesTableProps, Category, Role, RolesIndexProps } from '@/types';
+import { CategoriesTableProps } from '@/types';
 import { SquarePen, Trash2 } from 'lucide-react';
+import { Button } from '@/Components/ui/button';
+
+const CategoryModal = lazy(() => import("../Categories/CategoryModal"));
 
 const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
 
-    return (
+    const [modalOpen, setModalOpen] = useState(false);
 
+    return (
+        <>
+            <div className="card-header flex justify-between items-center">
+                    <h4 className="card-title">Product Categories</h4>
+                    <div>
+                        <Button onClick={() => setModalOpen(true)} type='button' className='rounded-[5px]'>Create</Button>
+                    </div>
+                </div>
         <div className="overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-700">
@@ -34,9 +45,12 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
 
             </tbody>
         </table>
+        <Suspense fallback={""}>
+              <CategoryModal open={modalOpen} setOpen={setModalOpen} />
+        </Suspense>
     </div>
 
-
+    </>
       
     );
 };

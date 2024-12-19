@@ -31,16 +31,6 @@ const RolesIndex: React.FC<RolesIndexProps> = ({ roles, categories, auth }) => {
 
         <div className="col-span-2">
             <div className="card">
-                <div className="card-header flex justify-between items-center">
-                    <h4 className="card-title">Product Categories</h4>
-                    <div>
-                        <select className="form-select form-select-sm">
-                            <option selected>Active</option>
-                            <option value="1">Offline</option>
-                        </select>
-                    </div>
-                </div>
-
                 <Suspense fallback={<Loader className="mx-auto" size={20} />}>
                     <CategoriesTable categories={categories || []} />
                 </Suspense>

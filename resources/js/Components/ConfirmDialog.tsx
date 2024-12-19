@@ -26,19 +26,21 @@ import {
   }: ConfirmDialogProps) => {
     return (
       <AlertDialog open={dialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="top-[5%] translate-y-0">
           <AlertDialogHeader>
-            <AlertDialogTitle>Confirm Action</AlertDialogTitle>
+            <AlertDialogTitle>Confirm</AlertDialogTitle>
             <AlertDialogDescription>
               {message}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setDialogOpen(false)}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-[5px]" onClick={() => setDialogOpen(false)}>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={() => {
               onContinue();
               setDialogOpen(false);
-            }}>
+            }}
+            className="rounded-[5px]"
+            >
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>
