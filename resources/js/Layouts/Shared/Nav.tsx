@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react'
 import React from 'react'
 
 const Nav = () => {
@@ -18,20 +19,11 @@ const Nav = () => {
             <div className="mobile-menu__menu">
                <ul className="nav-menu flex items-center nav-menu--mobile">
                   <li className="on-hover-item nav-menu__item has-submenu activePage">
-                     <a href="#!" className="nav-menu__link">Home</a>
-                     <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                        <li className="common-dropdown__item nav-submenu__item activePage"><a href="index.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Grocery</a></li>
-                        <li className="common-dropdown__item nav-submenu__item"><a href="index-two.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Electronics</a></li>
-                        <li className="common-dropdown__item nav-submenu__item"><a href="index-three.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home Fashion</a></li>
-                     </ul>
+                  
+                    <Link href="/" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Home</Link>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
-                     <a href="#!" className="nav-menu__link">Shop</a>
-                     <ul className="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                        <li className="common-dropdown__item nav-submenu__item"><a href="shop.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop</a></li>
-                        <li className="common-dropdown__item nav-submenu__item"><a href="product-details.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop Details</a></li>
-                        <li className="common-dropdown__item nav-submenu__item"><a href="product-details-two.html" className="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Shop Details Two</a></li>
-                     </ul>
+                     <Link href={route('stores.index')} className="nav-menu__link">Stores</Link>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
                      <span className="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">New</span> <a href="#!" className="nav-menu__link">Pages</a>
