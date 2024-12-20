@@ -11,23 +11,37 @@ import {
 import { Input } from "@/Components/ui/input"
 import { Label } from "@/Components/ui/label"
 import { useToast } from "@/hooks/use-toast"
+import { Category } from "@/types"
 import { useForm } from "@inertiajs/react"
 import { Loader } from "lucide-react"
+import { useEffect } from "react"
 
 function CategoryModal({
+    category,
     open,
     setOpen
 }: {
+    category: Category,
     open: boolean
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
 
     const { toast } = useToast();
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post,  processing, errors } = useForm({
         name: '',
         image: null as File | null
     });
+
+
+    useEffect(() => {
+        if (category) {
+            setData('name', category.name);
+        }else{
+            setData('name', '');
+        }
+    }, [category]);
+        
 
     const handleFileSelect = (files: File[]) => {
         if (files.length > 0) {
@@ -41,7 +55,6 @@ function CategoryModal({
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
         // Create FormData instance for file upload
         const formData = new FormData();
         formData.append('name', data.name);
@@ -49,36 +62,71 @@ function CategoryModal({
             formData.append('image', data.image);
         }
 
-        
-        post(route('categories.store'), {
-            forceFormData: true,
-            preserveScroll: true,
-            onSuccess: () => {
-                setOpen(false);
-                setData({
-                    name: '',
-                    image: null
-                });
-                toast({
-                    title: "Success",
-                    description: "Category created successfully",
-                    variant: "default",
-                })
-            },
-            onError: () => {
-                toast({
-                    title: "Error",
-                    description: "Something went wrong",
-                    variant: "destructive",
-                })
+        const handleCreate = () => {
+            post(route('categories.store'), {
+                forceFormData: true,
+                preserveScroll: true,
+                onSuccess: () => {
+                    setOpen(false);
+                    setData({
+                        name: '',
+                        image: null
+                    });
+                    toast({
+                        title: "Success",
+                        description: "Category created successfully",
+                        variant: "default",
+                    })
+                },
+                onError: () => {
+                    toast({
+                        title: "Error",
+                        description: "Something went wrong",
+                        variant: "destructive",
+                    })
+                }
+                
+            });
+        }
+
+        const handleUpdate = () => {
+            post(route('categories.update', category.id), {
+                forceFormData: true,
+                preserveScroll: true,
+                onSuccess: () => {
+                    setOpen(false);
+                    setData({
+                        name: '',
+                        image: null
+                    });
+                    toast({
+                        title: "Success",
+                        description: "Category updated successfully",
+                        variant: "default",
+                    })
+                },
+                onError: () => {
+                    toast({
+                        title: "Error",
+                        description: "Something went wrong",
+                        variant: "destructive",
+                    })
+                }
+            });
+        }
+
+        if(category){
+            //its update
+            handleUpdate();
+            }else{
+                handleCreate()
             }
-        });
     };
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="sm:max-w-[425px] top-[5%] translate-y-0">
                 <DialogHeader>
-                    <DialogTitle className="card-title">Create Category</DialogTitle>
+                    <DialogTitle className="card-title">{category ? 'Update' : 'Create'} Category</DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
@@ -109,7 +157,7 @@ function CategoryModal({
                     </div>
                     <DialogFooter>
                         <Button type="submit" className="rounded-[5px] mt-2">
-                            {processing ? <Loader className="animate-spin" size={25} /> : 'Create'}
+                            {processing ? <Loader className="animate-spin" size={25} /> : category ? 'Update' : 'Create'}
                             </Button>
                     </DialogFooter>
                 </form>

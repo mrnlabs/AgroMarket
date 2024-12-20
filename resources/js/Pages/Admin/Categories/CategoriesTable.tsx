@@ -45,12 +45,19 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
         });
     }
 
+    const handleEdit = (category: Category) => {
+        setModalOpen(true);
+        setCategoryId(category);
+    }
     return (
         <>
             <div className="card-header flex justify-between items-center">
                     <h4 className="card-title">Product Categories</h4>
                     <div>
-                        <Button onClick={() => setModalOpen(true)} type='button' className='rounded-[5px]'>Create</Button>
+                        <Button onClick={() => {
+                            setModalOpen(true)
+                            setCategoryId(null)
+                            }} type='button' className='rounded-[5px]'>Create</Button>
                     </div>
                 </div>
         <div className="overflow-hidden">
@@ -75,7 +82,7 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{category.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
                     <td className="flex float-end px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <div className="cursor-pointer text-primary hover:text-primary" ><SquarePen /></div>
+                        <div onClick={() => handleEdit(category)} className="cursor-pointer text-primary hover:text-primary" ><SquarePen /></div>
                         <div onClick={() => {
                                     setCategoryId(category)
                                     setDialogOpen(true)
@@ -90,7 +97,7 @@ const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
             </tbody>
         </table>
         <Suspense fallback={""}>
-              <CategoryModal open={modalOpen} setOpen={setModalOpen} />
+              <CategoryModal open={modalOpen} setOpen={setModalOpen} category={category as Category} />
               <ConfirmDialog 
                 message="Are you sure you want to delete this category?"
                 dialogOpen={dialogOpen} 

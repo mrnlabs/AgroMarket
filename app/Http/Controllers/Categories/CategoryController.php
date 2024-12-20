@@ -25,10 +25,44 @@ class CategoryController extends Controller
         'image' => $imagePath,
     ]);
 
-    if($category){
-        return back()->with('success', 'Category created successfully.');
-    }
+        if($category){
+            return back()->with('success', 'Category created successfully.');
+        }
         return back()->with('error', 'Failed to create category.');
+     }
+
+     public function update(Request $request, $id)
+     {
+         $category = Category::find($id);
+     
+         if (!$category) {
+             return back()->with('error', 'Failed to update category.');
+         }
+     
+         // Validate the name separately
+         $request->validate([
+             'name' => 'required|string|max:255',
+         ]);
+     
+         // Start with just the name for updating
+         $data = [
+             'name' => $request->name
+         ];
+     
+         // Only handle image if it's actually uploaded
+         if ($request->hasFile('image')) {
+             // Validate the image
+             $request->validate([
+                 'image' => 'image|mimes:jpeg,png|max:5120',
+             ]);
+     
+             // Store the new image
+             $data['image'] = $request->file('image')->store('categories', 'public');
+         }
+     
+         $category->update($data);
+     
+         return back()->with('success', 'Category updated successfully.');
      }
 
      function destroy($id) {
