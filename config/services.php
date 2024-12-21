@@ -34,5 +34,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+//added by mazisi
+    'ipgeolocation' => [
+        'key' => env('IP_GEOLOCATION_KEY'),
+    ],
 
 ];

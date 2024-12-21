@@ -1,62 +1,149 @@
+import QuillEditor from '@/Components/editors/QuillEditor'
+import InputError from '@/Components/InputError'
+import { Button } from '@/Components/ui/button'
+import { Input } from '@/Components/ui/input'
+import { Label } from '@/Components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select'
+import { useToast } from '@/hooks/use-toast'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { Link } from '@inertiajs/react'
-import { Trash2 } from 'lucide-react'
-import React from 'react'
+import { generatePassword } from '@/utils/generatePassword'
+import { router, useForm } from '@inertiajs/react'
+import { ImagePlus, Loader, Lock } from 'lucide-react'
+import React, { lazy, Suspense, useEffect } from 'react'
+
+const FileUpload = lazy(
+    () => import("@/Components/FileUpload"),
+   );
 
 
-export default function Create() {
+export default function Create({roles}:any) {
+    const [quillValue, setQuillValue] = React.useState('');
+    const { toast } = useToast();
+
+    const { data, setData, post, processing, errors, isDirty, reset } = useForm({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: generatePassword(),
+        phone: '',
+        alt_phone: '',
+        address: '',
+        bio: quillValue,
+        role: '',
+        photo_path: null as File | null,
+    });
+
+
+    const handleQuillChange = (value: string) => {
+        setQuillValue(value);
+        setData('bio', value);
+    };
+
+    const handleFileSelect = (files: File[]) => {
+        if (files.length > 0) {
+            setData('photo_path', files[0]);
+        }
+    };
+
+    const handleFileRemove = () => {
+        setData('photo_path', null);
+    };
+
+const handleBack = () => {
+    if(isDirty){
+        if(!window.confirm('You have unsaved changes. Are you sure you want to leave?')){return;}
+    }
+    router.get(route('users.index'));
+}
+
+const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    formData.append('email', data.email);
+    formData.append('phone', data.phone);
+    formData.append('alt_phone', data.alt_phone);
+    formData.append('bio', data.bio);
+    formData.append('phone', data.password);
+    if (data.photo_path) {
+        formData.append('photo_path', data.photo_path);
+    }
+    post(route('users.store'), {
+        forceFormData: true,
+        preserveScroll: true,
+        onSuccess: () => {
+            reset('first_name', 'last_name', 'email', 'phone', 'alt_phone', 'role', 'bio', 'password');
+            setData('photo_path', null);
+            toast({
+                title: "Success",
+                description: "Category created successfully",
+                variant: "default",
+            })
+        },
+        onError: () => {
+            toast({
+                title: "Error",
+                description: "Something went wrong",
+                variant: "destructive",
+            })
+        }
+        
+    });
+}
   return (
     <Authenticated>
 <div className="grid lg:grid-cols-4 gap-6">
         <div className="col-span-1 flex flex-col gap-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">Add Avatar Images</h4>
+                    <h4 className="card-title">Add Profile Picture</h4>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                        <i className="mgc_add_line"></i>
+                    <ImagePlus size={20} />
                     </div>
                 </div>
 
-                <form action="#" className="dropzone text-gray-700 dark:text-gray-300 h-52">
-                    <div className="fallback">
-                        <input name="file" type="file" multiple={true}/>
+                <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
+                <Suspense fallback={<Loader className="mx-auto" size={20} />}>
+                <FileUpload 
+                        onFilesSelected={handleFileSelect}
+                        onFileRemove={handleFileRemove}
+                        multiple={false}
+                        acceptedTypes={['image/jpeg', 'image/png']}
+                        maxSize={5 * 1024 * 1024} // 5MB
+                        showPreview={true} 
+                        />
+                        <InputError message={errors.photo_path} className="mt-1" />
+                </Suspense>
+                    <div className=" w-full h-full flex items-center justify-center">
+                        fgfgfgf
                     </div>
-                    <div className="dz-message needsclick w-full h-full flex items-center justify-center">
-                        <i className="mgc_pic_2_line text-8xl"></i>
-                    </div>
-                </form>
+                </div>
 
                 <div className=""></div>
             </div>
 
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Team Members</p>
+                    <p className="card-title">Role <span className="text-red-500">*</span></p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                        <i className="mgc_compass_line"></i>
+                    <Lock size={20} />
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-3">
-                    <div className="">
-                        <label htmlFor="select-label-catagory" className="mb-2 block">Catagory</label>
-                        <select id="select-label-catagory" className="form-select">
-                            <option defaultValue="">Select</option>
-                            <option>Mary Scott</option>
-                            <option>Holly Campbell</option>
-                            <option>Mary Scott</option>
-                            <option>Melinda Gills</option>
-                            <option>Linda Garza</option>
-                        </select>
-                    </div>
-
-                    <div className="flex gap-3">
-                        <div className="flex -space-x-2">
-                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-9.jpg" alt="Image Description"/>
-                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-8.jpg" alt="Image Description"/>
-                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-7.jpg" alt="Image Description"/>
-                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" src="/images/users/user-6.jpg" alt="Image Description"/>
-                        </div>
+                <div>
+                    <Select onValueChange={(value) => setData('role', value)}>
+                        <SelectTrigger className="w-full form-select ">
+                            <SelectValue placeholder="Select role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                        {Object.entries(roles).map(([id, name]) => (
+                                <SelectItem key={id} value={`${name}`}>{`${name}`}</SelectItem>
+                            ))}
+                        </SelectContent>
+                        </Select>
+                        <InputError message={errors.role} className="mt-1" />
                     </div>
                 </div>
             </div>
@@ -65,62 +152,79 @@ export default function Create() {
         <div className="lg:col-span-3 space-y-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Genrel Product Data</p>
+                    <p className="card-title">User Details</p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                         <i className="mgc_transfer_line"></i>
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-3">
-                    <div className="">
-                        <label htmlFor="project-name" className="mb-2 block">Project Name</label>
-                        <input type="email" id="project-name" className="form-input" placeholder="Enter Title" aria-describedby="input-helper-text"/>
-                    </div>
-
-                    <div className="">
-                        <label htmlFor="project-description" className="mb-2 block">Project Description
+                <div className="grid md:grid-cols-2 gap-3">
+                        <div>
+                            <Label htmlFor="first_name" className="mb-2 block">First Name
                             <span className="text-red-500">*</span>
-                        </label>
-                        <textarea id="project-description" className="form-input" rows={8}></textarea>
+                            </Label>
+                            <Input 
+                              onChange={(e) => setData('first_name', e.target.value)}
+                             type="text" id="first_name" className="form-input" />
+                             <InputError message={errors.first_name} className="mt-1" />
+                        </div>
+
+                        <div>
+                            <Label htmlFor="last_name" className="mb-2 block">Last Name
+                            <span className="text-red-500">*</span>
+                            </Label>
+                            <Input onChange={(e) => setData('last_name', e.target.value)} type="text" id="last_name" className="form-input"/>
+                            <InputError message={errors.last_name} className="mt-1" />
+                        </div>
                     </div>
-
-
                     <div className="grid md:grid-cols-2 gap-3">
-                        <div className="">
-                            <label htmlFor="start-date" className="mb-2 block">Start Date</label>
-                            <input type="date" id="start-date" className="form-input"></input>
+                        <div>
+                            <Label htmlFor="email" className="mb-2 block">Email
+                            <span className="text-red-500">*</span>
+                            </Label>
+                            <Input onChange={(e) => setData('email', e.target.value)} type="email" id="email" className="form-input" />
+                            <InputError message={errors.email} className="mt-1" />
                         </div>
 
-                        <div className="">
-                            <label htmlFor="due-date" className="mb-2 block">Due Date</label>
-                            <input type="date" id="due-date" className="form-input"></input>
+                        <div>
+                            <Label htmlFor="phone" className="mb-2 block">Phone</Label>
+                            <Input onChange={(e) => setData('phone', e.target.value)} type="text" id="phone" className="form-input"/>
+                            <InputError message={errors.phone} className="mt-1" />
                         </div>
                     </div>
+                    <div className="grid md:grid-cols-2 gap-3">
+                        <div>
+                            <Label htmlFor="alt_phone" className="mb-2 block">Alt Phone</Label>
+                            <Input onChange={(e) => setData('alt_phone', e.target.value)} type="number" id="alt_phone" className="form-input" />
+                            <InputError message={errors.alt_phone} className="mt-1" />
+                        </div>
+
+                        <div>
+                            <Label htmlFor="address" className="mb-2 block">Address</Label>
+                            <Input onChange={(e) => setData('address', e.target.value)} type="text" id="address" className="form-input"/>
+                            <InputError message={errors.address} className="mt-1" />
+                        </div>
+                    </div>
+                    
 
                     <div>
-                        <label htmlFor="select-label" className="mb-2 block">Label</label>
-                        <select id="select-label" className="form-select">
-                            <option defaultValue="0">Open this select menu</option>
-                            <option>Medium</option>
-                            <option>High</option>
-                            <option>Low</option>
-                        </select>
+                        <Label htmlFor="bio" className="mb-2 block">
+                            Bio
+                        </Label>
+                        <QuillEditor 
+                          quillValue={quillValue}
+                          setQuillValue={handleQuillChange} />
+                          <InputError message={errors.bio} className="mt-1" />
                     </div>
-
-                    <div>
-                        <label htmlFor="budget" className="mb-2 block">Budget</label>
-                        <input type="text" id="budget" className="form-input" placeholder="Enter Project Budget"></input>
-                    </div>
+                   
                 </div>
             </div>
             <div className="lg:col-span-4 mt-5">
                 <div className="flex justify-end gap-3">
-                    <button type="button" className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none">
-                        Cancle
-                    </button>
-                    <button type="button" className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none">
-                        Save
-                    </button>
+                    <Button disabled={processing} onClick={handleBack} type='button' className='rounded-[5px] px-4 py-2 bg-red-500 text-white'>Cancel</Button>
+                    <Button disabled={processing} onClick={handleSubmit} type='button' className='rounded-[5px] px-4 py-2 bg-neutral-900 text-white'>
+                       {processing ? <Loader className="animate-spin" size={25} /> : 'Submit'}</Button>
                 </div>
             </div>
         </div>

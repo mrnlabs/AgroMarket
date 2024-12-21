@@ -38,6 +38,7 @@ Route::get('/file-manager', function () {return Inertia::render('Admin/FileManag
 require __DIR__.'/auth.php';
 require __DIR__.'/subscription.php';
 require __DIR__.'/stores.php';
+require __DIR__.'/users.php';
 
 Route::middleware('auth')->group(function () {
     require __DIR__.'/task.php';
