@@ -11,6 +11,7 @@ import { generatePassword } from '@/utils/generatePassword'
 import { router, useForm } from '@inertiajs/react'
 import { ImagePlus, Loader, Lock } from 'lucide-react'
 import React, { lazy, Suspense, useEffect } from 'react'
+import UserDocument from './UserDocument'
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -23,7 +24,7 @@ export default function Create({roles, user}:{
 }) {
     const [quillValue, setQuillValue] = React.useState('');
     const { toast } = useToast();
-    console.log(user)
+    
 
     const { data, setData, post, processing, errors, isDirty, reset } = useForm({
         first_name: '',
@@ -38,6 +39,18 @@ export default function Create({roles, user}:{
         photo_path: null as File | null,
     });
 
+    useEffect(() => {
+        //Its edit
+        if (user) {
+            setData('first_name', user.first_name);
+            setData('last_name', user.last_name);
+            setData('email', user.email);
+            setData('phone', user.phone);
+            setData('alt_phone', user.alt_phone);
+            setData('address', user.address ?? '');
+            setData('bio', user.bio ?? '');
+        }
+    }, [user]);
 
     const handleQuillChange = (value: string) => {
         setQuillValue(value);
@@ -103,7 +116,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         <div className="col-span-1 flex flex-col gap-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">Add Profile Picture</h4>
+                    <h4 className="card-title">{user ? 'Edit' : 'Create'} Profile Picture</h4>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                     <ImagePlus size={20} />
                     </div>
@@ -156,12 +169,17 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                    )}
                         <InputError message={errors.role} className="mt-1" />
                     </div>
+                    <a href="#" className="uppercase text-center inline-flex items-center font-semibold py-1 px-2 rounded text-xs bg-primary/20 text-primary">JavaScript</a>
                 </div>
             </div>
+
+            {user && (
+                <UserDocument />
+            )}
         </div>
 
         <div className="lg:col-span-3 space-y-6">
-            <div className="card p-6">
+            <div className="card p-6" style={{height: '30rem'}}>
                 <div className="flex justify-between items-center mb-4">
                     <p className="card-title">User Details</p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
@@ -176,6 +194,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             <span className="text-red-500">*</span>
                             </Label>
                             <Input 
+                              value={data.first_name}
                               onChange={(e) => setData('first_name', e.target.value)}
                              type="text" id="first_name" className="form-input" />
                              <InputError message={errors.first_name} className="mt-1" />
@@ -185,7 +204,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             <Label htmlFor="last_name" className="mb-2 block">Last Name
                             <span className="text-red-500">*</span>
                             </Label>
-                            <Input onChange={(e) => setData('last_name', e.target.value)} type="text" id="last_name" className="form-input"/>
+                            <Input value={data.last_name} onChange={(e) => setData('last_name', e.target.value)} type="text" id="last_name" className="form-input"/>
                             <InputError message={errors.last_name} className="mt-1" />
                         </div>
                     </div>
@@ -194,26 +213,26 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             <Label htmlFor="email" className="mb-2 block">Email
                             <span className="text-red-500">*</span>
                             </Label>
-                            <Input onChange={(e) => setData('email', e.target.value)} type="email" id="email" className="form-input" />
+                            <Input value={data.email} onChange={(e) => setData('email', e.target.value)} type="email" id="email" className="form-input" />
                             <InputError message={errors.email} className="mt-1" />
                         </div>
 
                         <div>
                             <Label htmlFor="phone" className="mb-2 block">Phone</Label>
-                            <Input onChange={(e) => setData('phone', e.target.value)} type="text" id="phone" className="form-input"/>
+                            <Input value={data.phone} onChange={(e) => setData('phone', e.target.value)} type="text" id="phone" className="form-input"/>
                             <InputError message={errors.phone} className="mt-1" />
                         </div>
                     </div>
                     <div className="grid md:grid-cols-2 gap-3">
                         <div>
                             <Label htmlFor="alt_phone" className="mb-2 block">Alt Phone</Label>
-                            <Input onChange={(e) => setData('alt_phone', e.target.value)} type="number" id="alt_phone" className="form-input" />
+                            <Input value={data.alt_phone} onChange={(e) => setData('alt_phone', e.target.value)} type="number" id="alt_phone" className="form-input" />
                             <InputError message={errors.alt_phone} className="mt-1" />
                         </div>
 
                         <div>
                             <Label htmlFor="address" className="mb-2 block">Address</Label>
-                            <Input onChange={(e) => setData('address', e.target.value)} type="text" id="address" className="form-input"/>
+                            <Input value={data.address} onChange={(e) => setData('address', e.target.value)} type="text" id="address" className="form-input"/>
                             <InputError message={errors.address} className="mt-1" />
                         </div>
                     </div>
@@ -224,7 +243,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             Bio
                         </Label>
                         <QuillEditor 
-                          quillValue={quillValue}
+                          quillValue={data.bio || quillValue}
                           setQuillValue={handleQuillChange} />
                           <InputError message={errors.bio} className="mt-1" />
                     </div>
