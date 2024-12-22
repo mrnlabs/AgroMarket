@@ -13,21 +13,27 @@ use App\Models\User;
 class UserController extends Controller
 {
     function index() {
-        return Inertia::render('Admin/Users/Index');
+        $users = User::with('roles')->latest()->get();
+        return Inertia::render('Admin/Users/Index',[
+            'users' => $users,
+        ]);
     }
 
     function create() {
         $roles = Role::pluck('name', 'id');
         return Inertia::render('Admin/Users/Create',[
-            'roles' => $roles,
+            'roles' => Inertia::defer(fn () => $roles),
         ]);
     }
 
     function store(UserRequest $request) {
         try {
-            $request->validated();
-        // $userLocation = IpGeolocation::lookup($request->ip());
         $location = IpGeolocation::lookup('197.185.140.98');
+        
+        $coordinates = [
+            'lat' => (float) $location['latitude'],
+            'lng' => (float) $location['longitude']
+        ];
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -35,13 +41,12 @@ class UserController extends Controller
             'alt_phone' => $request->alt_phone,
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => $request->role_id,
             'address' => $request->address,
-            'city' => $location->city,
-            'state' => $location->state_prov,
-            'country' => $location->country_name,
-            'zip_code' => $location->zipcode,
-            'coordinates' => $location->coordinates,
+            'city' => $location['city'],
+            'state' => $location['state_prov'],
+            'country' => $location['country_name'],
+            'zip_code' => $location['zipcode'],
+            'coordinates' => $coordinates,
         ]);
         if($request->hasFile('photo_path')) {
             $imagePath = $request->file('photo_path')->store('users', 'public');
@@ -49,9 +54,18 @@ class UserController extends Controller
             $user->save();
         }
         $user->assignRole($request->role);
+        return back()->with('success', 'User created successfully.');
         } catch (\Throwable $th) {
             throw $th;
         }
-        
+    }
+
+    function edit($slug) {
+        $user = User::where('slug', $slug)->first();
+        $roles = Role::pluck('name', 'id');
+        return Inertia::render('Admin/Users/Create',[
+            'user' => $user,
+            'roles' => Inertia::defer(fn () => $roles),
+        ]);
     }
 }

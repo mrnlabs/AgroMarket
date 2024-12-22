@@ -28,13 +28,13 @@ class UserRequest extends FormRequest
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required', 'string', 'max:11'],
             'alt_phone' => ['required', 'string', 'max:11'],
-            'role' => ['required', 'exists:roles,id'],
+            // 'role' => ['required', 'exists:roles,id'],
             'address' => ['required', 'string', 'max:255'],
             // 'city' => ['required', 'string', 'max:255'],
             // 'state' => ['required', 'string', 'max:255'],
             // 'country' => ['required', 'string', 'max:255'],
             // 'zip_code' => ['required', 'string', 'max:255'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
 
         ];
     }

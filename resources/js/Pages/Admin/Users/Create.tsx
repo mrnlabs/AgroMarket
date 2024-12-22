@@ -6,6 +6,7 @@ import { Label } from '@/Components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select'
 import { useToast } from '@/hooks/use-toast'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
+import { RolesIndexProps, User } from '@/types'
 import { generatePassword } from '@/utils/generatePassword'
 import { router, useForm } from '@inertiajs/react'
 import { ImagePlus, Loader, Lock } from 'lucide-react'
@@ -16,9 +17,13 @@ const FileUpload = lazy(
    );
 
 
-export default function Create({roles}:any) {
+export default function Create({roles, user}:{
+    roles:RolesIndexProps, 
+    user:User
+}) {
     const [quillValue, setQuillValue] = React.useState('');
     const { toast } = useToast();
+    console.log(user)
 
     const { data, setData, post, processing, errors, isDirty, reset } = useForm({
         first_name: '',
@@ -58,6 +63,7 @@ const handleBack = () => {
 
 const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    
     const formData = new FormData();
     formData.append('first_name', data.first_name);
     formData.append('last_name', data.last_name);
@@ -116,7 +122,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                         <InputError message={errors.photo_path} className="mt-1" />
                 </Suspense>
                     <div className=" w-full h-full flex items-center justify-center">
-                        fgfgfgf
+                        
                     </div>
                 </div>
 
@@ -133,7 +139,8 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
 
                 <div className="flex flex-col gap-3">
                 <div>
-                    <Select onValueChange={(value) => setData('role', value)}>
+                   {roles && (
+                        <Select onValueChange={(value) => setData('role',  value)}>
                         <SelectTrigger className="w-full form-select ">
                             <SelectValue placeholder="Select role" />
                         </SelectTrigger>
@@ -143,6 +150,10 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             ))}
                         </SelectContent>
                         </Select>
+                   )}
+                   {!roles && (
+                       <Loader className="mx-auto animate-spin" size={20} />
+                   )}
                         <InputError message={errors.role} className="mt-1" />
                     </div>
                 </div>

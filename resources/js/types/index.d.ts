@@ -1,9 +1,30 @@
 export interface User {
-    id: number;
-    name: string;
+    id?: number;
+    first_name: string;
     email: string;
-    email_verified_at?: string;
+    last_name: string;
+    phone: string;
+    alt_phone: string;
+    photo_path?: string;
+    location?: string;
+    isActive: number;
+    address?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    zip_code?: string;
+    bio?: string;
+    coordinates?: string;
+    slug?: string;
+    created_at: string;
 }
+
+export type UserCardProps = {
+    user: User;
+  }
+  interface UsersProps {
+    users: UserCardProps[];
+  }
 
 export type Category = {
     id?: number;
