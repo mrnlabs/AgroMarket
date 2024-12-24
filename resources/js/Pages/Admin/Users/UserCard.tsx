@@ -33,7 +33,7 @@ export default function UserCard({ user }: UserCardProps) {
 
     return (
       <>
-        {user.bio}
+       <div dangerouslySetInnerHTML={{ __html: user.bio }}></div>
         {shouldShowSeeMore && (
           <button 
             onClick={toggleBio}
@@ -51,8 +51,8 @@ export default function UserCard({ user }: UserCardProps) {
       <div className="card-header">
         <Link href={route('users.edit', user.slug)} prefetch className="flex justify-between items-center">
           <h5 className="card-title">{user.first_name} {user.last_name}</h5>
-          <div className={`${user.isActive == 1 ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
-            <span>{user.isActive == 1 ? 'Active' : 'Inactive'}</span>
+          <div className={`${user.is_active == 1 ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
+            <span>{user.is_active == 1 ? 'Active' : 'Inactive'}</span>
           </div>
         </Link>
       </div>

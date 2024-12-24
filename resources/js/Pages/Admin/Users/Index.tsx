@@ -1,12 +1,24 @@
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 import { Loader, Trash2 } from 'lucide-react'
 import UserCard from './UserCard'
 import { User, UserCardProps, UsersProps } from '@/types'
+import { useEffect } from 'react'
+import { toast } from '@/hooks/use-toast'
 
 export default function Users({
     users
 }: UsersProps) {
+    const success = usePage().props.success;
+    useEffect(() => {
+        if (success) {
+            toast({
+                title: "Success",
+                description: success,
+                variant: "default",
+            })
+        }
+    }, [success]);
   return (
     <Authenticated>
 		<div className="flex justify-between items-center mb-6">

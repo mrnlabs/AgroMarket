@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -25,10 +26,10 @@ class UserRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
+             Rule::when(request()->routeIs('users.store'), ['required', 'string', 'min:8']),
             'phone' => ['required', 'string', 'max:11'],
-            'alt_phone' => ['required', 'string', 'max:11'],
-            // 'role' => ['required', 'exists:roles,id'],
+            'alt_phone' => ['nullable', 'string', 'max:11'],
+            'role' => ['required'],
             'address' => ['required', 'string', 'max:255'],
             // 'city' => ['required', 'string', 'max:255'],
             // 'state' => ['required', 'string', 'max:255'],

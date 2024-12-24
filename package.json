@@ -49,6 +49,7 @@
         "lucide-react": "^0.468.0",
         "prismjs": "^1.29.0",
         "pristinejs": "^1.1.0",
+        "react-hot-toast": "^2.4.1",
         "react-quill": "^2.0.0",
         "react-sortablejs": "^6.1.4",
         "shepherd.js": "^11.0.1",

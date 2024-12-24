@@ -61,11 +61,47 @@ class UserController extends Controller
     }
 
     function edit($slug) {
-        $user = User::where('slug', $slug)->first();
+        $user = User::with('roles')->where('slug', $slug)->first();
         $roles = Role::pluck('name', 'id');
         return Inertia::render('Admin/Users/Create',[
             'user' => $user,
             'roles' => Inertia::defer(fn () => $roles),
         ]);
+    }
+
+    function update(UserRequest $request, $slug) {
+        // dd($request->all());
+        $user = User::where('slug', $slug)->first();
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'alt_phone' => $request->alt_phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'bio' => $request->bio,
+            'zip_code' => $request->zip_code,
+        ]);
+        if($request->hasFile('photo_path')) {
+            $imagePath = $request->file('photo_path')->store('users', 'public');
+            $user->photo_path = $imagePath;
+            $user->save();
+        }
+        $user->syncRoles($request->role);
+        return back()->with('success', 'User updated successfully.');
+    }
+
+    function setActiveStatus($slug) {
+        $user = User::where('slug', $slug)->first();
+        $user->update(['is_active' => !$user->is_active]);
+        return back()->with('success', 'User status updated successfully.');
+    }
+
+
+    function destroy($slug) {
+        $user = User::where('slug', $slug)->first();
+        $user->delete();
+        return back()->with('success', 'User deleted successfully.');
+        
     }
 }

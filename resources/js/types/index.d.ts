@@ -7,12 +7,13 @@ export interface User {
     alt_phone: string;
     photo_path?: string;
     location?: string;
-    isActive: number;
+    is_active: number;
     address?: string;
     city?: string;
     state?: string;
     country?: string;
     zip_code?: string;
+    roles: Role[];
     bio?: string;
     coordinates?: string;
     slug?: string;

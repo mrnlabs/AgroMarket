@@ -8,10 +8,12 @@ import { useToast } from '@/hooks/use-toast'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { RolesIndexProps, User } from '@/types'
 import { generatePassword } from '@/utils/generatePassword'
-import { router, useForm } from '@inertiajs/react'
+import { router, useForm, usePage } from '@inertiajs/react'
 import { ImagePlus, Loader, Lock } from 'lucide-react'
 import React, { lazy, Suspense, useEffect } from 'react'
 import UserDocument from './UserDocument'
+import UserDangerZone from './UserDangerZone'
+import { Toaster } from '@/Components/ui/toaster'
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -22,7 +24,10 @@ export default function Create({roles, user}:{
     roles:RolesIndexProps, 
     user:User
 }) {
+    const filePath = usePage().props.filePath;
     const [quillValue, setQuillValue] = React.useState('');
+
+    const [showFileInput, setShowFileInput] = React.useState(false);
     const { toast } = useToast();
     
 
@@ -42,13 +47,17 @@ export default function Create({roles, user}:{
     useEffect(() => {
         //Its edit
         if (user) {
-            setData('first_name', user.first_name);
-            setData('last_name', user.last_name);
-            setData('email', user.email);
-            setData('phone', user.phone);
-            setData('alt_phone', user.alt_phone);
-            setData('address', user.address ?? '');
-            setData('bio', user.bio ?? '');
+            //@ts-ignore
+            setData({
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                phone: user.phone,
+                alt_phone: user.alt_phone,
+                address: user.address ?? '',
+                bio: user.bio ?? '',
+                role: user.roles[0]?.name
+            });
         }
     }, [user]);
 
@@ -74,6 +83,29 @@ const handleBack = () => {
     router.get(route('users.index'));
 }
 
+const handleUpdate = () => {
+    post(route('users.update', user.slug), {
+        forceFormData: true,
+        preserveScroll: true,
+        onSuccess: () => {
+            reset('first_name', 'last_name', 'email', 'phone', 'alt_phone', 'role', 'bio', 'password');
+            setData('photo_path', null);
+            toast({
+                title: "Success",
+                description: "User updated successfully",
+                variant: "default",
+            })
+        },
+        onError: () => {
+            toast({
+                title: "Error",
+                description: "Something went wrong",
+                variant: "destructive",
+            })
+        }
+    });
+}
+
 const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     
@@ -88,6 +120,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (data.photo_path) {
         formData.append('photo_path', data.photo_path);
     }
+    if(user){return handleUpdate();}
     post(route('users.store'), {
         forceFormData: true,
         preserveScroll: true,
@@ -96,7 +129,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
             setData('photo_path', null);
             toast({
                 title: "Success",
-                description: "Category created successfully",
+                description: "User created successfully",
                 variant: "default",
             })
         },
@@ -117,28 +150,35 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="card-title">{user ? 'Edit' : 'Create'} Profile Picture</h4>
-                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <ImagePlus size={20} />
+                    <div className="cursor-pointer inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                    <ImagePlus size={20} className='text-slate-900 dark:text-slate-200' onClick={() => setShowFileInput(!showFileInput)} />
                     </div>
                 </div>
 
-                <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
-                <Suspense fallback={<Loader className="mx-auto" size={20} />}>
-                <FileUpload 
-                        onFilesSelected={handleFileSelect}
-                        onFileRemove={handleFileRemove}
-                        multiple={false}
-                        acceptedTypes={['image/jpeg', 'image/png']}
-                        maxSize={5 * 1024 * 1024} // 5MB
-                        showPreview={true} 
-                        />
-                        <InputError message={errors.photo_path} className="mt-1" />
-                </Suspense>
-                    <div className=" w-full h-full flex items-center justify-center">
-                        
+                {user?.photo_path && !showFileInput && (
+                    <img alt="gallery" 
+                    className="object-cover object-center rounded" 
+                    src={filePath + user.photo_path}/>
+                )}
+                {!user || showFileInput && (
+                    <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
+                    <Suspense fallback={<Loader className="mx-auto" size={20} />}>
+                    <FileUpload 
+                            onFilesSelected={handleFileSelect}
+                            onFileRemove={handleFileRemove}
+                            multiple={false}
+                            acceptedTypes={['image/jpeg', 'image/png']}
+                            maxSize={5 * 1024 * 1024} // 5MB
+                            showPreview={true} 
+                            />
+                            <InputError message={errors.photo_path} className="mt-1" />
+                            <Toaster />
+                    </Suspense>
+                        <div className=" w-full h-full flex items-center justify-center">
+                            
+                        </div>
                     </div>
-                </div>
-
+                )}
                 <div className=""></div>
             </div>
 
@@ -146,35 +186,42 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                 <div className="flex justify-between items-center mb-4">
                     <p className="card-title">Role <span className="text-red-500">*</span></p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <Lock size={20} />
+                    <Lock size={20} className='text-slate-900 dark:text-slate-200' />
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-3">
                 <div>
-                   {roles && (
-                        <Select onValueChange={(value) => setData('role',  value)}>
-                        <SelectTrigger className="w-full form-select ">
+                    {roles && (
+                        <Select
+                        value={data.role || user?.roles[0]?.name}
+                        onValueChange={(value) => setData('role', value)}
+                        >
+                        <SelectTrigger className="w-full form-select">
                             <SelectValue placeholder="Select role" />
                         </SelectTrigger>
                         <SelectContent>
-                        {Object.entries(roles).map(([id, name]) => (
-                                <SelectItem key={id} value={`${name}`}>{`${name}`}</SelectItem>
+                            {Object.entries(roles).map(([id, name]) => (
+                            <SelectItem key={id} value={name}>
+                                {name}
+                            </SelectItem>
                             ))}
                         </SelectContent>
                         </Select>
-                   )}
-                   {!roles && (
-                       <Loader className="mx-auto animate-spin" size={20} />
-                   )}
-                        <InputError message={errors.role} className="mt-1" />
+                    )}
+                    {!roles && <Loader className="mx-auto animate-spin" size={20} />}
+                    <InputError message={errors.role} className="mt-1" />
                     </div>
-                    <a href="#" className="uppercase text-center inline-flex items-center font-semibold py-1 px-2 rounded text-xs bg-primary/20 text-primary">JavaScript</a>
+
                 </div>
             </div>
 
             {user && (
                 <UserDocument />
+            )}
+            
+            {user && (
+                <UserDangerZone user={user} />
             )}
         </div>
 
@@ -243,8 +290,9 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             Bio
                         </Label>
                         <QuillEditor 
-                          quillValue={data.bio || quillValue}
-                          setQuillValue={handleQuillChange} />
+                            quillValue={data.bio ?? ''}
+                            setQuillValue={handleQuillChange} 
+                        />
                           <InputError message={errors.bio} className="mt-1" />
                     </div>
                    
