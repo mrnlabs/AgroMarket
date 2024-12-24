@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('zip_code')->nullable();
-            $table->string('bio')->nullable();
+            $table->longText('bio')->nullable();
             $table->string('coordinates')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('verified_at')->nullable();

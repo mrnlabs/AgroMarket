@@ -1,14 +1,16 @@
 import { UserCardProps } from '@/types'
 import { transcateText } from '@/utils/transcateText';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { format } from "date-fns";
-import { CalendarArrowUp } from 'lucide-react';
+import { CalendarArrowUp, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
+import StarRatingDashboard from './StarRatingDashboard';
 
 export default function UserCard({ user }: UserCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const bioLength = user.bio?.length ?? 0;
   const shouldShowSeeMore = bioLength > 150;
+  const filePath = usePage().props.filePath;
 
   const toggleBio = () => {
     setIsExpanded(!isExpanded);
@@ -20,7 +22,7 @@ export default function UserCard({ user }: UserCardProps) {
     if (shouldShowSeeMore && !isExpanded) {
       return (
         <>
-          {transcateText(user.bio, 150, '')}
+        <div dangerouslySetInnerHTML={{ __html: transcateText(user.bio, 150, '') }}></div>
           <button 
             onClick={toggleBio}
             className="text-blue-500 hover:text-blue-600 ml-1 text-sm font-medium"
@@ -50,7 +52,8 @@ export default function UserCard({ user }: UserCardProps) {
     <div className="card">
       <div className="card-header">
         <Link href={route('users.edit', user.slug)} prefetch className="flex justify-between items-center">
-          <h5 className="card-title">{user.first_name} {user.last_name}</h5>
+        <img 
+        src={user.photo_path ? filePath + user.photo_path : "https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg"} alt={user.first_name} className="h-12 w-12 rounded"/> <h5 className="card-title">{user.first_name} {user.last_name}</h5>
           <div className={`${user.is_active == 1 ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
             <span>{user.is_active == 1 ? 'Active' : 'Inactive'}</span>
           </div>
@@ -90,16 +93,17 @@ export default function UserCard({ user }: UserCardProps) {
                 <span className="align-text-bottom">{format(user.created_at, 'dd MMM yyy')}</span>
               </a>
 
-              <a href="#" className="text-sm">
-                <i className="mgc_align_justify_line text-lg me-2"></i>
+              <a href="#" className="text-sm flex align-middle">
+                <ShoppingCart className='text-lg me-2' />
                 <span className="align-text-bottom">56</span>
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                <div className="bg-success h-1.5 rounded-full dark:bg-success w-2/3"></div>
-              </div>
-              <span>66%</span>
+            <StarRatingDashboard 
+              totalStars={5}
+              initialRating={3}
+              onRatingChange={(rating) => console.log(`Rated: ${rating}`)}
+            />
             </div>
           </div>
         </div>
