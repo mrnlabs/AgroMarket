@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Log;
 
 class IpGeolocation
 {
+/**
+ * Retrieve geolocation information for a given IP address.
+ *
+ * This method fetches geolocation data from an external API for the provided
+ * IP address or the requester's IP if no IP is provided. The results are
+ * cached for 24 hours to improve performance and reduce API calls.
+ *
+ * @param string|null $ip The IP address to lookup. If null, the requester's IP is used.
+ * @return array|null An associative array with geolocation data if successful, null otherwise.
+ * @throws Exception If the API request fails.
+ */
+
     public static function lookup(?string $ip = null)
 {
     $ip = $ip ?? request()->ip();
