@@ -1,6 +1,6 @@
 import MenuItem from '@/Components/dashboard/MenuItem'
 import { Link } from '@inertiajs/react'
-import { ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, Menu, Users } from 'lucide-react'
+import { BaggageClaim, ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, Menu, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -46,6 +46,11 @@ export default function SideBar() {
                 href="users.index" 
                 icon={Users} 
                 label="Users" 
+            />
+            <MenuItem 
+                href="admin.products.index" 
+                icon={BaggageClaim} 
+                label="Products" 
             />
             
             <MenuItem 

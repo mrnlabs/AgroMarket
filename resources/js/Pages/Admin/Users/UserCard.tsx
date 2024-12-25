@@ -1,6 +1,6 @@
 import { UserCardProps } from '@/types'
 import { transcateText } from '@/utils/transcateText';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { format } from "date-fns";
 import { CalendarArrowUp, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
@@ -48,6 +48,11 @@ export default function UserCard({ user }: UserCardProps) {
     );
   };
 
+  const showUserProducts = (slug: string) => {
+    if(!slug) return;
+    router.get(route('admin.user.products', slug));
+  };
+
   return (
     <div className="card">
       <div className="card-header">
@@ -88,15 +93,15 @@ export default function UserCard({ user }: UserCardProps) {
         <div className="border-t p-5 border-gray-300 dark:border-gray-700">
           <div className="grid lg:grid-cols-2 gap-4">
             <div className="flex items-center justify-between gap-2">
-              <a href="#" className="text-sm flex">
+              <div className="text-sm flex">
                 <CalendarArrowUp className="me-2" size={16}  />
                 <span className="align-text-bottom">{format(user.created_at, 'dd MMM yyy')}</span>
-              </a>
+              </div>
 
-              <a href="#" className="text-sm flex align-middle">
-                <ShoppingCart className='text-lg me-2' />
+              <div className="text-sm flex align-middle">
+                <ShoppingCart onClick={() => showUserProducts(user.slug ?? '')} className='text-lg me-2 cursor-pointer' />
                 <span className="align-text-bottom">56</span>
-              </a>
+              </div>
             </div>
             <div className="flex items-center gap-2">
             <StarRatingDashboard 

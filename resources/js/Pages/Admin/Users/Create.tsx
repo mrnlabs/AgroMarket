@@ -9,7 +9,7 @@ import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { RolesIndexProps, User } from '@/types'
 import { generatePassword } from '@/utils/generatePassword'
 import { router, useForm, usePage } from '@inertiajs/react'
-import { ImagePlus, Loader, Lock } from 'lucide-react'
+import { ArrowLeft, ImagePlus, Loader, Lock } from 'lucide-react'
 import React, { lazy, Suspense, useEffect } from 'react'
 import UserDocument from './UserDocument'
 import UserDangerZone from './UserDangerZone'
@@ -84,6 +84,14 @@ const handleBack = () => {
 }
 
 const handleUpdate = () => {
+    if(!isDirty){
+        toast({
+            title: "Error",
+            description: "No changes detected",
+            variant: "destructive",
+        })
+        return;
+    }
     post(route('users.update', user.slug), {
         forceFormData: true,
         preserveScroll: true,
@@ -230,7 +238,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                 <div className="flex justify-between items-center mb-4">
                     <p className="card-title">User Details</p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                        <i className="mgc_transfer_line"></i>
+                    <ArrowLeft onClick={() => router.get(route('users.index'))} size={20} className='cursor-pointer text-slate-900 dark:text-slate-200' />
                     </div>
                 </div>
 
