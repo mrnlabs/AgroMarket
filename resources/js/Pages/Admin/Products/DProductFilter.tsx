@@ -1,7 +1,13 @@
-import { Button } from '@/Components/ui/button'
+import { Button } from '@/Components/ui/button';
+import { Link, router, usePage } from '@inertiajs/react'
 import React from 'react'
 
 export default function DProductFilter() {
+    const { auth } = usePage().props;
+
+    const handleCreate = () => {
+        router.get(route('admin.products.create',auth.user.slug));
+    }
   return (
     <div className="mb-2 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
       <div className="flex items-center space-x-4">
@@ -45,7 +51,7 @@ export default function DProductFilter() {
             </li>
           </ul>
         </div>
-        <Button className='rounded-[5px] float-right'>Create</Button>
+        <Button onClick={handleCreate} className='rounded-[5px] float-right'>Create</Button>
       </div>
     </div>
   )

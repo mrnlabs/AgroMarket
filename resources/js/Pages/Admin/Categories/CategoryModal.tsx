@@ -139,7 +139,7 @@ function CategoryModal({
                             id="name" 
                             name="name" 
                             className="form-input" 
-                            placeholder="Enter Title" 
+                            placeholder="Enter Category Name" 
                             aria-describedby="input-helper-text"
                         />
                          {errors.name && (<p className="text-sm text-red-500 mt-1">{errors.name}</p>)}
