@@ -183,7 +183,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
         <p className="text-red-500 text-sm">{error}</p>
       )}
 
-      {selectedFiles.length > 0 && (
+      {/* {selectedFiles.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {selectedFiles.map((file, index) => (
             <div
@@ -211,7 +211,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
             </div>
           ))}
         </div>
-      )}
+      )} */}
 
       <input
         ref={fileInputRef}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -18,9 +19,13 @@ class AdminProductController extends Controller
     }
     
     function create($slug) {
-        $categories = Category::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id')->toArray();
         return Inertia::render('Admin/Products/Create',[
             'categories' => $categories
         ]);
+    }
+
+    function store(Request $request) {
+        dd($request->all());
     }
 }

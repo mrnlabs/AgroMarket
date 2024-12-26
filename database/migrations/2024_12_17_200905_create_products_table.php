@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
+            $table->integer('quantity');
             $table->string('image');
             $table->float('price');
             $table->enum('status', ['Published', 'Draft'])->default('Published');

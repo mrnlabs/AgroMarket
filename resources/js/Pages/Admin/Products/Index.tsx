@@ -8,7 +8,7 @@ export default function Index() {
         <section className="bg-gray-50 py-4 antialiased dark:bg-gray-900 md:py-4">
 
           
-  <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+  <div className="mx-auto 2xl:px-0">
     {/* <!-- Heading & Filters --> */}
     <DProductFilter />
     
