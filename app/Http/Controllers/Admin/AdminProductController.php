@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Models\ProductImage;
+use Illuminate\Http\RedirectResponse;
 
 class AdminProductController extends Controller
 {
@@ -25,7 +28,39 @@ class AdminProductController extends Controller
         ]);
     }
 
-    function store(Request $request) {
-        dd($request->all());
+    function store(ProductRequest $request, $slug) {
+        try {
+            // dd($request->all());
+            $user= User::where('slug', $slug)->first();
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('products', 'public');
+            }
+
+            $product = $user->product()->create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'user_id' => $user->id,
+                'image' => $imagePath,
+            ]);
+            $categoryIds = $request->category_id;
+            $product->categories()->sync($categoryIds);
+
+            if($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $filename = time() . '_' . $image->getClientOriginalName();
+                    $path = $image->storeAs('products', $filename, 'public');
+                    ProductImage::create([
+                        'image' => $path,
+                        'product_id' => $product->id
+                    ]);
+                }
+            }
+        return back()->with('success','Product created succesfully.');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

@@ -11,6 +11,7 @@ import { CategoriesTableProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
 import { ChartColumnStacked, Info, Paperclip, X } from 'lucide-react';
 import React, { useState } from 'react'
+import { Toaster } from '@/Components/ui/toaster'
 
 export default function Create({categories}: CategoriesTableProps) {
     const auth = usePage().props.auth
@@ -33,7 +34,7 @@ export default function Create({categories}: CategoriesTableProps) {
               quantity: '',
               category_id: [] as string[],
               image: null as File | null,
-              images: null as File | null,
+              images: null as File[] | null,
           });
 
         const handleCategoriesChange = (selectedCategories: { value: string }[]) => {
@@ -41,15 +42,17 @@ export default function Create({categories}: CategoriesTableProps) {
         }
 
       const handleMainImageFileSelect = (files: File[]) => {
+        setData('image', null)
         if (files.length > 0) {
             setImageSinglePreview(files[0])
            setData('image', files[0]);
         }
        };
      const handleFileSelect = (files: File[]) => {
+        setData('images', null);
         if (files.length > 0) {
             setImagePreviews(files)
-           setData('images', files[0]);
+           setData('images', files);
         }
     };
 
@@ -77,7 +80,11 @@ export default function Create({categories}: CategoriesTableProps) {
         formData.append('price', data.price);
         formData.append('description', data.description);
         if (data.image) {formData.append('image', data.image);}
-        if (data.images) {formData.append('image', data.images);}
+        if (data.images) {
+            data.images.forEach((image, index) => {
+                formData.append(`images[${index}]`, image);
+            });
+        }
         // if(user){return handleUpdate();}
         post(route('admin.products.store',auth.user.slug), {
             forceFormData: true,
@@ -86,6 +93,9 @@ export default function Create({categories}: CategoriesTableProps) {
                 reset('title', 'quantity', 'price', 'description');
                 setData('image', null);
                 setData('images', null);
+                setData('category_id', []);
+                 setImageSinglePreview(null);
+                 setImagePreviews([]);
                 toast({
                     title: "Success",
                     description: "Product created successfully",
@@ -135,6 +145,7 @@ export default function Create({categories}: CategoriesTableProps) {
                         )}
                         </div>
                     </div>
+                    <InputError message={errors.image} className="mt-9" />
             </div>
             
             <div className="card p-6">
@@ -152,6 +163,7 @@ export default function Create({categories}: CategoriesTableProps) {
                 maxSelected={2}
                 onSelectionChange={(selected) => handleCategoriesChange(selected)}
                 />
+                <InputError message={errors.category_id} className="mt-1" />
                 </div>
             </div>
         </div>
@@ -254,6 +266,7 @@ export default function Create({categories}: CategoriesTableProps) {
                 </div>
             </div>
         </div>
+        <Toaster />
     </div>
 
     </Authenticated>

@@ -107,6 +107,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   }, [multiple, maxFiles, selectedFiles, validateFile, showPreview, onFilesSelected, errorMessages.maxFiles]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    processFiles([])
     if (event.target.files) {
       processFiles(event.target.files);
     }

@@ -46,6 +46,10 @@ class User extends Authenticatable
             'coordinates' => 'array'
         ];
     }
+
+    function product() {
+        return $this->hasMany(Product::class);
+    }
     
     
 }
