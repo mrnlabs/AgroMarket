@@ -16,6 +16,11 @@ export interface User {
     roles: Role[];
     bio?: string;
     coordinates?: string;
+    product?: {
+        image: string;  
+        title?: string;
+        slug?:string;  
+      }[];
     slug?: string;
     created_at: string;
 }
@@ -37,6 +42,41 @@ export type Category = {
 
 export type CategoriesTableProps = {
     categories: Category[];
+}
+
+export type ProductCardProps = {
+    product: Product;
+    products?: Product[];
+}
+
+export type Product = {
+    id?: number;
+    title: string;
+    description: string;
+    price: number;
+    quantity: number;
+    image?: string;
+    images?: ProductImages[];
+    categories?: {
+        product_id: string;  
+        category_id: string; 
+      }[];
+        user: {
+        id?: number;
+        slug?: number;
+        first_name: string;
+        last_name: string;
+    };
+    slug?: string;
+    created_at: string;
+}
+
+export type ProductImages = {
+    id?: number;
+    image: string;
+    product_id: number;
+    created_at: string;
+    updated_at: string;
 }
 
 export type Task = {

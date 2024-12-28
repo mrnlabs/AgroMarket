@@ -1,4 +1,3 @@
-import React from 'react'
 import Select from 'react-select'
 
 interface Option {
@@ -13,6 +12,7 @@ interface MultiSelectProps {
   onSelectionChange?: (selected: Option[]) => void
   isDisabled?: boolean
   className?: string
+  value?: Option[]  // Add this line
 }
 
 const MultiSelect = ({
@@ -22,6 +22,7 @@ const MultiSelect = ({
   onSelectionChange,
   isDisabled = false,
   className = "",
+  value,  // Add this line
 }: MultiSelectProps) => {
   const handleChange = (selectedOptions: readonly Option[] | null) => {
     onSelectionChange?.(selectedOptions as Option[] || [])
@@ -35,7 +36,7 @@ const MultiSelect = ({
       isDisabled={isDisabled}
       className={className}
       onChange={handleChange}
-    //   isOptionDisabled={() => maxSelected ? (selected?.length || 0) >= maxSelected : false}
+      value={value}  // Add this line
       styles={{
         control: (baseStyles) => ({
           ...baseStyles,

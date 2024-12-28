@@ -8,13 +8,17 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\RedirectResponse;
 
 class AdminProductController extends Controller
 {
     function index() {
-        return Inertia::render('Admin/Products/Index');
+        $products = Product::with('user')->get();
+        return Inertia::render('Admin/Products/Index',[
+            'products' => $products
+        ]);
     }
     
     function userProducts($slug) {
@@ -62,5 +66,15 @@ class AdminProductController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    function show($slug) {
+        $product = Product::with('user','categories')->where('slug', $slug)->first();
+        // dd($product );
+        $categories = Category::pluck('name', 'id')->toArray();
+        return Inertia::render('Admin/Products/Create',[
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 }

@@ -13,7 +13,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     function index() {
-        $users = User::with('roles')->latest()->get();
+        $users = User::with('roles','product')->latest()->get();
         return Inertia::render('Admin/Users/Index',[
             'users' => $users,
         ]);

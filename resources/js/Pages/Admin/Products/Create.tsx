@@ -10,22 +10,42 @@ import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { CategoriesTableProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
 import { ChartColumnStacked, Info, Paperclip, X } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 
-export default function Create({categories}: CategoriesTableProps) {
+export default function Create({categories, product}: {
+    categories : CategoriesTableProps,
+    product: any
+}) {
     const auth = usePage().props.auth
     const { toast } = useToast();
     const [imageSinglePreview, setImageSinglePreview] = useState<File | null>(null);
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
-
+    const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
+    
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
           value: id,
           label: name.toString()
         }))
       : [];
+
+    useEffect(() => {
+        if(product){
+            setData('title', product.title);
+            setData('quantity', product.quantity);
+            setData('price', product.price);
+            setData('description', product.description);
+
+            const defaultCategories = product.categories.map((category: { id: number; name: string }) => ({
+                value: category.id.toString(),
+                label: category.name
+            }));
+            setSelectedCategories(defaultCategories); 
+        }
+    },[product])
+
 
       const { data, setData, post, processing, errors, isDirty, reset } = useForm({
               title: '',
@@ -155,14 +175,18 @@ export default function Create({categories}: CategoriesTableProps) {
                     <ChartColumnStacked />
                     </div>
                 </div>
-
                 <div className="flex flex-col gap-3">
                 <MultiSelect
-                options={mappedCategories}
-                placeholder="Select categories..."
-                maxSelected={2}
-                onSelectionChange={(selected) => handleCategoriesChange(selected)}
+                    options={mappedCategories}
+                    placeholder="Select categories..."
+                    maxSelected={2}
+                    value={selectedCategories}  // Add this line
+                    onSelectionChange={(selected) => {
+                        setSelectedCategories(selected);  // Use the new selected value, not the old one
+                        handleCategoriesChange(selected);
+                    }}
                 />
+
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>
             </div>
@@ -178,7 +202,7 @@ export default function Create({categories}: CategoriesTableProps) {
                 </div>
                 <div className="mb-3">
                         <Label htmlFor="product-name" className="mb-2 block">Product Title</Label>
-                        <Input 
+                        <Input value={data.title}
                         onChange={(e) => setData('title', e.target.value)} 
                         type="text" id="product-name" className="form-input" placeholder="Enter Product Title" aria-describedby="input-helper-text"/>
                         <InputError message={errors.title} className="mt-1" />
@@ -187,7 +211,7 @@ export default function Create({categories}: CategoriesTableProps) {
                     <div className="grid md:grid-cols-2 gap-3">
                     <div className="">
                         <Label htmlFor="qty" className="mb-2 block">Quantity</Label>
-                        <Input 
+                        <Input value={data.quantity}
                         onChange={(e) => setData('quantity', e.target.value)} 
                         type="number" id="qty" className="form-input" placeholder="Enter Quantity" aria-describedby="input-helper-text"/>
                         <InputError message={errors.title} className="mt-1" />
@@ -195,7 +219,7 @@ export default function Create({categories}: CategoriesTableProps) {
 
                     <div className="">
                             <Label htmlFor="price" className="mb-2 block">Price</Label>
-                            <Input 
+                            <Input value={data.price}
                             onChange={(e) => setData('price', e.target.value)} type="number" id="price" className="form-input" placeholder='Enter Price'/>
                             <InputError message={errors.price} className="mt-1" />
                         </div>

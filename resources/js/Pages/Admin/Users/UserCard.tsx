@@ -22,7 +22,7 @@ export default function UserCard({ user }: UserCardProps) {
     if (shouldShowSeeMore && !isExpanded) {
       return (
         <>
-        <div dangerouslySetInnerHTML={{ __html: transcateText(user.bio, 150, '') }}></div>
+        <div dangerouslySetInnerHTML={{ __html: transcateText(user.bio, 120, '') }}></div>
           <button 
             onClick={toggleBio}
             className="text-blue-500 hover:text-blue-600 ml-1 text-sm font-medium"
@@ -69,25 +69,36 @@ export default function UserCard({ user }: UserCardProps) {
           <h5 className="my-2">
             <a href="#" className="text-slate-900 dark:text-slate-200">Bio</a>
           </h5>
-          <p className="text-gray-500 text-sm mb-9">
+          <p className="text-gray-500 text-sm mb-3">
             {displayBio()}
           </p>
 
-          <div className="flex -space-x-2">
-            <a href="#!">
-              <img className="inline-block h-12 w-12 rounded-full border-2 border-white dark:border-gray-700" src="/images/users/avatar-2.jpg" alt="Image Description"/>
-            </a>
-            <a href="#!">
-              <img className="inline-block h-12 w-12 rounded-full border-2 border-white dark:border-gray-700" src="/images/users/avatar-3.jpg" alt="Image Description"/>
-            </a>
-            <a href="#!">
-              <div className="relative inline-flex">
-                <button className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-gray-200 border-2 border-white font-medium text-gray-700 shadow-sm align-middle dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 transition-all text-sm">
-                  <span className="font-medium leading-none">2+</span>
-                </button>
-              </div>
-            </a>
+          {(user.product ?? []).length > 0 && (
+          <div className="flex space-x-2">
+            {user.product?.slice(0, 10).map((product, index) => (
+              <Link href={route('admin.products.show', product.slug)} key={index}>
+                <img
+                  className="inline-block h-12 w-12 rounded-full border-2 border-white dark:border-gray-700"
+                  src={filePath + product.image}
+                  alt={product.title || 'Product Image'}
+                />
+              </Link>
+            ))}
+            
+            {/* Show remaining count if more than 10 products exist */}
+            {user.product && user.product.length > 10 && (
+              <a href="#!">
+                <div className="relative inline-flex">
+                  <button className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-gray-200 border-2 border-white font-medium text-gray-700 shadow-sm align-middle dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 transition-all text-sm">
+                    <span className="font-medium leading-none">
+                      {user.product.length - 10}+
+                    </span>
+                  </button>
+                </div>
+              </a>
+            )}
           </div>
+        )}
         </div>
 
         <div className="border-t p-5 border-gray-300 dark:border-gray-700">
@@ -96,11 +107,6 @@ export default function UserCard({ user }: UserCardProps) {
               <div className="text-sm flex">
                 <CalendarArrowUp className="me-2" size={16}  />
                 <span className="align-text-bottom">{format(user.created_at, 'dd MMM yyy')}</span>
-              </div>
-
-              <div className="text-sm flex align-middle">
-                <ShoppingCart onClick={() => showUserProducts(user.slug ?? '')} className='text-lg me-2 cursor-pointer' />
-                <span className="align-text-bottom">56</span>
               </div>
             </div>
             <div className="flex items-center gap-2">
