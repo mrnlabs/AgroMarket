@@ -1,5 +1,4 @@
 import QuillEditor from '@/Components/editors/QuillEditor';
-import FileUpload from '@/Components/FileUpload'
 import InputError from '@/Components/InputError';
 import MultiSelect from '@/Components/MultiSelect'
 import { Button } from '@/Components/ui/button';
@@ -9,20 +8,28 @@ import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { CategoriesTableProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Info, Paperclip, X } from 'lucide-react';
-import React, { useEffect, useState } from 'react'
+import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
+
+const FileUpload = lazy(
+    () => import("@/Components/FileUpload"),
+   );
 
 export default function Create({categories, product}: {
     categories : CategoriesTableProps,
     product: any
 }) {
-    const auth = usePage().props.auth
+    const filePath = usePage().props.filePath;
+    const auth = usePage().props.auth;
+
     const { toast } = useToast();
+    
     const [imageSinglePreview, setImageSinglePreview] = useState<File | null>(null);
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
+    const [showFileInput, setShowFileInput] = React.useState(false);
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
@@ -139,23 +146,32 @@ export default function Create({categories, product}: {
         <div className="col-span-1 flex flex-col gap-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">Add Product Main Image</h4>
+                    <h4 className="card-title">{product ? 'Edit' : 'Add'} Product Main Image</h4>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <Paperclip />
+                    <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
                     </div>
                 </div>
-
+                {product?.image && !showFileInput && (
+                    <img alt="gallery" 
+                    className="object-cover object-center rounded" 
+                    src={filePath + product.image}/>
+                )}
+                {!product || showFileInput && (
                 <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
-                <FileUpload 
+                
+                <Suspense fallback={<Loader className="mx-auto" size={20} />}>
+                <FileUpload
                         onFilesSelected={handleMainImageFileSelect}
                         onFileRemove={handleFileRemove}
                         multiple={false}
                         acceptedTypes={['image/jpeg', 'image/png']}
-                        maxSize={5 * 1024 * 1024} // 5MB
+                        maxSize={5 * 1024 * 1024}
                         showPreview={false} 
                         />
-                        
+                </Suspense>
                 </div>
+              )} 
+                
 
                 <div className="flex gap-3 mt-2">
                         <div className="flex -space-x-2">
@@ -236,12 +252,42 @@ export default function Create({categories, product}: {
                             <InputError message={errors.description} className="mt-1" />
                     </div>
 
-                    <div className="mt-8">
-                <div className="flex justify-between items-center mb-4">
+                    <div className="mt-2">
+                        {product?.product_images && (
+                        <div className="flex justify-between items-center mb-4">
+                            <h4 className="card-title">Uploaded Product Images</h4>
+                        </div>
+                        )}
+
+
+                <div className="flex gap-3 mt-2">
+                        <div className="flex flex-wrap gap-2">
+                        {product?.product_images && (
+                        product.product_images.map((prod: { id: number; image: string }) => (
+                            <div key={prod.id} className="relative group">
+                               <img key={prod.id} 
+                                    src={filePath + prod.image} alt={`image-${prod.id}`} className="h-32 w-32 rounded"/>
+                                <button
+                                onClick={() => onRemove(prod.id)}
+                                className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 
+                                            text-white rounded-full p-1 opacity-0 group-hover:opacity-100 
+                                            transition-opacity duration-200 shadow-sm"
+                                type="button"
+                                >
+                                <X className="h-3 w-3" />
+                                <span className="sr-only">Remove image</span>
+                                </button>
+                            </div>
+                             ))
+                            )}
+                        </div>
+                 </div>
+
+                 <div className={`${'flex justify-between items-center mb-2' } ${product?.product_images ? "mt-4" : " "}`} >
                     <h4 className="card-title">Add Product Images</h4>
                 </div>
 
-                <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
+                <div className="dropzone text-gray-700 dark:text-gray-300 h-52 mt-6">
                 <FileUpload 
                         onFilesSelected={handleFileSelect}
                         onFileRemove={handleFileRemove}
@@ -250,7 +296,6 @@ export default function Create({categories, product}: {
                         maxSize={5 * 1024 * 1024} // 5MB
                         showPreview={false} 
                         />
-                        
                 </div>
 
                     <div className="flex gap-3 mt-2">
@@ -285,7 +330,7 @@ export default function Create({categories, product}: {
                         Cancel
                     </Button>
                     <Button disabled={processing} onClick={handleSubmit} type="button" className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none">
-                        Save
+                        {product ? 'Update' : 'Create'}
                     </Button>
                 </div>
             </div>

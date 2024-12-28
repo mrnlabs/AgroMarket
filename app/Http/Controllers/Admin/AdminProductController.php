@@ -69,7 +69,7 @@ class AdminProductController extends Controller
     }
 
     function show($slug) {
-        $product = Product::with('user','categories')->where('slug', $slug)->first();
+        $product = Product::with('user','categories','product_images')->where('slug', $slug)->first();
         // dd($product );
         $categories = Category::pluck('name', 'id')->toArray();
         return Inertia::render('Admin/Products/Create',[
