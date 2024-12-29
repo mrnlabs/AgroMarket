@@ -27,7 +27,7 @@ export default function Create({roles, user}:{
     const filePath = usePage().props.filePath;
     const [quillValue, setQuillValue] = React.useState('');
 
-    const [showFileInput, setShowFileInput] = React.useState(false);
+    const [showFileInput, setShowFileInput] = React.useState(!user);
     const { toast } = useToast();
     
 

@@ -29,7 +29,7 @@ export default function Create({categories, product}: {
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
-    const [showFileInput, setShowFileInput] = React.useState(false);
+    const [showFileInput, setShowFileInput] = React.useState(!product);
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
@@ -181,30 +181,35 @@ export default function Create({categories, product}: {
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="card-title">{product ? 'Edit' : 'Add'} Product Main Image</h4>
-                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
-                    </div>
+                    {product && (
+                        <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                            <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
+                        </div>
+                    )}
                 </div>
+
                 {product?.image && !showFileInput && (
-                    <img alt="gallery" 
-                    className="object-cover object-center rounded" 
-                    src={filePath + product.image}/>
+                    <img 
+                        alt="gallery" 
+                        className="object-cover object-center rounded" 
+                        src={filePath + product.image}
+                    />
                 )}
-                {!product || showFileInput && (
-                <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
-                
-                <Suspense fallback={<Loader className="mx-auto" size={20} />}>
-                <FileUpload
-                        onFilesSelected={handleMainImageFileSelect}
-                        onFileRemove={handleFileRemove}
-                        multiple={false}
-                        acceptedTypes={['image/jpeg', 'image/png']}
-                        maxSize={5 * 1024 * 1024}
-                        showPreview={false} 
-                        />
-                </Suspense>
-                </div>
-              )} 
+
+                {(!product || showFileInput) && (
+                    <div className="dropzone text-gray-700 dark:text-gray-300 h-52">                
+                        <Suspense fallback={<Loader className="mx-auto" size={20} />}>
+                            <FileUpload
+                                onFilesSelected={handleMainImageFileSelect}
+                                onFileRemove={handleFileRemove}
+                                multiple={false}
+                                acceptedTypes={['image/jpeg', 'image/png']}
+                                maxSize={5 * 1024 * 1024}
+                                showPreview={false} 
+                            />
+                        </Suspense>
+                    </div>
+                )}
                 
 
                 <div className="flex gap-3 mt-2">
