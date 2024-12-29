@@ -225,7 +225,7 @@ export default function Create({categories, product}: {
                     <ChartColumnStacked />
                     </div>
                 </div>
-                {JSON.stringify(selectedCategories)}
+                
                 <div className="flex flex-col gap-3">
                 <MultiSelect
                     options={mappedCategories}
