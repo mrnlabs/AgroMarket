@@ -54,7 +54,7 @@ export default function Create({categories, product}: {
     },[product])
 
 
-      const { data, setData, post, processing, errors, isDirty, reset } = useForm({
+      const { data, setData, post, processing, errors, patch, isDirty, reset } = useForm({
               title: '',
               description: quillValue,
               price: '',
@@ -98,6 +98,37 @@ export default function Create({categories, product}: {
         setData('description', value);
     };
 
+    const handleUpdate = (formData: FormData) => {
+        formData.append('_method', 'PATCH');
+        // console.log(data);return
+        post(route('admin.products.update', product.slug), {
+            forceFormData: true,
+            preserveScroll: true,
+            onSuccess: () => {
+                reset('title', 'quantity', 'price', 'description');
+                setData('image', null);
+                setData('images', null);
+                setData('category_id', []);
+                 setImageSinglePreview(null);
+                 setImagePreviews([]);
+                 setShowFileInput(false);
+                toast({
+                    title: "Success",
+                    description: "Product updated successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong",
+                    variant: "destructive",
+                })
+            }
+            
+        });
+    }
+
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         // console.log(data);return
@@ -112,7 +143,10 @@ export default function Create({categories, product}: {
                 formData.append(`images[${index}]`, image);
             });
         }
-        // if(user){return handleUpdate();}
+        if(product){
+            setData('category_id', selectedCategories.map((category) => category.value));
+            return handleUpdate(formData);
+        }
         post(route('admin.products.store',auth.user.slug), {
             forceFormData: true,
             preserveScroll: true,
@@ -191,6 +225,7 @@ export default function Create({categories, product}: {
                     <ChartColumnStacked />
                     </div>
                 </div>
+                {JSON.stringify(selectedCategories)}
                 <div className="flex flex-col gap-3">
                 <MultiSelect
                     options={mappedCategories}

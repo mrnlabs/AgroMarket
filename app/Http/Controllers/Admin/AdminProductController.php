@@ -77,4 +77,45 @@ class AdminProductController extends Controller
             'categories' => $categories
         ]);
     }
+    function update(Request $request, $slug) {
+        try {
+            $product = Product::where('slug', $slug)->firstOrFail();
+            
+            $updateData = [
+                'title' => $request->title,
+                'description' => $request->description,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+            ];
+    
+            if ($request->hasFile('image')) {
+                $updateData['image'] = $request->file('image')->store('products', 'public');
+            }
+    
+            $product->update($updateData);
+    
+            // Only sync categories if they are provided in the request
+            if ($request->has('category_id') && !empty($request->category_id)) {
+                $categoryIds = $request->category_id;
+                if (!empty($categoryIds)) {
+                    $product->categories()->sync($categoryIds);
+                }
+            }
+    
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $filename = time() . '_' . $image->getClientOriginalName();
+                    $path = $image->storeAs('products', $filename, 'public');
+                    ProductImage::create([
+                        'image' => $path,
+                        'product_id' => $product->id
+                    ]);
+                }
+            }
+    
+            return back()->with('success', 'Product updated successfully.');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

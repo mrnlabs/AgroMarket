@@ -98,6 +98,7 @@ const handleUpdate = () => {
         onSuccess: () => {
             reset('first_name', 'last_name', 'email', 'phone', 'alt_phone', 'role', 'bio', 'password');
             setData('photo_path', null);
+            setShowFileInput(false);
             toast({
                 title: "Success",
                 description: "User updated successfully",
