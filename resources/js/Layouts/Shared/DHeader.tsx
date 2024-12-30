@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react'
-import { Menu } from 'lucide-react'
+import { Fullscreen, Menu, Minimize } from 'lucide-react'
 import React from 'react'
+import DFullScreen from './DFullScreen'
 
 export default function DHeader() {
   return (
@@ -39,15 +40,7 @@ export default function DHeader() {
 
     {/* <!-- Language Dropdown Button --> */}
 
-    {/* <!-- Fullscreen Toggle Button --> */}
-    <div className="md:flex hidden">
-        <button data-toggle="fullscreen" type="button" className="nav-link p-2">
-            <span className="sr-only">Fullscreen Mode</span>
-            <span className="flex items-center justify-center h-6 w-6">
-                <i className="mgc_fullscreen_line text-2xl"></i>
-            </span>
-        </button>
-    </div>
+    <DFullScreen />
 
     {/* <!-- Notification Bell Button --> */}
     <div className="relative md:flex hidden">
