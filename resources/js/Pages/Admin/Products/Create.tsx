@@ -29,7 +29,7 @@ export default function Create({categories, product}: {
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
-    const [showFileInput, setShowFileInput] = React.useState(false);
+    const [showFileInput, setShowFileInput] = React.useState(!product);
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
@@ -54,7 +54,7 @@ export default function Create({categories, product}: {
     },[product])
 
 
-      const { data, setData, post, processing, errors, isDirty, reset } = useForm({
+      const { data, setData, post, processing, errors, patch, isDirty, reset } = useForm({
               title: '',
               description: quillValue,
               price: '',
@@ -98,6 +98,37 @@ export default function Create({categories, product}: {
         setData('description', value);
     };
 
+    const handleUpdate = (formData: FormData) => {
+        formData.append('_method', 'PATCH');
+        // console.log(data);return
+        post(route('admin.products.update', product.slug), {
+            forceFormData: true,
+            preserveScroll: true,
+            onSuccess: () => {
+                reset('title', 'quantity', 'price', 'description');
+                setData('image', null);
+                setData('images', null);
+                setData('category_id', []);
+                 setImageSinglePreview(null);
+                 setImagePreviews([]);
+                 setShowFileInput(false);
+                toast({
+                    title: "Success",
+                    description: "Product updated successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong",
+                    variant: "destructive",
+                })
+            }
+            
+        });
+    }
+
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         // console.log(data);return
@@ -112,7 +143,10 @@ export default function Create({categories, product}: {
                 formData.append(`images[${index}]`, image);
             });
         }
-        // if(user){return handleUpdate();}
+        if(product){
+            setData('category_id', selectedCategories.map((category) => category.value));
+            return handleUpdate(formData);
+        }
         post(route('admin.products.store',auth.user.slug), {
             forceFormData: true,
             preserveScroll: true,
@@ -147,30 +181,35 @@ export default function Create({categories, product}: {
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="card-title">{product ? 'Edit' : 'Add'} Product Main Image</h4>
-                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
-                    </div>
+                    {product && (
+                        <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                            <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
+                        </div>
+                    )}
                 </div>
+
                 {product?.image && !showFileInput && (
-                    <img alt="gallery" 
-                    className="object-cover object-center rounded" 
-                    src={filePath + product.image}/>
+                    <img 
+                        alt="gallery" 
+                        className="object-cover object-center rounded" 
+                        src={filePath + product.image}
+                    />
                 )}
-                {!product || showFileInput && (
-                <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
-                
-                <Suspense fallback={<Loader className="mx-auto" size={20} />}>
-                <FileUpload
-                        onFilesSelected={handleMainImageFileSelect}
-                        onFileRemove={handleFileRemove}
-                        multiple={false}
-                        acceptedTypes={['image/jpeg', 'image/png']}
-                        maxSize={5 * 1024 * 1024}
-                        showPreview={false} 
-                        />
-                </Suspense>
-                </div>
-              )} 
+
+                {(!product || showFileInput) && (
+                    <div className="dropzone text-gray-700 dark:text-gray-300 h-52">                
+                        <Suspense fallback={<Loader className="mx-auto" size={20} />}>
+                            <FileUpload
+                                onFilesSelected={handleMainImageFileSelect}
+                                onFileRemove={handleFileRemove}
+                                multiple={false}
+                                acceptedTypes={['image/jpeg', 'image/png']}
+                                maxSize={5 * 1024 * 1024}
+                                showPreview={false} 
+                            />
+                        </Suspense>
+                    </div>
+                )}
                 
 
                 <div className="flex gap-3 mt-2">
@@ -191,6 +230,7 @@ export default function Create({categories, product}: {
                     <ChartColumnStacked />
                     </div>
                 </div>
+                
                 <div className="flex flex-col gap-3">
                 <MultiSelect
                     options={mappedCategories}

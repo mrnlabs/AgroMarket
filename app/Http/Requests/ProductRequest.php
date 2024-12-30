@@ -20,15 +20,23 @@ class ProductRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        return [
-            'title' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ];
-    }
+{
+    $isCreateRoute = request()->routeIs('admin.products.store');
+    // or check against the route name pattern
+    // $isCreateRoute = request()->route()->getName() === 'admin.products.store';
+// dd($isCreateRoute);
+    $imageRule = $isCreateRoute 
+        ? 'required|image|mimes:jpeg,png,jpg|max:2048'
+        : 'nullable|image|mimes:jpeg,png,jpg|max:2048';
+
+    return [
+        'title' => 'required',
+        'description' => 'required',
+        'price' => 'required',
+        'quantity' => 'required',
+        'category_id' => 'required|exists:categories,id',
+        'image' => $imageRule,
+        'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ];
+}
 }

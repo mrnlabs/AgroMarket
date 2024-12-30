@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/products/create/{slug}', [AdminProductController::class, 'create'])->name('admin.products.create');
         Route::post('/products/store/{slug}', [AdminProductController::class, 'store'])->name('admin.products.store');
         Route::get('/products/edit/{slug}', [AdminProductController::class, 'show'])->name('admin.products.show');
-        // Route::post('/users/update/{slug}', [UserController::class, 'update'])->name('users.update');
+        Route::post('/products/update/{slug}', [AdminProductController::class, 'update'])->name('admin.products.update');
         // Route::delete('/users/destroy/{slug}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
