@@ -55,6 +55,7 @@
         "react-quill": "^2.0.0",
         "react-select": "^5.9.0",
         "react-sortablejs": "^6.1.4",
+        "recharts": "^2.15.0",
         "shepherd.js": "^11.0.1",
         "simplebar": "^6.2.5",
         "swiper": "^8.4.4",

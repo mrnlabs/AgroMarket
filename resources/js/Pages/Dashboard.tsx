@@ -1,3 +1,7 @@
+import { DBarChart } from '@/Components/dashboard/DBarChart';
+import { DCategoryOverviewChart } from '@/Components/dashboard/DCategoryOverviewChart';
+import { DPieChart } from '@/Components/dashboard/DPieChart';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { Clock, Ellipsis } from 'lucide-react';
@@ -206,23 +210,15 @@ export default function Dashboard() {
                     <div className="card">
                         <div className="p-6">
                             <h4 className="card-title">Monthly Target</h4>
-
-                            <div id="monthly-target" className="apex-charts my-8" data-colors="#0acf97,#3073F1"></div>
-
-                            <div className="flex justify-center">
-                                <div className="w-1/2 text-center">
-                                    <h5>Pending</h5>
-                                    <p className="fw-semibold text-muted">
-                                        <i className="mgc_round_fill text-primary"></i> Projects
-                                    </p>
-                                </div>
-                                <div className="w-1/2 text-center">
-                                    <h5>Done</h5>
-                                    <p className="fw-semibold text-muted">
-                                        <i className="mgc_round_fill text-success"></i> Projects
-                                    </p>
-                                </div>
-                            </div>
+                            <Card className="flex flex-col">
+                            <CardHeader className="items-center pb-0">
+                                <CardTitle></CardTitle>
+                                <CardDescription></CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-1 pb-0">
+                               <DPieChart />
+                               </CardContent>
+                             </Card>
                         </div>
                     </div>
                 </div>
@@ -230,7 +226,7 @@ export default function Dashboard() {
                     <div className="card">
                         <div className="p-6">
                             <div className="flex justify-between items-center">
-                                <h4 className="card-title">Project Statistics</h4>
+                                <h4 className="card-title">Product Statistics</h4>
                                 <div className="flex gap-2">
                                     <button type="button" className="btn btn-sm bg-primary/25 text-primary hover:bg-primary hover:text-white">
                                         All
@@ -245,7 +241,7 @@ export default function Dashboard() {
                             </div>
 
                             <div dir="ltr" className="mt-2">
-                                <div id="crm-project-statistics" className="apex-charts" data-colors="#cbdcfc,#3073F1"></div>
+                            <DBarChart />
                             </div>
                         </div>
                     </div>
@@ -544,7 +540,7 @@ export default function Dashboard() {
             <div className="card">
                 <div className="p-6">
                     <div className="flex justify-between items-center">
-                        <h4 className="card-title">Project Overview</h4>
+                        <h4 className="card-title">Category Overview</h4>
                         <div>
                             <button className="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="left-start" type="button">
                                 <i className="mgc_more_2_fill text-xl"></i>
@@ -637,7 +633,7 @@ export default function Dashboard() {
                         </div>
 
                         <div className="md:order-2 order-1">
-                            <div id="project-overview-chart" className="apex-charts" data-colors="#3073F1,#ff679b,#0acf97,#ffbc00"></div>
+                            <DCategoryOverviewChart />
                         </div>
                     </div>
                 </div>
