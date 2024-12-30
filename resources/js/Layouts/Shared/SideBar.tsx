@@ -1,6 +1,7 @@
+import Logout from '@/Components/dashboard/Logout'
 import MenuItem from '@/Components/dashboard/MenuItem'
 import { Link } from '@inertiajs/react'
-import { BaggageClaim, ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, Menu, Users } from 'lucide-react'
+import { BaggageClaim, ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, LogOut, Menu, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -82,6 +83,15 @@ export default function SideBar() {
                 label="Miscellaneous" 
                 isRoute={true}
             />
+            <li className="menu-title">Profile Management</li>
+            <MenuItem 
+                href="profile.show" 
+                icon={ChartBarStacked} 
+                label="My Profile" 
+                isRoute={true}
+            />
+           
+             <Logout />
 
         </ul>
     </div>
