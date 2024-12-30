@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -34,6 +35,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'categories' => fn () => Category::all(),
             'dashboard_js_path' => [
                 getenv('ASSET_URL') . '/dashboard-assets/config.js',
                 getenv('ASSET_URL') . '/dashboard-assets/app.js'
