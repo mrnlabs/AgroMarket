@@ -6,6 +6,7 @@ const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
+  // #1e293b
   <div
     ref={ref}
     className={cn(

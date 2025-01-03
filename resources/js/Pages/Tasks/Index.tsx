@@ -93,7 +93,7 @@ export default function Index() {
 
 			<div className="flex flex-col flex-shrink-0 w-72 border rounded-md overflow-hidden border-gray-200 dark:border-gray-700">
 				<div className="flex items-center flex-shrink-0 h-10 p-4 bg-white dark:bg-slate-800">
-					<span className="block text-sm font-semibold uppercase">Todo (6)</span>
+					<span className="block text-sm font-semibold uppercase">Pending (6)</span>
 				</div>
 				<div className="flex flex-col gap-4 overflow-auto p-4 h-[calc(100vh-300px)] kanban-board custom-scroll" id="kanbanborad-one">
 					
@@ -135,7 +135,7 @@ export default function Index() {
 
 			<div className="flex flex-col flex-shrink-0 w-72 border rounded-md overflow-hidden border-gray-200 dark:border-gray-700">
 				<div className="flex items-center flex-shrink-0 h-10 p-4 bg-white dark:bg-slate-800">
-					<span className="block text-sm font-semibold uppercase">Review (6)</span>
+					<span className="block text-sm font-semibold uppercase">On Hold: (6)</span>
 				</div>
 				<div className="flex flex-col gap-4 overflow-auto p-4 h-[calc(100vh-300px)] kanban-board custom-scroll" id="kanbanborad-three">
 					<div className="card p-4 cursor-pointer">
@@ -233,7 +233,7 @@ export default function Index() {
 
 			<div className="flex flex-col flex-shrink-0 w-72 border rounded-md overflow-hidden border-gray-200 dark:border-gray-700">
 				<div className="flex items-center flex-shrink-0 h-10 p-4 bg-white dark:bg-slate-800">
-					<span className="block text-sm font-semibold uppercase">Unassigned (1)</span>
+					<span className="block text-sm font-semibold uppercase">Cancelled (1)</span>
 				</div>
 				<div className="flex flex-col gap-4 overflow-auto p-4 h-[calc(100vh-300px)] kanban-board custom-scroll" id="kanbanborad-five">
 					<div className="card p-4 cursor-pointer">
