@@ -1,7 +1,8 @@
+import { CategoriesTableProps, Category } from '@/types';
 import { usePage } from '@inertiajs/react';
 import React from 'react'
 
-const CategoriesSlider = ({categories}: any) => {
+const CategoriesSlider = ({categories}: CategoriesTableProps) => {
    const filePath = usePage().props.filePath; 
   return (
     <div className="feature" id="featureSection">
@@ -16,11 +17,11 @@ const CategoriesSlider = ({categories}: any) => {
                   </button>
                </div>
                <div className="feature-item-wrapper">
-                  {categories.map((category: any, index: number) => (
+                  {categories.map((category: Category, index: number) => (
                     <div key={category.id} className="feature-item text-center wow bounceIn" data-aos="fade-up" data-aos-duration="400">
                       <div className="feature-item__thumb rounded-[50%]">
                         <a href="shop.html" className="w-full h-full flex items-center justify-center">
-                          <img src={filePath + category.image} alt="Image" />
+                          <img src={category.image ? `${filePath}/${category.image}` : ''} alt="Image" />
                         </a>
                       </div>
                       <div className="feature-item__content mt-16">

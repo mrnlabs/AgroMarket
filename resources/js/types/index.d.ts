@@ -35,6 +35,7 @@ export type UserCardProps = {
 export type Category = {
     id?: number;
     name: string;
+    products_count?: number;
     image?: string;
     created_at: string;
     updated_at: string;

@@ -26,8 +26,8 @@ class ProductRequest extends FormRequest
     // $isCreateRoute = request()->route()->getName() === 'admin.products.store';
 // dd($isCreateRoute);
     $imageRule = $isCreateRoute 
-        ? 'required|image|mimes:jpeg,png,jpg|max:2048'
-        : 'nullable|image|mimes:jpeg,png,jpg|max:2048';
+        ? 'required|image|mimes:jpeg,webp,png,jpg|max:2048'
+        : 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048';
 
     return [
         'title' => 'required',
@@ -36,7 +36,7 @@ class ProductRequest extends FormRequest
         'quantity' => 'required',
         'category_id' => 'required|exists:categories,id',
         'image' => $imageRule,
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'images.*' => 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048',
     ];
 }
 }

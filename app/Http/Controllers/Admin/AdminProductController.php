@@ -34,6 +34,9 @@ class AdminProductController extends Controller
 
     function store(ProductRequest $request, $slug) {
         try {
+            $file = $request->file('image');
+            $mimeType = $file->getMimeType();
+            
             // dd($request->all());
             $user= User::where('slug', $slug)->first();
             $imagePath = null;
