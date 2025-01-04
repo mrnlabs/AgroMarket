@@ -7,14 +7,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/Components/ui/dialog"
+} from "@/components/ui/dialog"
 import { Input } from "@/Components/ui/input"
 import { Label } from "@/Components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Category } from "@/types"
 import { useForm } from "@inertiajs/react"
 import { Loader } from "lucide-react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function CategoryModal({
     category,
@@ -27,6 +27,8 @@ function CategoryModal({
 }) {
 
     const { toast } = useToast();
+    
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
 
     const { data, setData, post,  processing, errors } = useForm({
         name: '',
@@ -46,6 +48,7 @@ function CategoryModal({
     const handleFileSelect = (files: File[]) => {
         if (files.length > 0) {
             setData('image', files[0]);
+            setImagePreview(URL.createObjectURL(files[0]));
         }
     };
 
@@ -154,6 +157,9 @@ function CategoryModal({
                         showPreview={true} 
                         />
                         {errors.image && (<p className="text-sm text-red-500 mt-1">{errors.image}</p>)}
+                        {imagePreview && (
+                            <img src={imagePreview} alt="Preview" className="mt-2 h-32 w-full rounded" />
+                        )}
                     </div>
                     <DialogFooter>
                         <Button type="submit" className="rounded-[5px] mt-2">
