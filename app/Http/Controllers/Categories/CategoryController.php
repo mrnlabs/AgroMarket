@@ -12,7 +12,7 @@ class CategoryController extends Controller
        
     $validated = $request->validate([
         'name' => 'required|string|max:255',
-        'image' => 'nullable|image|mimes:jpeg,png,gif|max:5120',
+        'image' => 'nullable|image|mimes:jpeg,webp,png,gif|max:5120',
     ]);
 
     $imagePath = null;
@@ -53,7 +53,7 @@ class CategoryController extends Controller
          if ($request->hasFile('image')) {
              // Validate the image
              $request->validate([
-                 'image' => 'image|mimes:jpeg,png|max:5120',
+                 'image' => 'image|mimes:jpeg,png,webp|max:5120',
              ]);
      
              // Store the new image

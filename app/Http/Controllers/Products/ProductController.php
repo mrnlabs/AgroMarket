@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,7 +12,16 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     
     public function index()
+    {
+        //
+
+        $products = Product::get();
+        return Inertia::render('Welcome', ['products' => $products]);
+    }
+    public function shop()
     {
         //
         

@@ -35,7 +35,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'categories' => fn () => Category::all(),
+           'categories' => Category::withCount('products')->get(),
+
+
             'dashboard_js_path' => [
                 getenv('ASSET_URL') . '/dashboard-assets/config.js',
                 getenv('ASSET_URL') . '/dashboard-assets/app.js'
