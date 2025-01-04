@@ -138,26 +138,37 @@ export default function Index() {
 					<span className="block text-sm font-semibold uppercase">On Hold: (6)</span>
 				</div>
 				<div className="flex flex-col gap-4 overflow-auto p-4 h-[calc(100vh-300px)] kanban-board custom-scroll" id="kanbanborad-three">
-					<div className="card p-4 cursor-pointer">
-						<div className="flex justify-between items-center">
-							<h4 className="flex justify-between items-center h-6 px-3 text-xs font-semibold text-success bg-success/25 rounded-full">Wordpress</h4>
 
-							<div className="text-xs">14 Jul 2023</div>
-						</div>
+					<ReactSortable 
+					id="onhold-column"
+					list={completedTasks}
+					setList={setCompletedTasks}
+					group="task-group"
+					onEnd={handleMove}
+					className="card p-4 cursor-pointer">
+						{completedTasks.map((task) => (
+						 <div key={task.id} className="card p-4 cursor-pointer">
+							<div className="flex justify-between items-center">
+								<h4 className="flex justify-between items-center h-6 px-3 text-xs font-semibold text-info bg-info/25 rounded-full">{task.title}</h4>
 
-						<h4 className="mt-3 text-sm">Kanban board design</h4>
-						<div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
-							<div className="flex items-center">
-								<i className="mgc_chat_3_line text-base"></i>
-								<span className="ms-1 leading-none">46</span>
+								<div className="text-xs">{task.updated_at}</div>
 							</div>
-							<div className="flex items-center ms-4">
-								<i className="mgc_attachment_line rotate-45 text-base"></i>
-								<span className="ms-1 leading-none">17</span>
+
+							<h4 className="mt-3 text-sm">{task.description}</h4>
+							<div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
+								<div className="flex items-center">
+									<i className="mgc_chat_3_line text-base"></i>
+									<span className="ms-1 leading-none">6</span>
+								</div>
+								<div className="flex items-center ms-4">
+									<i className="mgc_attachment_line rotate-45 text-base"></i>
+									<span className="ms-1 leading-none">7</span>
+								</div>
+								<img className="w-6 h-6 ms-auto rounded-full" src="/images/users/avatar-4.jpg"/>
 							</div>
-							<img className="w-6 h-6 ms-auto rounded-full" src="/images/users/avatar-3.jpg"/>
 						</div>
-					</div>
+					))}
+					</ReactSortable>
 
 					<div className="card p-4 cursor-pointer">
 						<div className="flex justify-between items-center">
