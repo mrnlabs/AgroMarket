@@ -50,6 +50,10 @@ class AdminProductController extends Controller
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'user_id' => $user->id,
+                'is_on_sale' => $request->is_on_sale,
+                'sale_price' => $request->sale_price,
+                'minimum_order' => $request->minimum_order,
+                'is_featured' => $request->is_featured,
                 'image' => $imagePath,
             ]);
             $categoryIds = $request->category_id;
@@ -89,6 +93,10 @@ class AdminProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
+                'is_on_sale' => $request->is_on_sale,
+                'sale_price' => $request->sale_price,
+                'minimum_order' => $request->minimum_order,
+                'is_featured' => $request->is_featured,
             ];
     
             if ($request->hasFile('image')) {
@@ -119,6 +127,15 @@ class AdminProductController extends Controller
             return back()->with('success', 'Product updated successfully.');
         } catch (\Throwable $th) {
             throw $th;
+        }
+    }
+
+    function removeProductImage($id) {
+        $image = ProductImage::find($id);
+        if($image->delete()){
+            return back()->with('success', 'Image removed successfully.');
+        } else {
+            return back()->with('error', 'Image could not be removed.');
         }
     }
 }

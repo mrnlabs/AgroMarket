@@ -11,6 +11,7 @@ import { useForm, usePage } from '@inertiajs/react';
 import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
+import Checkbox from '@/Components/Checkbox';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -44,6 +45,10 @@ export default function Create({categories, product}: {
             setData('quantity', product.quantity);
             setData('price', product.price);
             setData('description', product.description);
+            setData('sale_price', product.sale_price);
+            setData('is_on_sale', product.is_on_sale);
+            setData('minimum_order', product.minimum_order);
+            setData('is_featured', product.is_featured);
 
             const defaultCategories = product.categories.map((category: { id: number; name: string }) => ({
                 value: category.id.toString(),
@@ -59,6 +64,10 @@ export default function Create({categories, product}: {
               description: quillValue,
               price: '',
               quantity: '',
+              sale_price: '',
+              is_on_sale: false,
+              minimum_order: '',
+              is_featured: false,
               category_id: [] as string[],
               image: null as File | null,
               images: null as File[] | null,
@@ -91,6 +100,27 @@ export default function Create({categories, product}: {
         const list = [...imagePreviews];
         list.splice(index, 1);
         setImagePreviews(list);
+    }
+
+    const onRemoveDBImages = (id: number) => {
+        if(!confirm('Are you sure you want to delete this image?')) return;
+        post(route('admin.products.removeProductImage', id), {
+            preserveScroll: true,
+            onSuccess: () => {
+                toast({
+                    title: "Success",
+                    description: "Image removed successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong",
+                    variant: "destructive",
+                })
+            }
+        });
     }
 
     const handleQuillChange = (value: string) => {
@@ -151,7 +181,7 @@ export default function Create({categories, product}: {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
-                reset('title', 'quantity', 'price', 'description');
+                reset('title', 'quantity', 'price', 'description', 'sale_price', 'is_on_sale', 'minimum_order', 'is_featured');
                 setData('image', null);
                 setData('images', null);
                 setData('category_id', []);
@@ -264,7 +294,7 @@ export default function Create({categories, product}: {
                         <InputError message={errors.title} className="mt-1" />
                     </div>
                 <div className="flex flex-col gap-3">
-                    <div className="grid md:grid-cols-2 gap-3">
+                    <div className="grid md:grid-cols-3 gap-3">
                     <div className="">
                         <Label htmlFor="qty" className="mb-2 block">Quantity</Label>
                         <Input value={data.quantity}
@@ -279,7 +309,53 @@ export default function Create({categories, product}: {
                             onChange={(e) => setData('price', e.target.value)} type="number" id="price" className="form-input" placeholder='Enter Price'/>
                             <InputError message={errors.price} className="mt-1" />
                         </div>
+
+                        <div className="mt-6 w-50">
+                        <div className="flex items-center space-x-2">
+                        <Checkbox onChange={(e) => setData('is_on_sale', e.target.checked)} checked={data.is_on_sale} id="onSale" />
+                        <label htmlFor="onSale" className="border-0 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                            On Sale ?
+                        </label>
+                        </div>
+                        </div>
+
+                        {data.is_on_sale && (
+                            <>
+                        <div className="">
+                            <Label htmlFor="sale_price" className="mb-2 block">Sale Price</Label>
+                            <Input value={data.sale_price}
+                            onChange={(e) => setData('sale_price', e.target.value)} 
+                            type="number" id="sale_price" className="form-input" placeholder="Enter Sale Price" aria-describedby="input-helper-text"/>
+                            <InputError message={errors.title} className="mt-1" />
+                        </div>
+                        <div className="">
+                            <Label htmlFor="minimum_order" className="mb-2 block">Minimum Order</Label>
+                            <Input value={data.minimum_order}
+                            onChange={(e) => setData('minimum_order', e.target.value)} 
+                            type="number" min={1} id="minimum_order" className="form-input" placeholder="Enter Minimum Order" aria-describedby="input-helper-text"/>
+                            <InputError message={errors.title} className="mt-1" />
+                        </div>
+                        </>
+                        )}
+
+                        
                     </div>
+
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="is_featured" onChange={(e) => setData('is_featured', e.target.checked)} checked={data.is_featured} />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                            htmlFor="is_featured"
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                            Set as Featured
+                            </label>
+                            <p className="text-sm text-muted-foreground">
+                            Featured products are displayed on the top home page.
+                            </p>
+                        </div>
+                        </div>
+
 
                      <div>
                         <Label htmlFor="description" className="mb-2 block">
@@ -292,8 +368,8 @@ export default function Create({categories, product}: {
                             <InputError message={errors.description} className="mt-1" />
                     </div>
 
-                    <div className="mt-2">
-                        {product?.product_images && (
+                    <div className={`${product?.product_images.length > 0 ? 'mt-2' : ''}`}>
+                        {product?.product_images.length > 0 && (
                         <div className="flex justify-between items-center mb-4">
                             <h4 className="card-title">Uploaded Product Images</h4>
                         </div>
@@ -308,7 +384,7 @@ export default function Create({categories, product}: {
                                <img key={prod.id} 
                                     src={filePath + prod.image} alt={`image-${prod.id}`} className="h-32 w-32 rounded"/>
                                 <button
-                                onClick={() => onRemove(prod.id)}
+                                onClick={() => onRemoveDBImages(prod.id)}
                                 className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 
                                             text-white rounded-full p-1 opacity-0 group-hover:opacity-100 
                                             transition-opacity duration-200 shadow-sm"

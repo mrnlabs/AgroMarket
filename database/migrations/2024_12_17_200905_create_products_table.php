@@ -20,7 +20,10 @@ return new class extends Migration
             $table->float('price');
             $table->enum('status', ['Published', 'Draft'])->default('Published');
             $table->longText('description');
-            $table->string('isOnSale')->default('0');
+            $table->boolean('is_on_sale')->default('0');
+            $table->float('sale_price')->nullable();
+            $table->integer('minimum_order')->nullable();
+            $table->string('is_featured')->default('0');
             $table->string('slug')->unique();
             $table->timestamps();
         });

@@ -14,9 +14,14 @@ class Product extends Model
         'description',
         'price',
         'quantity',
+        'user_id',
+        'is_on_sale',
+        'sale_price',
+        'minimum_order',
+        'is_featured',
         'image',
         'images',
-        'category_id',
+
     ];
 
     function categories() {

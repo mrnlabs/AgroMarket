@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
         Route::post('/products/store/{slug}', [AdminProductController::class, 'store'])->name('admin.products.store');
         Route::get('/products/edit/{slug}', [AdminProductController::class, 'show'])->name('admin.products.show');
         Route::post('/products/update/{slug}', [AdminProductController::class, 'update'])->name('admin.products.update');
+        Route::post('/products/remove-product-image/{id}', [AdminProductController::class, 'removeProductImage'])->name('admin.products.removeProductImage');
         // Route::delete('/users/destroy/{slug}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
