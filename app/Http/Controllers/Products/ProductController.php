@@ -49,7 +49,9 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // view product details using slug
+        $product = Product::where('slug', $id)->first();
+        return Inertia::render('FrontPages/Products/ProductDetails', ['product' => $product]);
     }
 
     /**
