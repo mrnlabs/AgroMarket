@@ -1,8 +1,11 @@
+import GuestLayout from '@/Layouts/GuestLayout'
 import React from 'react'
 
 const ProductDetails = () => {
   return (
-    <div>ProductDetails</div>
+  <GuestLayout>
+    
+  </GuestLayout>
   )
 }
 
