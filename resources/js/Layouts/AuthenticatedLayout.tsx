@@ -42,21 +42,21 @@ export default function Authenticated({
         };
     }, []);
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
 
     return (
         <div className="flex wrapper">
            <RoleGuard role="Admin">
                 <AdminSideBar/>
            </RoleGuard>
-            {/* <SideBar/> */}
+           <RoleGuard role="User">
+                <SideBar/>
+           </RoleGuard>
+           
             <div className="page-content">
                 <DHeader/>
                 <main className="flex-grow p-6">
                 {children}
-                </main>
-                {/* footer */}
+                </main>            
                 <DFooter/>
             </div>
         </div>

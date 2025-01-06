@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use Inertia\Middleware;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Inertia\Middleware;
+use Illuminate\Support\Facades\Cache;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -23,6 +24,12 @@ class HandleInertiaRequests extends Middleware
         return parent::version($request);
     }
 
+    private function getCachedCategories() {
+            return Cache::remember('global_categories', now()->addDay(), function () {
+                return Category::withCount('products')->get();
+            });
+    }
+
     /**
      * Define the props that are shared by default.
      *
@@ -36,7 +43,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
                 'roles' => $request->user() ? $request->user()->roles->pluck('name') : [],
             ],
-           'categories' => Category::withCount('products')->get(),
+           'categories' => $this->getCachedCategories(),
 
 
             'dashboard_js_path' => [
