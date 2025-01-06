@@ -88,13 +88,21 @@ export type Task = {
     updated_at: string;
 }
 
+
+
 export type Role = {
     id: number;
     name: string;
-    users_count: number;
+    guard_name: string;
     created_at: string;
     updated_at: string;
-}
+    users_count?: number;
+    pivot: {
+      model_type: string;
+      model_id: number;
+      role_id: number;
+    }
+  }
 
 export type RolesIndexProps = {
     roles: PaginatedRoles;

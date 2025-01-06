@@ -11,6 +11,8 @@ import { PropsWithChildren, ReactNode, useEffect, useState } from 'react';
 import SideBar from './Shared/SideBar.js';
 import DFooter from './Shared/DFooter.js';
 import DHeader from './Shared/DHeader.js';
+import AdminSideBar from './Shared/AdminSideBar.js';
+import { RoleGuard } from '@/utils/roleGuard.js';
 
 export default function Authenticated({
     children,
@@ -40,18 +42,21 @@ export default function Authenticated({
         };
     }, []);
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
 
     return (
         <div className="flex wrapper">
-            <SideBar/>
+           <RoleGuard role="Admin">
+                <AdminSideBar/>
+           </RoleGuard>
+           <RoleGuard role="User">
+                <SideBar/>
+           </RoleGuard>
+           
             <div className="page-content">
                 <DHeader/>
                 <main className="flex-grow p-6">
                 {children}
-                </main>
-                {/* footer */}
+                </main>            
                 <DFooter/>
             </div>
         </div>

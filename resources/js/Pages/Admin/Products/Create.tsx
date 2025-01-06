@@ -12,6 +12,7 @@ import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
+import { RoleGuard } from '@/utils/roleGuard';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -341,20 +342,23 @@ export default function Create({categories, product}: {
                         
                     </div>
 
-                    <div className="items-top flex space-x-2">
-                        <Checkbox id="is_featured" onChange={(e) => setData('is_featured', e.target.checked)} checked={data.is_featured} />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                            htmlFor="is_featured"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                            Set as Featured
-                            </label>
-                            <p className="text-sm text-muted-foreground">
-                            Featured products are displayed on the top home page.
-                            </p>
-                        </div>
-                        </div>
+                    <RoleGuard role="Admin">
+                            <div className="items-top flex space-x-2">
+                            <Checkbox id="is_featured" onChange={(e) => setData('is_featured', e.target.checked)} checked={data.is_featured} />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                htmlFor="is_featured"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                Set as Featured
+                                </label>
+                                <p className="text-sm text-muted-foreground">
+                                Featured products are displayed on the top home page.
+                                </p>
+                            </div>
+                            </div>
+                     </RoleGuard>
+                    
 
 
                      <div>
