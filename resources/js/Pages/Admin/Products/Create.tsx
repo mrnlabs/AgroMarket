@@ -12,6 +12,7 @@ import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
+import { hasRole } from '@/utils/hasRole';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -341,7 +342,8 @@ export default function Create({categories, product}: {
                         
                     </div>
 
-                    <div className="items-top flex space-x-2">
+              {hasRole(auth.user.roles, 'Admin') && (
+                        <div className="items-top flex space-x-2">
                         <Checkbox id="is_featured" onChange={(e) => setData('is_featured', e.target.checked)} checked={data.is_featured} />
                         <div className="grid gap-1.5 leading-none">
                             <label
@@ -355,6 +357,8 @@ export default function Create({categories, product}: {
                             </p>
                         </div>
                         </div>
+                    )}
+                    
 
 
                      <div>
