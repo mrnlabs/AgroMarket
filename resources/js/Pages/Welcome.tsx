@@ -14,7 +14,7 @@ import ProductCard from '@/Components/frontend/ProductCard';
 
 
 export default function Welcome({ products = [] }: ProductCardProps) {
-   const  categories = usePage().props.categories;
+   const  categories  = usePage().props.categories;
    
 
    
