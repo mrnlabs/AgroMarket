@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ProfileController extends Controller
 {
@@ -27,18 +28,27 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
+        $user = $request->user();
+        $user->fill($request->validated());
             $request->user()->email_verified_at = null;
+        if($request->hasFile('photo_path')) {
+            $imagePath = $request->file('photo_path')->store('users', 'public');
+            $user->photo_path = $imagePath;
+        }else{
+            $fuck = User::whereId($user->id)->first(['photo_path']);
+            $user->photo_path = $fuck->photo_path;
         }
+        // if (Auth::user()->isDirty('email')) {
+        //     Auth::user()->email_verified_at = null;
+        // }
+        Auth::user()->save();
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit');
+        return Redirect::back()->with('status', 'Profile updated successfully');
     }
+
+    
 
     /**
      * Delete the user's account.

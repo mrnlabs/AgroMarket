@@ -13,6 +13,7 @@ import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
 import { RoleGuard } from '@/utils/roleGuard';
+import { AuthGuard } from '@/guards/AuthGuard';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -327,14 +328,14 @@ export default function Create({categories, product}: {
                             <Input value={data.sale_price}
                             onChange={(e) => setData('sale_price', e.target.value)} 
                             type="number" id="sale_price" className="form-input" placeholder="Enter Sale Price" aria-describedby="input-helper-text"/>
-                            <InputError message={errors.title} className="mt-1" />
+                            <InputError message={errors.sale_price} className="mt-1" />
                         </div>
                         <div className="">
                             <Label htmlFor="minimum_order" className="mb-2 block">Minimum Order</Label>
                             <Input value={data.minimum_order}
                             onChange={(e) => setData('minimum_order', e.target.value)} 
                             type="number" min={1} id="minimum_order" className="form-input" placeholder="Enter Minimum Order" aria-describedby="input-helper-text"/>
-                            <InputError message={errors.title} className="mt-1" />
+                            <InputError message={errors.minimum_order} className="mt-1" />
                         </div>
                         </>
                         )}
@@ -342,7 +343,10 @@ export default function Create({categories, product}: {
                         
                     </div>
 
-                    <RoleGuard role="Admin">
+                     <AuthGuard 
+                            roles={["Admin", "SuperAdmin"]} 
+                            permissions={["can_manage_system"]}
+                            requireAll={true}>
                             <div className="items-top flex space-x-2">
                             <Checkbox id="is_featured" onChange={(e) => setData('is_featured', e.target.checked)} checked={data.is_featured} />
                             <div className="grid gap-1.5 leading-none">
@@ -357,7 +361,7 @@ export default function Create({categories, product}: {
                                 </p>
                             </div>
                             </div>
-                     </RoleGuard>
+                     </AuthGuard>
                     
 
 

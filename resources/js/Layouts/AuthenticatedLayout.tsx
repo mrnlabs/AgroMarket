@@ -50,16 +50,14 @@ export default function Authenticated({
             <AuthGuard 
                 roles={["Admin", "SuperAdmin"]} 
                 permissions={["can_manage_system"]}
-                requireAll={true}
-            >
+                requireAll={true}>
                 <AdminSideBar/>
             </AuthGuard>
             
             <AuthGuard 
                 roles={["User"]} 
                 permissions={["can_manage_system"]}
-                requireAll={true}
-            >
+                requireAll={true}>
                 <SideBar/>
             </AuthGuard>
            

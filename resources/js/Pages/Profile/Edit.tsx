@@ -8,7 +8,7 @@ import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { generatePassword } from '@/utils/generatePassword'
 import { router, useForm, usePage } from '@inertiajs/react'
 import { ArrowLeft, ImagePlus, Loader, Lock } from 'lucide-react'
-import React, { lazy, Suspense, useEffect } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import UserDocument from '../Admin/Users/UserDocument'
 
@@ -23,6 +23,8 @@ export default function Create() {
     const [quillValue, setQuillValue] = React.useState('');
 
     const [showFileInput, setShowFileInput] = React.useState(!user);
+    const [imageSinglePreview, setImageSinglePreview] = useState<File | null>(null);
+    
     const { toast } = useToast();
     
     useEffect(() => {
@@ -59,6 +61,7 @@ export default function Create() {
 
     const handleFileSelect = (files: File[]) => {
         if (files.length > 0) {
+            setImageSinglePreview(files[0])
             setData('photo_path', files[0]);
         }
     };
@@ -82,6 +85,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         preserveScroll: true,
         onSuccess: () => {
             setData('photo_path', null);
+            setImageSinglePreview(null);
             toast({
                 title: "Success",
                 description: "Profile updated successfully",
@@ -104,7 +108,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         <div className="col-span-1 flex flex-col gap-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">{user ? 'Edit' : 'Create'} Profile Picture</h4>
+                    <h4 className="card-title">{user.photo_path ? 'Edit' : 'Add'} Profile Picture</h4>
                     <div className="cursor-pointer inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                     <ImagePlus size={20} className='text-slate-900 dark:text-slate-200' onClick={() => setShowFileInput(!showFileInput)} />
                     </div>
@@ -115,7 +119,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                     className="object-cover object-center rounded" 
                     src={filePath + user.photo_path}/>
                 )}
-                {!user || showFileInput && (
+                {(!user.photo_path || showFileInput) && (
                     <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
                     <Suspense fallback={<Loader className="mx-auto" size={20} />}>
                     <FileUpload 
@@ -133,8 +137,17 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             
                         </div>
                     </div>
+                    
                 )}
-                <div className=""></div>
+                
+                <div className="flex gap-3 mt-2">
+                        <div className="flex -space-x-2">
+                       {imageSinglePreview && (
+                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" 
+                            src={URL.createObjectURL(imageSinglePreview)} alt="Main Image" />
+                        )}
+                        </div>
+                    </div>
             </div>
 
             {user && (
