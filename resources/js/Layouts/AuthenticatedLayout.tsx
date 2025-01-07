@@ -13,6 +13,7 @@ import DFooter from './Shared/DFooter.js';
 import DHeader from './Shared/DHeader.js';
 import AdminSideBar from './Shared/AdminSideBar.js';
 import { RoleGuard } from '@/utils/roleGuard.js';
+import { AuthGuard } from '@/guards/AuthGuard.js';
 
 export default function Authenticated({
     children,
@@ -45,12 +46,23 @@ export default function Authenticated({
 
     return (
         <div className="flex wrapper">
-           <RoleGuard role="Admin">
+
+            <AuthGuard 
+                roles={["Admin", "SuperAdmin"]} 
+                permissions={["can_manage_system"]}
+                requireAll={true}
+            >
                 <AdminSideBar/>
-           </RoleGuard>
-           <RoleGuard role="User">
+            </AuthGuard>
+            
+            <AuthGuard 
+                roles={["User"]} 
+                permissions={["can_manage_system"]}
+                requireAll={true}
+            >
                 <SideBar/>
-           </RoleGuard>
+            </AuthGuard>
+           
            
             <div className="page-content">
                 <DHeader/>

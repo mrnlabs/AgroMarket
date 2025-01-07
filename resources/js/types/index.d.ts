@@ -21,9 +21,16 @@ export interface User {
         title?: string;
         slug?:string;  
       }[];
+      permissions?: Permission[];
     slug?: string;
     created_at: string;
 }
+
+export interface Permission {
+    name: string;
+    description?: string;
+}
+
 
 export type UserCardProps = {
     user: User;
@@ -101,7 +108,8 @@ export type Role = {
       model_type: string;
       model_id: number;
       role_id: number;
-    }
+    };
+    permissions?: Permission[];
   }
 
 export type RolesIndexProps = {

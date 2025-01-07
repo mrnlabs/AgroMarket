@@ -2,13 +2,15 @@ import { Role } from "@/types";
 import { usePage } from "@inertiajs/react";
 
 interface RoleGuardProps {
-    role: string;
+    roles: string | string[];
     children: React.ReactNode;
 }
 
-export const RoleGuard = ({ role, children }: RoleGuardProps) => {
+export const RoleGuard = ({ roles, children }: RoleGuardProps) => {
     const { auth } = usePage().props;
-    const hasRole = auth.user.roles.some((r: Role) => r.name === role);
-    
+
+    const roleArray = Array.isArray(roles) ? roles : [roles];    
+    const hasRole = auth.user.roles.some((userRole: Role) => roleArray.includes(userRole.name));
+
     return hasRole ? children : null;
 }

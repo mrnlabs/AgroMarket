@@ -47,20 +47,15 @@ export default function SideBar() {
             />
 
             <MenuItem 
-                href="users.index" 
-                icon={Users} 
-                label="Users" 
-            />
-            <MenuItem 
                 href="admin.products.index" 
                 icon={BaggageClaim} 
-                label="Products" 
+                label="My Products" 
             />
             
             <MenuItem 
                 href="subscriptions.index" 
                 icon={CircleDollarSign} 
-                label="Subscriptions" 
+                label="My Subscriptions" 
             />
             
             <MenuItem 

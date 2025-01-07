@@ -10,14 +10,22 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     function index() {
-        $tasks = Task::orderBy('order')->get();
+        $completedTasks = Task::where('status', 'done')->orderBy('order')->get();
+        $inProgressTasks = Task::where('status', 'in_progress')->orderBy('order')->get();
+        $onHoldTasks = Task::where('status', 'on_hold')->orderBy('order')->get();
+        $cancelledTasks = Task::where('status', 'cancelled')->orderBy('order')->get();
         return Inertia::render('Tasks/Index',[
-            'initialTasks' => $tasks
+            'dcompletedTasks' => $completedTasks,
+            'dinProgressTasks' => $inProgressTasks,
+            'donHoldTasks' => $onHoldTasks,
+            'dcancelledTasks' => $cancelledTasks,
         ]);
     }
 
-    public function updateStatus(Request $request, Task $task)
+    public function updateStatus(Request $request, $id)
     {
+        // dd($request->status);
+        $task = Task::whereId($id)->first();
         $validated = $request->validate([
             'status' => ['required', 'in:in_progress,pending,on_hold,done,cancelled'],
         ]);
@@ -26,6 +34,6 @@ class TaskController extends Controller
             'status' => $validated['status'],
         ]);
 
-        return response()->json(['message' => 'Task status updated']);
+        return back()->with('message','Task status updated');
     }
 }

@@ -15,7 +15,11 @@ use Illuminate\Http\RedirectResponse;
 class AdminProductController extends Controller
 {
     function index() {
-        $products = Product::with('user')->get();
+        if(auth()->user()->hasRole('Admin')) {
+            $products = Product::with('user')->get();
+        }else{
+            $products = Product::with('user')->where('user_id', auth()->id())->get();
+        }
         return Inertia::render('Admin/Products/Index',[
             'products' => $products
         ]);
