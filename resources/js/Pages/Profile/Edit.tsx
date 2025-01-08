@@ -32,8 +32,8 @@ export default function Create() {
             setData('first_name', user.first_name);
             setData('last_name', user.last_name);
             setData('email', user.email);
-            setData('phone', user.phone);
-            setData('alt_phone', user.alt_phone);
+            setData('phone', user.phone ?? '');
+            setData('alt_phone', user.alt_phone ?? '');
             setData('address', user.address ?? '');
             setData('bio', user.bio ?? '');
             // setData('role', user.roles ? user.roles[0].name : '');
