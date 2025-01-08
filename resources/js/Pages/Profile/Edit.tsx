@@ -10,7 +10,7 @@ import { router, useForm, usePage } from '@inertiajs/react'
 import { ArrowLeft, ImagePlus, Loader, Lock } from 'lucide-react'
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
-import UserDocument from '../Admin/Users/UserDocument'
+import UserDocument from '../Dashboard/Users/UserDocument'
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),

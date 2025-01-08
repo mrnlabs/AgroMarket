@@ -9,6 +9,6 @@ use Inertia\Inertia;
 class SubscriptionController extends Controller
 {
     function index() {
-        return Inertia::render('Admin/Subscriptions/Index');
+        return Inertia::render('Dashboard/Subscriptions/Index');
     }
 }

@@ -20,18 +20,18 @@ class AdminProductController extends Controller
         }else{
             $products = Product::with('user')->where('user_id', auth()->id())->get();
         }
-        return Inertia::render('Admin/Products/Index',[
+        return Inertia::render('Dashboard/Products/Index',[
             'products' => $products
         ]);
     }
     
     function userProducts($slug) {
-        return Inertia::render('Admin/Products/UserProducts');
+        return Inertia::render('Dashboard/Products/UserProducts');
     }
     
     function create($slug) {
         $categories = Category::pluck('name', 'id')->toArray();
-        return Inertia::render('Admin/Products/Create',[
+        return Inertia::render('Dashboard/Products/Create',[
             'categories' => $categories
         ]);
     }
@@ -83,7 +83,7 @@ class AdminProductController extends Controller
         $product = Product::with('user','categories','product_images')->where('slug', $slug)->first();
         // dd($product );
         $categories = Category::pluck('name', 'id')->toArray();
-        return Inertia::render('Admin/Products/Create',[
+        return Inertia::render('Dashboard/Products/Create',[
             'product' => $product,
             'categories' => $categories
         ]);

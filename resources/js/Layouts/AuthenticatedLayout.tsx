@@ -12,8 +12,7 @@ import SideBar from './Shared/SideBar.js';
 import DFooter from './Shared/DFooter.js';
 import DHeader from './Shared/DHeader.js';
 import AdminSideBar from './Shared/AdminSideBar.js';
-import { RoleGuard } from '@/utils/roleGuard.js';
-import { AuthGuard } from '@/guards/AuthGuard.js';
+import { AuthGuard } from '@/guards/authGuard.js';
 
 export default function Authenticated({
     children,
