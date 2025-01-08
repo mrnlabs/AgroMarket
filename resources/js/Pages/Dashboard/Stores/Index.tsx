@@ -1,9 +1,9 @@
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import React from 'react'
 import DProductFilter from './DProductFilter'
-import DStoreCard from './DStoreCard'
 import { Product, ProductCardProps, StoreCardProps } from '@/types'
 import { Link } from '@inertiajs/react'
+import DStoreCard from './DStoreCard'
 
 export default function Index({ stores = [] }: StoreCardProps) {
   return (

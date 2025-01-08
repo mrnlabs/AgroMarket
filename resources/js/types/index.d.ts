@@ -48,7 +48,7 @@ export interface Store {
 }
 
 export type StoreCardProps ={
-    stores: Store[];
+    stores?: Store[];
     store: Store;
 }
 
