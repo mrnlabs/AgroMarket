@@ -1,7 +1,7 @@
 import Logout from '@/Components/dashboard/Logout'
 import MenuItem from '@/Components/dashboard/MenuItem'
 import { Link } from '@inertiajs/react'
-import { BaggageClaim, ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, LogOut, Menu, Users } from 'lucide-react'
+import { BaggageClaim, ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, LogOut, Menu, Store, Users } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar() {
@@ -46,6 +46,11 @@ export default function SideBar() {
                 isRoute={false} 
             />
 
+            <MenuItem 
+                href="dashboard.stores.myStores" 
+                icon={Store} 
+                label="My Stores" 
+            />
             <MenuItem 
                 href="admin.products.index" 
                 icon={BaggageClaim} 

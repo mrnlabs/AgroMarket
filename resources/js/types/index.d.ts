@@ -30,7 +30,27 @@ export interface Permission {
     name: string;
     description?: string;
 }
+export interface Store {
+    id?: number;
+    name: string;
+    address: string;
+    description: string;
+    image?: string;
+    images?: StoreImages[];
+    user?: {
+        id?: number;
+        slug?: number;
+        first_name: string;
+        last_name: string;
+    };
+    slug?: string;
+    created_at: string;
+}
 
+export type StoreCardProps ={
+    stores: Store[];
+    store: Store;
+}
 
 export type UserCardProps = {
     user: User;
@@ -83,6 +103,13 @@ export type ProductImages = {
     id?: number;
     image: string;
     product_id: number;
+    created_at: string;
+    updated_at: string;
+}
+export type StoreImages = {
+    id?: number;
+    image: string;
+    store_id: number;
     created_at: string;
     updated_at: string;
 }

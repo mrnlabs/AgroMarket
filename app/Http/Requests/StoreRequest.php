@@ -11,7 +11,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,17 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $isCreateRoute = request()->routeIs('dashboard.stores.store');
+        $imageRule = $isCreateRoute 
+            ? 'required|image|mimes:jpeg,webp,png,jpg|max:2048'
+            : 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048';
+
         return [
-            //
+            'name' => 'required',
+            'description' => 'required',
+            'address' => 'required',
+            'image' => $imageRule,
+            'images.*' => 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048',
         ];
     }
 }
