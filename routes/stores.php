@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Route;
         Route::get('/', [StoreController::class, 'myStores'])->name('dashboard.stores.myStores');
         Route::get('/create', [StoreController::class, 'create'])->name('dashboard.stores.create');
         Route::post('/store', [StoreController::class, 'store'])->name('dashboard.stores.store');
-        Route::get('/edit/{id}', [StoreController::class, 'edit'])->name('dashboard.stores.edit');
-        Route::post('/update/{id}', [StoreController::class, 'update'])->name('dashboard.stores.update');
-        Route::delete('/destroy/{id}', [StoreController::class, 'destroy'])->name('dashboard.stores.destroy');
+        Route::get('/edit/{slug}', [StoreController::class, 'edit'])->name('dashboard.stores.edit');
+        Route::post('/update/{slug}', [StoreController::class, 'update'])->name('dashboard.stores.update');
+        Route::delete('/destroy/{slug}', [StoreController::class, 'destroy'])->name('dashboard.stores.destroy');
+        Route::post('/remove-store-image/{id}', [StoreController::class, 'removeStoreImage'])->name('dashboard.stores.removeStoreImage');
     });
 
 

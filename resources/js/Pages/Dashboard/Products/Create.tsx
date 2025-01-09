@@ -6,21 +6,21 @@ import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { CategoriesTableProps } from '@/types';
+import { CategoriesTableProps, StoreCardProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
 import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
-import { RoleGuard } from '@/utils/roleGuard';
-import { AuthGuard } from '@/guards/AuthGuard';
+import { AuthGuard } from '@/guards/authGuard';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
    );
 
-export default function Create({categories, product}: {
+export default function Create({categories, product, stores}: {
     categories : CategoriesTableProps,
+    stores: StoreCardProps,
     product: any
 }) {
     const filePath = usePage().props.filePath;
@@ -32,10 +32,18 @@ export default function Create({categories, product}: {
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
+    const [selectedStores, setSelectedStores] = useState<{ value: string; label: string }[]>([]);
     const [showFileInput, setShowFileInput] = React.useState(!product);
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
+          value: id,
+          label: name.toString()
+        }))
+      : [];
+      
+      const mappedStores = stores 
+      ? Object.entries(stores).map(([id, name]) => ({
           value: id,
           label: name.toString()
         }))
@@ -71,12 +79,16 @@ export default function Create({categories, product}: {
               minimum_order: '',
               is_featured: false,
               category_id: [] as string[],
+              store_id: [] as string[],
               image: null as File | null,
               images: null as File[] | null,
           });
 
         const handleCategoriesChange = (selectedCategories: { value: string }[]) => {
             setData('category_id', selectedCategories.map((category) => category.value));
+        }
+         const handleStoreChange = (selectedStores: { value: string }[]) => {
+            setData('store_id', selectedStores.map((store) => store.value));
         }
 
       const handleMainImageFileSelect = (files: File[]) => {
@@ -278,6 +290,31 @@ export default function Create({categories, product}: {
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>
             </div>
+
+            <div className="card p-6">
+                <div className="flex justify-between items-center mb-4">
+                    <p className="card-title">Select Store</p>
+                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                    <ChartColumnStacked />
+                    </div>
+                </div>
+                
+                <div className="flex flex-col gap-3">
+                <MultiSelect
+                    options={mappedStores}
+                    placeholder="Select store..."
+                    maxSelected={2}
+                    value={selectedStores} 
+                    onSelectionChange={(selected) => {
+                        setSelectedStores(selected); 
+                        handleStoreChange(selected);
+                    }}
+                />
+
+                <InputError message={errors.category_id} className="mt-1" />
+                </div>
+            </div>
+
         </div>
 
         <div className="lg:col-span-3 space-y-6">

@@ -28,7 +28,7 @@ Route::prefix('products')->group(function () {
 });
 
 
-Route::get('/file-manager', function () {return Inertia::render('Dashboard/FileManager/Index');});
+Route::get('/file-manager', function () {return Inertia::render('Admin/FileManager/Index');});
 
 
 require __DIR__.'/auth.php';

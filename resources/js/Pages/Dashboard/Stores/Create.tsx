@@ -1,25 +1,23 @@
 import QuillEditor from '@/Components/editors/QuillEditor';
 import InputError from '@/Components/InputError';
-import MultiSelect from '@/Components/MultiSelect'
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { CategoriesTableProps } from '@/types';
+import { Store, StoreImages } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
+import { Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
-import Checkbox from '@/Components/Checkbox';
-import { AuthGuard } from '@/guards/authGuard';
+import StoreDangerZone from './StoreDangerZone';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
    );
 
 export default function Create({store}: {
-    store: any
+    store: Store
 }) {
     const filePath = usePage().props.filePath;
     const auth = usePage().props.auth;
@@ -57,7 +55,6 @@ export default function Create({store}: {
         }
        };
      const handleFileSelect = (files: File[]) => {
-        setData('images', null);
         if (files.length > 0) {
             setImagePreviews(files)
            setData('images', files);
@@ -76,7 +73,7 @@ export default function Create({store}: {
 
     const onRemoveDBImages = (id: number) => {
         if(!confirm('Are you sure you want to delete this image?')) return;
-        post(route('admin.products.removeProductImage', id), {
+        post(route('dashboard.stores.removeStoreImage', id), {
             preserveScroll: true,
             onSuccess: () => {
                 toast({
@@ -103,13 +100,14 @@ export default function Create({store}: {
     const handleUpdate = (formData: FormData) => {
         formData.append('_method', 'PATCH');
         // console.log(data);return
-        post(route('admin.products.update', store.slug), {
+        post(route('dashboard.stores.update', store.slug), {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
                  setImageSinglePreview(null);
                  setImagePreviews([]);
                  setShowFileInput(false);
+                 setData('images', null);
                 toast({
                     title: "Success",
                     description: "Store updated successfully",
@@ -214,6 +212,9 @@ export default function Create({store}: {
                     </div>
                     <InputError message={errors.image} className="mt-9" />
             </div>
+            {store && (
+                <StoreDangerZone/>
+            )}
         </div>
 
         <div className="lg:col-span-3 space-y-6">
@@ -255,8 +256,8 @@ export default function Create({store}: {
                             <InputError message={errors.description} className="mt-1" />
                     </div>
 
-                    <div className={`${store?.product_images.length > 0 ? 'mt-2' : ''}`}>
-                        {store?.product_images.length > 0 && (
+                    <div className={`${store?.store_images && store.store_images.length > 0 ? 'mt-2' : ''}`}>
+                        {store?.store_images && store.store_images.length > 0 && (
                         <div className="flex justify-between items-center mb-4">
                             <h4 className="card-title">Uploaded Product Images</h4>
                         </div>
@@ -265,13 +266,13 @@ export default function Create({store}: {
 
                 <div className="flex gap-3 mt-2">
                         <div className="flex flex-wrap gap-2">
-                        {store?.product_images && (
-                        store.product_images.map((prod: { id: number; image: string }) => (
-                            <div key={prod.id} className="relative group">
-                               <img key={prod.id} 
-                                    src={filePath + prod.image} alt={`image-${prod.id}`} className="h-32 w-32 rounded"/>
+                        {store?.store_images && (
+                        store.store_images.map((store: StoreImages) => (
+                            <div key={store.id} className="relative group">
+                               <img key={store.id} 
+                                    src={filePath + store.image} alt={`image-${store.id}`} className="h-32 w-32 rounded"/>
                                 <button
-                                onClick={() => onRemoveDBImages(prod.id)}
+                                onClick={() => store.id !== undefined && onRemoveDBImages(store.id)}
                                 className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 
                                             text-white rounded-full p-1 opacity-0 group-hover:opacity-100 
                                             transition-opacity duration-200 shadow-sm"
@@ -286,7 +287,7 @@ export default function Create({store}: {
                         </div>
                  </div>
 
-                 <div className={`${'flex justify-between items-center mb-2' } ${store?.product_images ? "mt-4" : " "}`} >
+                 <div className={`${'flex justify-between items-center mb-2' } ${store?.store_images ? "mt-4" : " "}`} >
                     <h4 className="card-title">Upload Store Images<span className="text-sm text-muted-foreground">(Optional)</span></h4>
                 </div>
 

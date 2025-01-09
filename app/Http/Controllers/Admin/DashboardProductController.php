@@ -10,15 +10,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductImage;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Store;
 
-class AdminProductController extends Controller
+class DashboardProductController extends Controller
 {
     function index() {
         if(auth()->user()->hasRole('Admin')) {
             $products = Product::with('user')->get();
         }else{
-            $products = Product::with('user')->where('user_id', auth()->id())->get();
+            $products = User::find(auth()->id())->products;
+        // $products = User::find(auth()->id())
+        //     ->products()
+        //     ->where('status', 'active')
+        //     ->get();
         }
         return Inertia::render('Dashboard/Products/Index',[
             'products' => $products
@@ -31,29 +35,37 @@ class AdminProductController extends Controller
     
     function create($slug) {
         $categories = Category::pluck('name', 'id')->toArray();
+        $stores = Store::where('user_id',auth()->id())->pluck('name', 'id')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
-            'categories' => $categories
+            'categories' => $categories,
+            'stores'   => $stores
         ]);
     }
 
     function store(ProductRequest $request, $slug) {
         try {
-            $file = $request->file('image');
-            $mimeType = $file->getMimeType();
             
-            // dd($request->all());
+            dd($request->all());
             $user= User::where('slug', $slug)->first();
             $imagePath = null;
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('products', 'public');
             }
 
-            $product = $user->product()->create([
+            $store = $user->stores()->findOrFail($storeId);
+            $product = $store->products()->create([
+                'name' => 'Product Name',
+                'price' => 99.99,
+                // other product data...
+            ]);
+
+
+            $product = $user->products()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
-                'user_id' => $user->id,
+                'store_id' => $user->id,
                 'is_on_sale' => $request->is_on_sale,
                 'sale_price' => $request->sale_price,
                 'minimum_order' => $request->minimum_order,

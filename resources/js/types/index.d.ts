@@ -36,7 +36,7 @@ export interface Store {
     address: string;
     description: string;
     image?: string;
-    images?: StoreImages[];
+    store_images?: StoreImages[];
     user?: {
         id?: number;
         slug?: number;

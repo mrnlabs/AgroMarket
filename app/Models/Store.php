@@ -16,6 +16,10 @@ class Store extends Model
         return $this->belongsTo(User::class);
     }
 
+    function store_images() {
+        return $this->hasMany(StoreImage::class);
+    }
+
     protected $casts = [
         'location' => 'json',
     ];

@@ -16,15 +16,11 @@ class ProductController extends Controller
      
     public function index()
     {
-        //
-
         $products = Product::get();
         return Inertia::render('Welcome', ['products' => $products]);
     }
     public function shop()
     {
-        //
-        
         return Inertia::render('FrontPages/Products/Products');
     }
 

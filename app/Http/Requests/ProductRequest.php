@@ -35,6 +35,7 @@ class ProductRequest extends FormRequest
         'price' => 'required',
         'quantity' => 'required',
         'category_id' => 'required|exists:categories,id',
+        'store_id' => 'required|exists:stores,id',
         'image' => $imageRule,
         'images.*' => 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048',
     ];

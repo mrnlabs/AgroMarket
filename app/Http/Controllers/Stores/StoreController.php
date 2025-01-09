@@ -52,7 +52,7 @@ class StoreController extends Controller
                 'lng' => (float) $location['longitude']
             ];
 
-            $product = $user->stores()->create([
+            $store = $user->stores()->create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'address' => $request->address,
@@ -64,10 +64,10 @@ class StoreController extends Controller
             if($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $filename = time() . '_' . $image->getClientOriginalName();
-                    $path = $image->storeAs('products', $filename, 'public');
+                    $path = $image->storeAs('stores', $filename, 'public');
                     StoreImage::create([
                         'image' => $path,
-                        'store_id' => $product->id
+                        'store_id' => $store->id
                     ]);
                 }
             }
@@ -84,17 +84,55 @@ class StoreController extends Controller
     }
 
  
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $store = Store::with('store_images')->where('slug', $slug)->first();
+        return Inertia::render('Dashboard/Stores/Create',[
+            'store' => $store,
+        ]);
     }
 
    
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $slug)
     {
-        //
+        // dd($request->all());
+        try {
+            $store = Store::where('slug', $slug)->firstOrFail();
+            $updateData = [
+                'name' => $request->name,
+                'description' => $request->description,
+                'address' => $request->address,
+            ];
+    
+            if ($request->hasFile('image')) {
+                $updateData['image'] = $request->file('image')->store('stores', 'public');
+            }
+    
+            $store->update($updateData);
+    
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $filename = time() . '_' . $image->getClientOriginalName();
+                    $path = $image->storeAs('stores', $filename, 'public');
+                    StoreImage::create([
+                        'image' => $path,
+                        'store_id' => $store->id
+                    ]);
+                }
+            }
+    
+            return back()->with('success', 'Store updated successfully.');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
+
+    function removeStoreImage($id) {
+        $storeImage = StoreImage::whereId($id)->first();
+        $storeImage->delete();
+        return back()->with('success', 'Image removed successfully.');
+    }
    
     public function destroy(string $id)
     {
