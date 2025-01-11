@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 import GuestLayout from "@/Layouts/GuestLayout";
-const Products = () => {
+import { ProductCardProps } from "@/types";
+import ProductCard from "@/Components/frontend/ProductCard";
+const Products = ( { products = [] }: ProductCardProps) => {
     return (
         <GuestLayout>
             <div className="breadcrumb mb-0 py-26 bg-main-two-50">
@@ -356,244 +358,27 @@ const Products = () => {
                             {/* Product Grid */}
                             {/* Product Cards Section */}
                             <div className="list-grid-wrapper">
-                                <div className="product-card h-full p-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                                    <Link
-                                        href="/product-details"
-                                        className="product-card__thumb flex items-center justify-center rounded-8 bg-gray-50 relative"
-                                    >
-                                        <img
-                                            src="images/product-two-img1.png"
-                                            alt="Product"
-                                            className="!w-auto max-w-[unset]"
-                                        />
-                                        <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white absolute inset-inline-start-0 inset-block-start-0">
-                                            Best Sale
-                                        </span>
-                                    </Link>
-
-                                    <div className="product-card__content mt-16">
-                                        <h6 className="title text-lg font-[600] mt-12 mb-8">
-                                            <Link
-                                                href="/product-details"
-                                                className="link text-line-2"
-                                            >
-                                                Taylor Farms Broccoli Florets
-                                                Vegetables
-                                            </Link>
-                                        </h6>
-
-                                        <div className="flex items-center mb-20 mt-16 gap-6">
-                                            <span className="text-xs font-[500] text-gray-500">
-                                                4.8
-                                            </span>
-                                            <span className="text-15 font-[500] text-warning-600 flex">
-                                                <i className="ph-fill ph-star"></i>
-                                            </span>
-                                            <span className="text-xs font-[500] text-gray-500">
-                                                (17k)
-                                            </span>
-                                        </div>
-
-                                        <div className="mt-8">
-                                            <div
-                                                className="progress w-full bg-color-three rounded-[50rem] h-4"
-                                                role="progressbar"
-                                                aria-label="Basic example"
-                                                aria-valuenow={35}
-                                                aria-valuemin={0}
-                                                aria-valuemax={100}
-                                            >
-                                                <div
-                                                    className="progress-bar bg-main-two-600 rounded-[50rem]"
-                                                    style={{ width: "35%" }}
-                                                />
-                                            </div>
-                                            <span className="text-gray-900 text-xs font-[500] mt-8">
-                                                Sold: 18/35
-                                            </span>
-                                        </div>
-
-                                        <div className="product-card__price my-20">
-                                            <span className="text-gray-400 text-md font-[600] text-decoration-line-through">
-                                                $28.99
-                                            </span>
-                                            <span className="text-heading text-md font-[600]">
-                                                $14.99{" "}
-                                                <span className="text-gray-500 font-normal">
-                                                    /Qty
-                                                </span>
-                                            </span>
-                                        </div>
-
-                                        <Link
-                                            href="/cart"
-                                            className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex items-center justify-center gap-8 font-[500]"
-                                        >
-                                            Add To Cart{" "}
-                                            <i className="ph ph-shopping-cart"></i>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="product-card h-full p-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                                    <Link
-                                        href="/product-details"
-                                        className="product-card__thumb flex items-center justify-center rounded-8 bg-gray-50 relative"
-                                    >
-                                        <img
-                                            src="images/product-two-img1.png"
-                                            alt="Product"
-                                            className="!w-auto max-w-[unset]"
-                                        />
-                                        <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white absolute inset-inline-start-0 inset-block-start-0">
-                                            Best Sale
-                                        </span>
-                                    </Link>
-
-                                    <div className="product-card__content mt-16">
-                                        <h6 className="title text-lg font-[600] mt-12 mb-8">
-                                            <Link
-                                                href="/product-details"
-                                                className="link text-line-2"
-                                            >
-                                                Taylor Farms Broccoli Florets
-                                                Vegetables
-                                            </Link>
-                                        </h6>
-
-                                        <div className="flex items-center mb-20 mt-16 gap-6">
-                                            <span className="text-xs font-[500] text-gray-500">
-                                                4.8
-                                            </span>
-                                            <span className="text-15 font-[500] text-warning-600 flex">
-                                                <i className="ph-fill ph-star"></i>
-                                            </span>
-                                            <span className="text-xs font-[500] text-gray-500">
-                                                (17k)
-                                            </span>
-                                        </div>
-
-                                        <div className="mt-8">
-                                            <div
-                                                className="progress w-full bg-color-three rounded-[50rem] h-4"
-                                                role="progressbar"
-                                                aria-label="Basic example"
-                                                aria-valuenow={35}
-                                                aria-valuemin={0}
-                                                aria-valuemax={100}
-                                            >
-                                                <div
-                                                    className="progress-bar bg-main-two-600 rounded-[50rem]"
-                                                    style={{ width: "35%" }}
-                                                />
-                                            </div>
-                                            <span className="text-gray-900 text-xs font-[500] mt-8">
-                                                Sold: 18/35
-                                            </span>
-                                        </div>
-
-                                        <div className="product-card__price my-20">
-                                            <span className="text-gray-400 text-md font-[600] text-decoration-line-through">
-                                                $28.99
-                                            </span>
-                                            <span className="text-heading text-md font-[600]">
-                                                $14.99{" "}
-                                                <span className="text-gray-500 font-normal">
-                                                    /Qty
-                                                </span>
-                                            </span>
-                                        </div>
-
-                                        <Link
-                                            href="/cart"
-                                            className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex items-center justify-center gap-8 font-[500]"
-                                        >
-                                            Add To Cart{" "}
-                                            <i className="ph ph-shopping-cart"></i>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="product-card h-full p-16 border border-gray-100 hover-border-main-600 rounded-16 relative transition-2">
-                                    <Link
-                                        href="/product-details"
-                                        className="product-card__thumb flex items-center justify-center rounded-8 bg-gray-50 relative"
-                                    >
-                                        <img
-                                            src="images/product-two-img1.png"
-                                            alt="Product"
-                                            className="!w-auto max-w-[unset]"
-                                        />
-                                        <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white absolute inset-inline-start-0 inset-block-start-0">
-                                            Best Sale
-                                        </span>
-                                    </Link>
-
-                                    <div className="product-card__content mt-16">
-                                        <h6 className="title text-lg font-[600] mt-12 mb-8">
-                                            <Link
-                                                href="/product-details"
-                                                className="link text-line-2"
-                                            >
-                                                Taylor Farms Broccoli Florets
-                                                Vegetables
-                                            </Link>
-                                        </h6>
-
-                                        <div className="flex items-center mb-20 mt-16 gap-6">
-                                            <span className="text-xs font-[500] text-gray-500">
-                                                4.8
-                                            </span>
-                                            <span className="text-15 font-[500] text-warning-600 flex">
-                                                <i className="ph-fill ph-star"></i>
-                                            </span>
-                                            <span className="text-xs font-[500] text-gray-500">
-                                                (17k)
-                                            </span>
-                                        </div>
-
-                                        <div className="mt-8">
-                                            <div
-                                                className="progress w-full bg-color-three rounded-[50rem] h-4"
-                                                role="progressbar"
-                                                aria-label="Basic example"
-                                                aria-valuenow={35}
-                                                aria-valuemin={0}
-                                                aria-valuemax={100}
-                                            >
-                                                <div
-                                                    className="progress-bar bg-main-two-600 rounded-[50rem]"
-                                                    style={{ width: "35%" }}
-                                                />
-                                            </div>
-                                            <span className="text-gray-900 text-xs font-[500] mt-8">
-                                                Sold: 18/35
-                                            </span>
-                                        </div>
-
-                                        <div className="product-card__price my-20">
-                                            <span className="text-gray-400 text-md font-[600] text-decoration-line-through">
-                                                $28.99
-                                            </span>
-                                            <span className="text-heading text-md font-[600]">
-                                                $14.99{" "}
-                                                <span className="text-gray-500 font-normal">
-                                                    /Qty
-                                                </span>
-                                            </span>
-                                        </div>
-
-                                        <Link
-                                            href="/cart"
-                                            className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex items-center justify-center gap-8 font-[500]"
-                                        >
-                                            Add To Cart{" "}
-                                            <i className="ph ph-shopping-cart"></i>
-                                        </Link>
-                                    </div>
-                                </div>
+                            {products.map((product, index) => (
+                                <ProductCard key={index} product={product} />
+                            ))}
 
                                 {/* Add more product cards */}
                             </div>
                             {/* Pagination */}
+
+                            <div className="pagination-wrapper mt-40">
+                                <ul className="pagination flex items-center justify-center flex-wrap gap-16">
+                                    <li className="page-item">
+                                        <Link
+                                            href="/"
+                                            className="page-link h-64 w-64 flex items-center justify-center text-xxl rounded-8 font-[500] text-neutral-600 border border-gray-100"
+                                        >
+                                            <i className="ph-bold ph-arrow-left"></i>
+                                        </Link>
+                                    </li>
+                                    {/* Add pagination items */}
+                                    <li className="page-item">
+                                </ul>
                             <ul className="pagination flex items-center justify-center flex-wrap gap-16">
                                 <li className="page-item">
                                     <Link

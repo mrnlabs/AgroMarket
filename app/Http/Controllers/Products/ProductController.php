@@ -21,7 +21,9 @@ class ProductController extends Controller
     }
     public function shop()
     {
-        return Inertia::render('FrontPages/Products/Products');
+        // pull  all products from the database with pagination
+        $products = Product::paginate(6);
+        return Inertia::render('FrontPages/Products/Products', ['products' => $products]);
     }
 
     /**

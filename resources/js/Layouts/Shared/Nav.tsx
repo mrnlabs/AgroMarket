@@ -876,7 +876,7 @@ const Nav = () => {
                                     {/* stores here */}
                                     <li className="on-hover-item nav-menu__item ">
                                         <Link
-                                            href={route("products.index")}
+                                            href={route("products.shop")}
                                             className="nav-menu__link"
                                         >
                                             Shop
