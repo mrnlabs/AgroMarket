@@ -51,11 +51,6 @@ export default function SideBar() {
                 icon={Store} 
                 label="Store Management" 
             />
-            <MenuItem 
-                href="admin.products.index" 
-                icon={BaggageClaim} 
-                label="My Products" 
-            />
             
             <MenuItem 
                 href="subscriptions.index" 

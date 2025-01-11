@@ -1,20 +1,20 @@
-import {  StoreCardProps } from '@/types'
+import {  ProductCardProps } from '@/types'
 import { Link, usePage } from '@inertiajs/react'
 import React from 'react'
 
-export default function DStoreCard({ store }: StoreCardProps) {
+export default function DStoreCard({ product }: ProductCardProps) {
     const filePath = usePage().props.filePath;
   return (
     <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-white">
         <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-        <img className="object-cover w-full" src={store.image ? filePath + store.image : ''} alt="store image" />
+        <img className="object-cover w-full" src={product.image ? filePath + product.image : ''} alt="store image" />
         <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-            {/* {store.user?.first_name.charAt(0).toUpperCase()} */}
+            {/* {product.user?.first_name.charAt(0).toUpperCase()} */}
         </span> 
         </a>
         <div className="mt-4 px-5 pb-5">
-        <Link href={route('dashboard.stores.edit', store.slug)}>
-        <h5 className="text-2xl font-bold text-slate-900 dark:text-white">{store.name}</h5>
+        <Link href={route('dashboard.stores.edit', product.slug)}>
+        <h5 className="text-2xl font-bold text-slate-900 dark:text-white">{product.title}</h5>
         </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">
        

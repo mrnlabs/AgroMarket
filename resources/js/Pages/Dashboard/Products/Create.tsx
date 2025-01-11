@@ -8,7 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { CategoriesTableProps, StoreCardProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Check, ChevronsUpDown, Info, Loader, Paperclip, X } from 'lucide-react';
+import { ChartColumnStacked, Check, ChevronsUpDown, Info, Loader, Paperclip, Store, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
@@ -38,20 +38,9 @@ export default function Create({categories, product, stores}: {
     const [showFileInput, setShowFileInput] = React.useState(!product);
 
 
-    const [open, setOpen] = React.useState(false)
-    const [value, setStoreValue] = React.useState("")
-
-
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
-          value: id,
-          label: name.toString()
-        }))
-      : [];
-      
-      const mappedStores = stores 
-      ? Object.entries(stores).map(([id, name]) => ({
           value: id,
           label: name.toString()
         }))
@@ -87,7 +76,6 @@ export default function Create({categories, product, stores}: {
               minimum_order: '',
               is_featured: false,
               category_id: [] as string[],
-              store_id: '',
               image: null as File | null,
               images: null as File[] | null,
           });
@@ -123,7 +111,7 @@ export default function Create({categories, product, stores}: {
 
     const onRemoveDBImages = (id: number) => {
         if(!confirm('Are you sure you want to delete this image?')) return;
-        post(route('admin.products.removeProductImage', id), {
+        post(route('dashboard.products.removeProductImage', id), {
             preserveScroll: true,
             onSuccess: () => {
                 toast({
@@ -150,7 +138,7 @@ export default function Create({categories, product, stores}: {
     const handleUpdate = (formData: FormData) => {
         formData.append('_method', 'PATCH');
         // console.log(data);return
-        post(route('admin.products.update', product.slug), {
+        post(route('dashboard.products.update', product.slug), {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
@@ -196,7 +184,7 @@ export default function Create({categories, product, stores}: {
             setData('category_id', selectedCategories.map((category) => category.value));
             return handleUpdate(formData);
         }
-        post(route('admin.products.store',auth.user.slug), {
+        post(route('dashboard.products.store'), {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
@@ -204,7 +192,6 @@ export default function Create({categories, product, stores}: {
                 setData('image', null);
                 setData('images', null);
                 setData('category_id', []);
-                setData('store_id', '');
                  setImageSinglePreview(null);
                  setImagePreviews([]);
                 toast({
@@ -275,7 +262,7 @@ export default function Create({categories, product, stores}: {
             
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Select Categories</p>
+                    <p className="card-title">Select Product Categories</p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                     <ChartColumnStacked />
                     </div>
@@ -284,7 +271,7 @@ export default function Create({categories, product, stores}: {
                 <div className="flex flex-col gap-3">
                 <MultiSelect
                     options={mappedCategories}
-                    placeholder="Select categories..."
+                    placeholder="Select product categories..."
                     maxSelected={2}
                     value={selectedCategories}  // Add this line
                     onSelectionChange={(selected) => {
@@ -297,81 +284,18 @@ export default function Create({categories, product, stores}: {
                 </div>
             </div>
 
-            <div className="card p-6">
-                <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Select Store</p>
-                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <ChartColumnStacked />
-                    </div>
-                </div>
-                
-                <div className="flex flex-col gap-3">
-                {/* <MultiSelect
-                    options={mappedStores}
-                    placeholder="Select store..."
-                    maxSelected={2}
-                    value={selectedStores} 
-                    onSelectionChange={(selected) => {
-                        setSelectedStores(selected); 
-                        handleStoreChange(selected);
-                    }}
-                /> */}
-                 <Popover open={open} onOpenChange={setOpen}>
-                    <PopoverTrigger asChild>
-                        <Button
-                        variant="outline"
-                        role="combobox"
-                        aria-expanded={open}
-                        className=" justify-between"
-                        >
-                        {value
-                            ? mappedStores.find((store) => store.value === value)?.label
-                            : "Select store..."}
-                        <ChevronsUpDown className="opacity-50" />
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-[339px] p-0">
-                        <Command>
-                        <CommandInput placeholder="Search store..." className="h-9" />
-                        <CommandList>
-                            <CommandEmpty>No store found.</CommandEmpty>
-                            <CommandGroup>
-                            {mappedStores.map((store) => (
-                                <CommandItem
-                                className="cursor-pointer"
-                                key={store.value}
-                                value={store.value}
-                                onSelect={(currentValue) => {
-                                    setStoreValue(currentValue === value ? "" : currentValue)
-                                    setData('store_id', mappedStores.find((store) => store.value === value)?.value ?? '')
-                                    setOpen(false)
-                                }}
-                                >
-                                {store.label}
-                                <Check
-                                    className={cn(
-                                    "ml-auto",
-                                    value === store.value ? "opacity-100" : "opacity-0"
-                                    )}
-                                />
-                                </CommandItem>
-                            ))}
-                            </CommandGroup>
-                        </CommandList>
-                        </Command>
-                    </PopoverContent>
-                    </Popover>
-
-                <InputError message={errors.category_id} className="mt-1" />
-                </div>
-            </div>
 
         </div>
 
         <div className="lg:col-span-3 space-y-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Product Details</p>
+                    {auth.user?.store && (
+                        <p className="card-title">Create Product for {auth.user?.store ? auth.user.store.name : ''}</p>
+                    )}
+                    {!auth.user?.store && (
+                        <p className="card-title">Product Details</p>
+                    )}
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                     <Info />
                     </div>

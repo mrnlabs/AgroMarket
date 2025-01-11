@@ -21,9 +21,9 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
 {
-    $isCreateRoute = request()->routeIs('admin.products.store');
+    $isCreateRoute = request()->routeIs('dashboard.products.store');
     // or check against the route name pattern
-    // $isCreateRoute = request()->route()->getName() === 'admin.products.store';
+    // $isCreateRoute = request()->route()->getName() === 'dashboard.products.store';
 // dd($isCreateRoute);
     $imageRule = $isCreateRoute 
         ? 'required|image|mimes:jpeg,webp,png,jpg|max:2048'
@@ -35,7 +35,6 @@ class ProductRequest extends FormRequest
         'price' => 'required',
         'quantity' => 'required',
         'category_id' => 'required|exists:categories,id',
-        'store_id' => 'required|exists:stores,id',
         'image' => $imageRule,
         'images.*' => 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048',
     ];

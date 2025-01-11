@@ -22,6 +22,7 @@ export interface User {
         slug?:string;  
       }[];
       permissions?: Permission[];
+    store?: Store
     slug?: string;
     created_at: string;
 }

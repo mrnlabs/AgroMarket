@@ -15,7 +15,7 @@ export default function DProductCard({ product }: ProductCardProps) {
         </span>
         </a>
         <div className="mt-4 px-5 pb-5">
-        <Link href={route('admin.products.show', product.slug)}>
+        <Link href={route('dashboard.products.show', product.slug)}>
         <h5 className="text-xl tracking-tight text-slate-900 dark:text-white">{product.title}</h5>
         </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">

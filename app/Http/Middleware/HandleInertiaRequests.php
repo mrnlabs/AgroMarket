@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
                 'roles' => $request->user() ? $request->user()->roles->pluck('name') : [],
+                'store' => $request->user() ? $request->user()->store : null,
             ],
            'categories' => $this->getCachedCategories(),
 

@@ -6,7 +6,7 @@ export default function DProductFilter() {
     const { auth } = usePage().props;
 
     const handleCreate = () => {
-        router.get(route('admin.products.create',auth.user.slug));
+        router.get(route('dashboard.products.create'));
     }
   return (
     <div className="mb-2 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">

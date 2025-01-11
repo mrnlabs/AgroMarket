@@ -26,11 +26,11 @@ class DashboardProductController extends Controller
         ]);
     }
     
-    function userProducts($slug) {
+    function userProducts() {
         return Inertia::render('Dashboard/Products/UserProducts');
     }
     
-    function create($slug) {
+    function create() {
         $categories = Category::pluck('name', 'id')->toArray();
         $stores = Store::where('user_id',auth()->id())->pluck('name', 'id')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
@@ -39,22 +39,20 @@ class DashboardProductController extends Controller
         ]);
     }
 
-    function store(ProductRequest $request, $slug) {
+    function store(ProductRequest $request) {
         try {
-            $user= User::where('slug', $slug)->first();
+            $user= User::find(auth()->id());
             $imagePath = null;
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('products', 'public');
             }
 
-            $store = $user->stores()->findOrFail($request->store_id);
-
-            $product = $store->products()->create([
+            $product = auth()->user()->store->products()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
-                'store_id' => $request->store_id,
+                'store_id' => auth()->user()->store->id,
                 'is_on_sale' => $request->is_on_sale,
                 'sale_price' => $request->sale_price,
                 'minimum_order' => $request->minimum_order,

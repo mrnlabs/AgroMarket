@@ -50,7 +50,7 @@ export default function UserCard({ user }: UserCardProps) {
 
   const showUserProducts = (slug: string) => {
     if(!slug) return;
-    router.get(route('admin.user.products', slug));
+    router.get(route('dashboard.user.products', slug));
   };
 
   return (
@@ -76,7 +76,7 @@ export default function UserCard({ user }: UserCardProps) {
           {(user.product ?? []).length > 0 && (
           <div className="flex space-x-2">
             {user.product?.slice(0, 10).map((product, index) => (
-              <Link href={route('admin.products.show', product.slug)} key={index}>
+              <Link href={route('dashboard.products.show', product.slug)} key={index}>
                 <img
                   className="inline-block h-12 w-12 rounded-full border-2 border-white dark:border-gray-700"
                   src={filePath + product.image}

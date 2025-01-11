@@ -5,9 +5,9 @@ import { Product, ProductCardProps, StoreCardProps } from '@/types'
 import { Link } from '@inertiajs/react'
 import DStoreCard from './DStoreCard'
 
-export default function Index({ stores = [], canCreateStore }: 
+export default function Index({ products = [], canCreateStore }: 
   {
-    stores: StoreCardProps[],
+    products: ProductCardProps[],
     canCreateStore: boolean
   }) {
   return (
@@ -16,14 +16,16 @@ export default function Index({ stores = [], canCreateStore }:
 
           
   <div className="mx-auto 2xl:px-0">
-    {/* <!-- Heading & Filters --> */}
+    
+    
     <DProductFilter canCreateStore={canCreateStore} />
     
     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6 mt-2">
-       {stores.map((store: any) => (
-        <DStoreCard key={store.id} store={store} />
+       {products.map((product: any) => (
+        <DStoreCard key={product.id} product={product} />
        ))}
-       {!stores.length && (
+       
+       {!products.length && (
         <div className="col-span-4 md:col-span-3">
           <div className="flex items-center justify-center h-full">
             <div className="text-center">

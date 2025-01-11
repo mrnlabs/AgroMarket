@@ -52,7 +52,7 @@ export default function AdminSideBar() {
                 label="Users" 
             />
             <MenuItem 
-                href="admin.products.index" 
+                href="dashboard.products.index" 
                 icon={BaggageClaim} 
                 label="Products" 
             />
