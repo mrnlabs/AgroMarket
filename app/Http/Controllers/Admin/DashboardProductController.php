@@ -18,11 +18,8 @@ class DashboardProductController extends Controller
         if(auth()->user()->hasRole('Admin')) {
             $products = Product::with('user')->get();
         }else{
-            $products = User::find(auth()->id())->products;
-        // $products = User::find(auth()->id())
-        //     ->products()
-        //     ->where('status', 'active')
-        //     ->get();
+            $products = auth()->user()->store()->with('products')->get()->pluck('products')->flatten();
+            
         }
         return Inertia::render('Dashboard/Products/Index',[
             'products' => $products
@@ -44,28 +41,20 @@ class DashboardProductController extends Controller
 
     function store(ProductRequest $request, $slug) {
         try {
-            
-            dd($request->all());
             $user= User::where('slug', $slug)->first();
             $imagePath = null;
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('products', 'public');
             }
 
-            $store = $user->stores()->findOrFail($storeId);
+            $store = $user->stores()->findOrFail($request->store_id);
+
             $product = $store->products()->create([
-                'name' => 'Product Name',
-                'price' => 99.99,
-                // other product data...
-            ]);
-
-
-            $product = $user->products()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
-                'store_id' => $user->id,
+                'store_id' => $request->store_id,
                 'is_on_sale' => $request->is_on_sale,
                 'sale_price' => $request->sale_price,
                 'minimum_order' => $request->minimum_order,

@@ -2,7 +2,7 @@ import { Button } from '@/Components/ui/button';
 import { Link, router, usePage } from '@inertiajs/react'
 import React from 'react'
 
-export default function DProductFilter() {
+export default function DProductFilter({ canCreateStore }: { canCreateStore: boolean }) {
     const { auth } = usePage().props;
 
     const handleCreate = () => {
@@ -51,7 +51,10 @@ export default function DProductFilter() {
             </li>
           </ul>
         </div>
-        <Button onClick={handleCreate} className='rounded-[5px] float-right'>Create</Button>
+            {canCreateStore && (
+              <Button onClick={handleCreate} className='rounded-[5px] float-right'>Create</Button>
+            )}
+        
       </div>
     </div>
   )

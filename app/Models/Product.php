@@ -28,8 +28,8 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    function user() {
-        return $this->belongsTo(User::class);
+    function store() {
+        return $this->belongsTo(Store::class);
     }
 
     function product_images() {

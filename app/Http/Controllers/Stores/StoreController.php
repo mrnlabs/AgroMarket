@@ -22,8 +22,10 @@ class StoreController extends Controller
     public function myStores()
     {
         $store = Store::where('user_id', auth()->id())->get();
+        $canCreateStore = auth()->user()->store()->count() > 0 ? false : true;
         return Inertia::render('Dashboard/Stores/Index',[
             'stores' => $store,
+            'canCreateStore' => $canCreateStore
         ]);
     } 
     

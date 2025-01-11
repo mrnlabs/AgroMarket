@@ -23,4 +23,8 @@ class Store extends Model
     protected $casts = [
         'location' => 'json',
     ];
+
+    function products() {
+        return $this->hasMany(Product::class);
+    }
 }

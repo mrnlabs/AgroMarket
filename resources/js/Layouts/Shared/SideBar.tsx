@@ -49,7 +49,7 @@ export default function SideBar() {
             <MenuItem 
                 href="dashboard.stores.myStores" 
                 icon={Store} 
-                label="My Stores" 
+                label="Store Management" 
             />
             <MenuItem 
                 href="admin.products.index" 

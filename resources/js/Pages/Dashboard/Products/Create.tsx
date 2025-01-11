@@ -8,11 +8,14 @@ import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { CategoriesTableProps, StoreCardProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Info, Loader, Paperclip, X } from 'lucide-react';
+import { ChartColumnStacked, Check, ChevronsUpDown, Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
 import { AuthGuard } from '@/guards/authGuard';
+import {Popover,PopoverContent,PopoverTrigger,} from "@/Components/ui/popover"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
+import { cn } from '@/lib/utils';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -32,8 +35,13 @@ export default function Create({categories, product, stores}: {
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
-    const [selectedStores, setSelectedStores] = useState<{ value: string; label: string }[]>([]);
     const [showFileInput, setShowFileInput] = React.useState(!product);
+
+
+    const [open, setOpen] = React.useState(false)
+    const [value, setStoreValue] = React.useState("")
+
+
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
@@ -79,7 +87,7 @@ export default function Create({categories, product, stores}: {
               minimum_order: '',
               is_featured: false,
               category_id: [] as string[],
-              store_id: [] as string[],
+              store_id: '',
               image: null as File | null,
               images: null as File[] | null,
           });
@@ -87,10 +95,7 @@ export default function Create({categories, product, stores}: {
         const handleCategoriesChange = (selectedCategories: { value: string }[]) => {
             setData('category_id', selectedCategories.map((category) => category.value));
         }
-         const handleStoreChange = (selectedStores: { value: string }[]) => {
-            setData('store_id', selectedStores.map((store) => store.value));
-        }
-
+         
       const handleMainImageFileSelect = (files: File[]) => {
         setData('image', null)
         if (files.length > 0) {
@@ -177,10 +182,10 @@ export default function Create({categories, product, stores}: {
         e.preventDefault();
         // console.log(data);return
         const formData = new FormData();
-        formData.append('title', data.title);
-        formData.append('quantity', data.quantity);
-        formData.append('price', data.price);
-        formData.append('description', data.description);
+        // formData.append('title', data.title);
+        // formData.append('quantity', data.quantity);
+        // formData.append('price', data.price);
+        // formData.append('description', data.description);
         if (data.image) {formData.append('image', data.image);}
         if (data.images) {
             data.images.forEach((image, index) => {
@@ -199,6 +204,7 @@ export default function Create({categories, product, stores}: {
                 setData('image', null);
                 setData('images', null);
                 setData('category_id', []);
+                setData('store_id', '');
                  setImageSinglePreview(null);
                  setImagePreviews([]);
                 toast({
@@ -300,7 +306,7 @@ export default function Create({categories, product, stores}: {
                 </div>
                 
                 <div className="flex flex-col gap-3">
-                <MultiSelect
+                {/* <MultiSelect
                     options={mappedStores}
                     placeholder="Select store..."
                     maxSelected={2}
@@ -309,7 +315,52 @@ export default function Create({categories, product, stores}: {
                         setSelectedStores(selected); 
                         handleStoreChange(selected);
                     }}
-                />
+                /> */}
+                 <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                        <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className=" justify-between"
+                        >
+                        {value
+                            ? mappedStores.find((store) => store.value === value)?.label
+                            : "Select store..."}
+                        <ChevronsUpDown className="opacity-50" />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[339px] p-0">
+                        <Command>
+                        <CommandInput placeholder="Search store..." className="h-9" />
+                        <CommandList>
+                            <CommandEmpty>No store found.</CommandEmpty>
+                            <CommandGroup>
+                            {mappedStores.map((store) => (
+                                <CommandItem
+                                className="cursor-pointer"
+                                key={store.value}
+                                value={store.value}
+                                onSelect={(currentValue) => {
+                                    setStoreValue(currentValue === value ? "" : currentValue)
+                                    setData('store_id', mappedStores.find((store) => store.value === value)?.value ?? '')
+                                    setOpen(false)
+                                }}
+                                >
+                                {store.label}
+                                <Check
+                                    className={cn(
+                                    "ml-auto",
+                                    value === store.value ? "opacity-100" : "opacity-0"
+                                    )}
+                                />
+                                </CommandItem>
+                            ))}
+                            </CommandGroup>
+                        </CommandList>
+                        </Command>
+                    </PopoverContent>
+                    </Popover>
 
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>

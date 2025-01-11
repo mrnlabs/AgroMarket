@@ -15,10 +15,10 @@ export default function Index({ products = [] }: ProductCardProps) {
     <DProductFilter />
     
     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6 mt-2">
-       {products.map((product: any) => (
+       {products?.map((product: any) => (
         <DProductCard key={product.id} product={product} />
        ))}
-       {!products.length && (
+       {!products?.length && (
         <div className="col-span-4 md:col-span-3">
           <div className="flex items-center justify-center h-full">
             <div className="text-center">

@@ -47,12 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function products(){
-      return $this->hasManyThrough(Product::class, Store::class);
-    }
-    
-    function stores() {
-        return $this->hasMany(Store::class);
+    function store() {
+        return $this->hasOne(Store::class);
     }
     
     
