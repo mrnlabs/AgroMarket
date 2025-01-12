@@ -17,7 +17,7 @@ export default function Index({ products = [], canCreateStore }:
 
           
   <div className="mx-auto 2xl:px-0">
-    {!auth.user.store ? (
+    {!auth.user?.store ? (
       <div className="col-span-4 md:col-span-3">
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
