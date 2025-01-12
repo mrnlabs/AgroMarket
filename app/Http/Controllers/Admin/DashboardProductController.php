@@ -34,9 +34,11 @@ class DashboardProductController extends Controller
     function create() {
         $categories = Category::pluck('name', 'id')->toArray();
         $stores = Store::where('user_id',auth()->id())->pluck('name', 'id')->toArray();
+        $tags = Tag::where('user_id',auth()->id())->pluck('name')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'categories' => $categories,
-            'stores'   => $stores
+            'stores'   => $stores,
+            'tags' => $tags
         ]);
     }
 
@@ -66,7 +68,7 @@ class DashboardProductController extends Controller
             $categoryIds = $request->category_id;
             $product->tags()->sync(
                 collect($request->tags)->map(function($tagName) {
-                    return Tag::firstOrCreate(['name' => $tagName])->id;
+                    return Tag::firstOrCreate(['name' => $tagName,'user_id' => auth()->id()])->id;
                 })
             );
             $product->categories()->sync($categoryIds);
@@ -90,9 +92,11 @@ class DashboardProductController extends Controller
     function show($slug) {
         $product = Product::with('store','categories','product_images','tags')->where('slug', $slug)->first();
         $categories = Category::pluck('name', 'id')->toArray();
+        $tags = Tag::where('user_id',auth()->id())->pluck('name')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'product' => $product,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
     function update(Request $request, $slug) {

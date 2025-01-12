@@ -10,6 +10,7 @@ class Tag extends Model
     use HasSlug;
     
     protected $fillable = [
+        'user_id',
         'name',
         'slug'
     ];

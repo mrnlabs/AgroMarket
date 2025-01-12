@@ -6,7 +6,7 @@ import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { CategoriesTableProps, StoreCardProps } from '@/types';
+import { CategoriesTableProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
 import { ChartColumnStacked, Info, Loader, Paperclip, Tags, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
@@ -21,10 +21,10 @@ const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
    );
 
-export default function Create({categories, product, stores}: {
+export default function Create({categories, product, tags}: {
     categories : CategoriesTableProps,
-    stores: StoreCardProps,
-    product: any
+    product: any,
+    tags: string[]
 }) {
     const filePath = usePage().props.filePath;
     const auth = usePage().props.auth;
@@ -37,7 +37,7 @@ export default function Create({categories, product, stores}: {
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
     const [showFileInput, setShowFileInput] = React.useState(!product);
 
-
+    const [existingTags, setExistingTags] = useState(false);
     
     const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
@@ -278,9 +278,9 @@ export default function Create({categories, product, stores}: {
                     options={mappedCategories}
                     placeholder="Select product categories..."
                     maxSelected={2}
-                    value={selectedCategories}  // Add this line
+                    value={selectedCategories}
                     onSelectionChange={(selected) => {
-                        setSelectedCategories(selected);  // Use the new selected value, not the old one
+                        setSelectedCategories(selected); 
                         handleCategoriesChange(selected);
                     }}
                 />
@@ -298,11 +298,16 @@ export default function Create({categories, product, stores}: {
                 
                 <div className="flex flex-col gap-3">
                 <ProductTags 
-                  value={data.tags}
+                    value={data.tags}
                     setData={(tags) => setData('tags', tags)}
-                    initialTags={data.tags}
+                    initialTags={tags}
+                    existingTags={existingTags}
                 />
-
+                <div 
+                    onClick={() => setExistingTags(true)} 
+                    className="text-sm underline text-blue-500 cursor-pointer">
+                    Select From Existing Tags
+                </div>
 
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>

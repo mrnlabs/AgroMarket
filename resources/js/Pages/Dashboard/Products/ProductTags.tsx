@@ -1,32 +1,56 @@
-import React, { useState, useEffect } from 'react';
 import { TagsInput } from "react-tag-input-component";
+import { useEffect, useRef, useState } from "react";
 
 const ProductTags = ({ 
   value,
   initialTags = [], 
-  setData 
+  setData,
+  existingTags = false
 }: { 
   initialTags?: string[], 
   setData: (tags: string[]) => void,
-  value: string[] 
+  value: string[],
+  existingTags: boolean 
 }) => {
   const [selected, setSelected] = useState(initialTags);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  // Update form data whenever tags change
+  // Watch for existingTags changes and update selected when true
+  useEffect(() => {
+    if (existingTags) {
+      setSelected(initialTags);
+      setData(initialTags); // Also update the parent form data
+    }
+  }, [existingTags]);
+
   const handleChange = (tags: string[]) => {
     setSelected(tags);
-    setData(tags); // This will update the form data in the parent component
+    setData(tags);
   };
 
+  useEffect(() => {
+    // Focus when existingTags becomes true
+    if (existingTags) {
+      // Small timeout to ensure DOM is ready
+      setTimeout(() => {
+        // Find the input inside TagsInput
+        const input = inputRef.current?.querySelector('input');
+        input?.focus();
+      }, 0);
+      
+      setSelected(initialTags);
+      setData(initialTags);
+    }
+  }, [existingTags]);
+
   return (
-    <div className="w-full">
+    <div className="w-full" ref={inputRef}>
       <TagsInput
         value={value ? value : selected}
         onChange={handleChange}
         name="tags"
         placeHolder="Enter tags"
         separators={["Enter", ","]}
-        suggestions={value ? value : selected}
       />
     </div>
   );
