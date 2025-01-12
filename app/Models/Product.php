@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\HasSku;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasSlug;
+    use HasSlug, HasSku;
+
+    protected $skuPrefix = 'FUYA';
+    protected $skuSuffix = '';
+    protected $skuNumberLength = 6;
 
     protected $fillable = [
         'title',
+        'sku',
         'short_description',
         'description',
         'price',
@@ -19,11 +25,12 @@ class Product extends Model
         'is_on_sale',
         'sale_price',
         'minimum_order',
+        'stock_status',
         'is_featured',
         'image',
         'images',
-
     ];
+    
 
     function categories() {
         return $this->belongsToMany(Category::class);

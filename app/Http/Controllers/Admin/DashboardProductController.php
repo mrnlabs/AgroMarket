@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Tag;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Store;
+use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\Product;
-use App\Models\ProductImage;
-use App\Models\Store;
 
 class DashboardProductController extends Controller
 {
@@ -41,6 +42,7 @@ class DashboardProductController extends Controller
 
     function store(ProductRequest $request) {
         try {
+            // dd($request->all());
             $user= User::find(auth()->id());
             $imagePath = null;
             if ($request->hasFile('image')) {
@@ -58,10 +60,15 @@ class DashboardProductController extends Controller
                 'sale_price' => $request->sale_price,
                 'minimum_order' => $request->minimum_order,
                 'is_featured' => $request->is_featured,
+                'stock_status' => $request->stock_status,
                 'image' => $imagePath,
             ]);
             $categoryIds = $request->category_id;
-            $product->tags()->sync($request->tags);
+            $product->tags()->sync(
+                collect($request->tags)->map(function($tagName) {
+                    return Tag::firstOrCreate(['name' => $tagName])->id;
+                })
+            );
             $product->categories()->sync($categoryIds);
 
             if($request->hasFile('images')) {
@@ -81,8 +88,7 @@ class DashboardProductController extends Controller
     }
 
     function show($slug) {
-        $product = Product::with('user','categories','product_images')->where('slug', $slug)->first();
-        // dd($product );
+        $product = Product::with('store','categories','product_images','tags')->where('slug', $slug)->first();
         $categories = Category::pluck('name', 'id')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'product' => $product,
@@ -96,11 +102,13 @@ class DashboardProductController extends Controller
             $updateData = [
                 'title' => $request->title,
                 'description' => $request->description,
+                'short_description' => $request->short_description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'is_on_sale' => $request->is_on_sale,
                 'sale_price' => $request->sale_price,
                 'minimum_order' => $request->minimum_order,
+                'stock_status' => $request->stock_status,
                 'is_featured' => $request->is_featured,
             ];
     
@@ -109,6 +117,12 @@ class DashboardProductController extends Controller
             }
     
             $product->update($updateData);
+
+            $product->tags()->sync(
+                collect($request->tags)->map(function($tagName) {
+                    return Tag::firstOrCreate(['name' => $tagName])->id;
+                })
+            );
     
             // Only sync categories if they are provided in the request
             if ($request->has('category_id') && !empty($request->category_id)) {

@@ -8,14 +8,14 @@ import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { CategoriesTableProps, StoreCardProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Check, ChevronsUpDown, Info, Loader, Paperclip, Store, Tags, X } from 'lucide-react';
+import { ChartColumnStacked, Info, Loader, Paperclip, Tags, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
 import { AuthGuard } from '@/guards/authGuard';
-import {Popover,PopoverContent,PopoverTrigger,} from "@/Components/ui/popover"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
-import { cn } from '@/lib/utils';
+import ProductTags from './ProductTags';
+import TinyMCE from '@/Components/editors/TinyMCE';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/Components/ui/select';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -52,8 +52,10 @@ export default function Create({categories, product, stores}: {
             setData('quantity', product.quantity);
             setData('price', product.price);
             setData('description', product.description);
+            setData('short_description', product.short_description);
             setData('sale_price', product.sale_price);
             setData('is_on_sale', product.is_on_sale);
+            setData('stock_status', product.stock_status);
             setData('minimum_order', product.minimum_order);
             setData('is_featured', product.is_featured);
 
@@ -62,6 +64,9 @@ export default function Create({categories, product, stores}: {
                 label: category.name
             }));
             setSelectedCategories(defaultCategories); 
+            const tags = product.tags.map((tag: { id: number; name: string }) => tag.name);
+            setData('tags', tags);
+            console.log(data.tags)
         }
     },[product])
 
@@ -72,6 +77,7 @@ export default function Create({categories, product, stores}: {
               short_description: quillValue,
               price: '',
               quantity: '',
+              stock_status: '',
               sale_price: '',
               is_on_sale: false,
               minimum_order: '',
@@ -79,6 +85,7 @@ export default function Create({categories, product, stores}: {
               category_id: [] as string[],
               image: null as File | null,
               images: null as File[] | null,
+              tags: [] as string[]
           });
 
         const handleCategoriesChange = (selectedCategories: { value: string }[]) => {
@@ -185,10 +192,11 @@ export default function Create({categories, product, stores}: {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
-                reset('title', 'quantity', 'price','short_description', 'description', 'sale_price', 'is_on_sale', 'minimum_order', 'is_featured');
+                reset('title', 'quantity', 'price','short_description', 'description', 'sale_price', 'is_on_sale', 'minimum_order', 'is_featured','stock_status');
                 setData('image', null);
                 setData('images', null);
                 setData('category_id', []);
+                setData('tags', []);
                  setImageSinglePreview(null);
                  setImagePreviews([]);
                 toast({
@@ -289,16 +297,12 @@ export default function Create({categories, product, stores}: {
                 </div>
                 
                 <div className="flex flex-col gap-3">
-                <MultiSelect
-                    options={mappedCategories}
-                    placeholder="Select product categories..."
-                    maxSelected={2}
-                    value={selectedCategories}  // Add this line
-                    onSelectionChange={(selected) => {
-                        setSelectedCategories(selected);  // Use the new selected value, not the old one
-                        handleCategoriesChange(selected);
-                    }}
+                <ProductTags 
+                  value={data.tags}
+                    setData={(tags) => setData('tags', tags)}
+                    initialTags={data.tags}
                 />
+
 
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>
@@ -353,7 +357,7 @@ export default function Create({categories, product, stores}: {
                         </div>
                         </div>
 
-                        {data.is_on_sale && (
+                        {data.is_on_sale ? (
                             <>
                         <div className="">
                             <Label htmlFor="sale_price" className="mb-2 block">Sale Price</Label>
@@ -370,8 +374,29 @@ export default function Create({categories, product, stores}: {
                             <InputError message={errors.minimum_order} className="mt-1" />
                         </div>
                         </>
+                        ): (
+                            ''
                         )}
-
+                      <div>
+                        <Label htmlFor="short_description" className="mb-2 block">
+                            Stock Status
+                        </Label>
+                        <Select onValueChange={(e) => setData('stock_status', e)} value={data.stock_status}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select stock status" defaultValue={data.stock_status} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                <SelectLabel>Stock Status</SelectLabel>
+                                <SelectItem className='text-green-500' value="in_stock">In Stock</SelectItem>
+                                <SelectItem className='text-red-500' value="sold_out">Sold Out</SelectItem>
+                                <SelectItem className='text-yellow-500' value="on_backorder">On Backorder</SelectItem>
+                                <SelectItem className='text-blue-500' value="pre_order">Pre-Order</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                            </Select>
+                            <InputError message={errors.description} className="mt-1" />
+                    </div>
                         
                     </div>
 
@@ -408,6 +433,19 @@ export default function Create({categories, product, stores}: {
                             <InputError message={errors.short_description} className="mt-1" />
                     </div>
 
+                    <div>
+                        <Label htmlFor="short_description" className="mb-2 block">
+                            Product Description
+                        </Label>
+                        <TinyMCE
+                            placeholder="Amazing product description..."
+                            value={data.description}
+                            onChange={(content) => setData('description', content)}
+                            />
+                            <InputError message={errors.description} className="mt-1" />
+                    </div>
+                    
+                    
                     <div className={`${product?.product_images.length > 0 ? 'mt-2' : ''}`}>
                         {product?.product_images.length > 0 && (
                         <div className="flex justify-between items-center mb-4">

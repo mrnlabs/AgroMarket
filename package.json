@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "tsc && vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "postinstall": "node ./postinstall.js"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
@@ -41,12 +42,14 @@
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/typography": "^0.5.9",
+        "@tinymce/tinymce-react": "^5.1.1",
         "animate.css": "^4.1.1",
         "aos": "^2.3.4",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "cmdk": "^1.0.0",
         "date-fns": "^4.1.0",
+        "fs-extra": "^11.2.0",
         "gridjs": "^5.1.0",
         "lucide": "^0.468.0",
         "lucide-react": "^0.468.0",
@@ -57,12 +60,14 @@
         "react-quill": "^2.0.0",
         "react-select": "^5.9.0",
         "react-sortablejs": "^6.1.4",
+        "react-tag-input-component": "^2.0.2",
         "recharts": "^2.15.0",
         "shepherd.js": "^11.0.1",
         "simplebar": "^6.2.5",
         "swiper": "^8.4.4",
         "tailwind-merge": "^2.5.5",
         "tailwindcss-animate": "^1.0.7",
+        "tinymce": "^7.6.0",
         "wnumb": "^1.2.0",
         "zod": "^3.24.1"
     }

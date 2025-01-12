@@ -13,7 +13,7 @@ export default function DStoreCard({ product }: ProductCardProps) {
         </span> 
         </a>
         <div className="mt-4 px-5 pb-5">
-        <Link href={route('dashboard.stores.edit', product.slug)}>
+        <Link href={route('dashboard.products.show', product.slug)}>
         <h5 className="text-2xl font-bold text-slate-900 dark:text-white">{product.title}</h5>
         </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">
