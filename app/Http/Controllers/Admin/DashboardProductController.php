@@ -49,6 +49,7 @@ class DashboardProductController extends Controller
 
             $product = auth()->user()->store->products()->create([
                 'title' => $request->title,
+                'short_description' => $request->short_description,
                 'description' => $request->description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
@@ -60,6 +61,7 @@ class DashboardProductController extends Controller
                 'image' => $imagePath,
             ]);
             $categoryIds = $request->category_id;
+            $product->tags()->sync($request->tags);
             $product->categories()->sync($categoryIds);
 
             if($request->hasFile('images')) {

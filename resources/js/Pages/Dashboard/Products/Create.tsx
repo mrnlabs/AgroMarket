@@ -8,7 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { CategoriesTableProps, StoreCardProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Check, ChevronsUpDown, Info, Loader, Paperclip, Store, X } from 'lucide-react';
+import { ChartColumnStacked, Check, ChevronsUpDown, Info, Loader, Paperclip, Store, Tags, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
@@ -68,7 +68,8 @@ export default function Create({categories, product, stores}: {
 
       const { data, setData, post, processing, errors, patch, isDirty, reset } = useForm({
               title: '',
-              description: quillValue,
+              description: '',
+              short_description: quillValue,
               price: '',
               quantity: '',
               sale_price: '',
@@ -132,7 +133,7 @@ export default function Create({categories, product, stores}: {
 
     const handleQuillChange = (value: string) => {
         setQuillValue(value);
-        setData('description', value);
+        setData('short_description', value);
     };
 
     const handleUpdate = (formData: FormData) => {
@@ -170,10 +171,6 @@ export default function Create({categories, product, stores}: {
         e.preventDefault();
         // console.log(data);return
         const formData = new FormData();
-        // formData.append('title', data.title);
-        // formData.append('quantity', data.quantity);
-        // formData.append('price', data.price);
-        // formData.append('description', data.description);
         if (data.image) {formData.append('image', data.image);}
         if (data.images) {
             data.images.forEach((image, index) => {
@@ -188,7 +185,7 @@ export default function Create({categories, product, stores}: {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
-                reset('title', 'quantity', 'price', 'description', 'sale_price', 'is_on_sale', 'minimum_order', 'is_featured');
+                reset('title', 'quantity', 'price','short_description', 'description', 'sale_price', 'is_on_sale', 'minimum_order', 'is_featured');
                 setData('image', null);
                 setData('images', null);
                 setData('category_id', []);
@@ -217,7 +214,7 @@ export default function Create({categories, product, stores}: {
         <div className="col-span-1 flex flex-col gap-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">{product ? 'Edit' : 'Add'} Product Main Image</h4>
+                    <h4 className="card-title">{product ? 'Edit' : 'Set'} Product Image</h4>
                     {product && (
                         <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                             <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
@@ -283,6 +280,29 @@ export default function Create({categories, product, stores}: {
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>
             </div>
+            <div className="card p-6">
+                <div className="flex justify-between items-center mb-4">
+                    <p className="card-title">Product Tags</p>
+                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                    <Tags />
+                    </div>
+                </div>
+                
+                <div className="flex flex-col gap-3">
+                <MultiSelect
+                    options={mappedCategories}
+                    placeholder="Select product categories..."
+                    maxSelected={2}
+                    value={selectedCategories}  // Add this line
+                    onSelectionChange={(selected) => {
+                        setSelectedCategories(selected);  // Use the new selected value, not the old one
+                        handleCategoriesChange(selected);
+                    }}
+                />
+
+                <InputError message={errors.category_id} className="mt-1" />
+                </div>
+            </div>
 
 
         </div>
@@ -318,7 +338,7 @@ export default function Create({categories, product, stores}: {
                     </div>
 
                     <div className="">
-                            <Label htmlFor="price" className="mb-2 block">Price</Label>
+                            <Label htmlFor="price" className="mb-2 block">Regular Price</Label>
                             <Input value={data.price}
                             onChange={(e) => setData('price', e.target.value)} type="number" id="price" className="form-input" placeholder='Enter Price'/>
                             <InputError message={errors.price} className="mt-1" />
@@ -378,14 +398,14 @@ export default function Create({categories, product, stores}: {
 
 
                      <div>
-                        <Label htmlFor="description" className="mb-2 block">
-                            Describe your product
+                        <Label htmlFor="short_description" className="mb-2 block">
+                            Product Short Description
                         </Label>
                         <QuillEditor 
-                            quillValue={data.description ?? ''}
+                            quillValue={data.short_description ?? ''}
                             setQuillValue={handleQuillChange} 
                         />
-                            <InputError message={errors.description} className="mt-1" />
+                            <InputError message={errors.short_description} className="mt-1" />
                     </div>
 
                     <div className={`${product?.product_images.length > 0 ? 'mt-2' : ''}`}>
