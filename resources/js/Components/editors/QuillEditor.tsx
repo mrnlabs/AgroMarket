@@ -12,8 +12,27 @@ export default function QuillEditor({
 
     const quillRef = useRef<ReactQuill>(null);
 
+    const modules = {
+      toolbar: [
+        [{ 'header': [1, 2,3,4,5,6, false] }],
+        ['bold', 'italic', 'underline','strike', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        ['link', 'image'],
+        ['clean']
+      ],
+    }
+
+    const formats = [
+      'header',
+      'bold', 'italic', 'underline', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image'
+    ]
+
   return (
     <ReactQuill 
+    modules={modules}
+    formats={formats}
     ref={quillRef}
     style={{height: '100%'}}
     theme="snow" 

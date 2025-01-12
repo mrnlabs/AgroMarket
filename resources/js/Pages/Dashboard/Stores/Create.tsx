@@ -259,7 +259,7 @@ export default function Create({store}: {
                     <div className={`${store?.store_images && store.store_images.length > 0 ? 'mt-2' : ''}`}>
                         {store?.store_images && store.store_images.length > 0 && (
                         <div className="flex justify-between items-center mb-4">
-                            <h4 className="card-title">Uploaded Product Images</h4>
+                            <h4 className="card-title">Uploaded Store Images</h4>
                         </div>
                         )}
 

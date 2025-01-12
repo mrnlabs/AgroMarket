@@ -107,7 +107,10 @@ export default function DProductFilter({ canCreateStore }: { canCreateStore: boo
                 <div className="bg-white rounded-lg shadow-sm">
           <div className="p-6 border-b">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold">Products</h2>
+              <h2 className="text-xl font-semibold ">{auth.user.store?.name}
+                <span className="text-sm text-blue-500 underline ml-3 ">
+                  <Link href={route('dashboard.stores.edit', auth.user.store?.slug)}>Manage</Link>
+                  </span></h2>
               
                 <Link href={route('dashboard.products.create')} className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
                   <Plus className="h-4 w-4 mr-2" />
