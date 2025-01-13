@@ -377,7 +377,7 @@ const Products = ( { products = [] }: ProductCardProps) => {
                                         </Link>
                                     </li>
                                     {/* Add pagination items */}
-                                    <li className="page-item">
+                                  
                                 </ul>
                             <ul className="pagination flex items-center justify-center flex-wrap gap-16">
                                 <li className="page-item">
@@ -392,6 +392,7 @@ const Products = ( { products = [] }: ProductCardProps) => {
                             </ul>
                         </div>
                     </div>
+                </div>
                 </div>
             </section>
         </GuestLayout>
