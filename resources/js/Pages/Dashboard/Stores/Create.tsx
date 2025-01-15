@@ -11,6 +11,7 @@ import { Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import StoreDangerZone from './StoreDangerZone';
+import StoreHeader from './StoreHeader';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -41,6 +42,10 @@ export default function Create({store}: {
 
       const { data, setData, post, processing, errors, patch, isDirty, reset } = useForm({
               name: '',
+              first_name: auth.user.first_name,
+              last_name: auth.user.last_name,
+              email: auth.user.email,
+              phone: auth.user.phone,
               description: quillValue,
               address: '',
               image: null as File | null,
@@ -220,13 +225,42 @@ export default function Create({store}: {
         <div className="lg:col-span-3 space-y-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Product Details</p>
+                    <p className="card-title">Store Details</p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
                     <Info />
                     </div>
                 </div>
+                <StoreHeader />
                 <div className="flex flex-col gap-3">
                     <div className="grid md:grid-cols-2 gap-3">
+                    <div className="">
+                        <Label htmlFor="first_name" className="mb-2 block">First Name</Label>
+                        <Input value={data.first_name}
+                        onChange={(e) => setData('first_name', e.target.value)} 
+                        type="text" id="first_name" className="form-input" placeholder="Enter Your First Name" aria-describedby="input-helper-text"/>
+                        <InputError message={errors.first_name} className="mt-1" />
+                    </div>
+                    <div className="">
+                        <Label htmlFor="last_name" className="mb-2 block">Last Name</Label>
+                        <Input value={data.last_name}
+                        onChange={(e) => setData('last_name', e.target.value)} 
+                        type="text" id="last_name" className="form-input" placeholder="Enter Your Last Name" aria-describedby="input-helper-text"/>
+                        <InputError message={errors.last_name} className="mt-1" />
+                    </div>
+                    <div className="">
+                        <Label htmlFor="email" className="mb-2 block">Email</Label>
+                        <Input value={data.email}
+                        onChange={(e) => setData('email', e.target.value)} 
+                        type="email" id="email" className="form-input" placeholder="Enter Email" aria-describedby="input-helper-text"/>
+                        <InputError message={errors.email} className="mt-1" />
+                    </div>
+                    <div className="">
+                        <Label htmlFor="phone" className="mb-2 block">Phone</Label>
+                        <Input value={data.phone}
+                        onChange={(e) => setData('phone', e.target.value)} 
+                        type="text" id="phone" className="form-input" placeholder="Enter Store Phone" aria-describedby="input-helper-text"/>
+                        <InputError message={errors.phone} className="mt-1" />
+                    </div>
                     <div className="">
                         <Label htmlFor="name" className="mb-2 block">Store Name</Label>
                         <Input value={data.name}
@@ -287,11 +321,11 @@ export default function Create({store}: {
                         </div>
                  </div>
 
-                 <div className={`${'flex justify-between items-center mb-2' } ${store?.store_images ? "mt-4" : " "}`} >
+                 <div className={`${'flex justify-between items-center mb-2' } ${store?.store_images ? "mt-4" : " "} hidden`} >
                     <h4 className="card-title">Upload Store Images<span className="text-sm text-muted-foreground">(Optional)</span></h4>
                 </div>
 
-                <div className="dropzone text-gray-700 dark:text-gray-300 h-52 mt-6">
+                <div className="dropzone text-gray-700 dark:text-gray-300 h-52 mt-6 hidden">
                 <FileUpload 
                         onFilesSelected={handleFileSelect}
                         onFileRemove={handleFileRemove}

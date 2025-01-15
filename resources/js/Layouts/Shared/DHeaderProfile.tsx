@@ -21,7 +21,7 @@ const DHeaderProfile = () => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <Link href={route('profile.show')} type="button" className="nav-link">
+      <Link href={route('dashboard.stores.edit', user.store?.slug)} type="button" className="nav-link">
         <img src={filePath} alt="user-image" className="rounded-full h-10"/>
       </Link>
       {/* onClick={() => setIsOpen(!isOpen)} <div className={`fc-dropdown w-44 z-50 transition-[margin,opacity] duration-300 mt-[10rem] bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 ${isOpen ? 'opacity-100 block' : 'opacity-0 hidden'}`}>

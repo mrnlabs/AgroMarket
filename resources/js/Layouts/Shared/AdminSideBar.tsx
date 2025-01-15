@@ -70,12 +70,12 @@ export default function AdminSideBar() {
                 isRoute={false}
             />
 
-            <MenuItem 
+            {/* <MenuItem 
                 href="tasks.index" 
                 icon={ClipboardCheck} 
                 label="Tasks" 
                 isRoute={true}
-            />
+            /> */}
             <li className="menu-title">User Roles</li>
             <MenuItem 
                 href="roles.index" 

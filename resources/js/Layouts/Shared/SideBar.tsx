@@ -8,7 +8,6 @@ import React from 'react'
 export default function SideBar() {
 
     const auth = usePage().props.auth;
-    console.log(auth.user.store);
   return (
     <div className="app-menu">
 
@@ -70,12 +69,12 @@ export default function SideBar() {
                 isRoute={false}
             />
 
-            <MenuItem 
+            {/* <MenuItem 
                 href="tasks.index" 
                 icon={ClipboardCheck} 
                 label="Tasks" 
                 isRoute={true}
-            />
+            /> */}
             <li className="menu-title">User Roles</li>
             <MenuItem 
                 href="roles.index" 

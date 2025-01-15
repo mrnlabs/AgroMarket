@@ -86,6 +86,28 @@ class StoreController extends Controller
     {
         //
     }
+    
+    public function updateStoreImage(Request $request, string $type)
+    {
+        // dd(auth()->user()->store);
+        $propertyToUpdate = '';
+        if($request->hasFile('image')) {
+                $filename = time() . '_' . $request->file('image')->getClientOriginalName();
+                $path = $request->file('image')->storeAs('stores', $filename, 'public');
+                if($type == 'cover') {
+                    $propertyToUpdate = 'cover_image';
+                }else{
+                    $propertyToUpdate = 'image';
+                }
+                auth()->user()->store()->update([
+                    $propertyToUpdate => $path
+                ]);
+                return back()->with('success','Image updated successfully.');
+        }else{
+            return back()->with('error','Failed to update image.');
+        }
+        
+    }
 
  
     public function edit(string $slug)
@@ -113,6 +135,12 @@ class StoreController extends Controller
             }
     
             $store->update($updateData);
+            auth()->user()->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'phone' => $request->phone,
+                'email' => $request->email
+            ]);
     
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
