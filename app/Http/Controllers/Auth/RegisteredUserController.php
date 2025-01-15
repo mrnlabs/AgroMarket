@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -29,12 +30,14 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request){
-      
+    //   dd($request->all());
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => 'required|string|max:11',
+            'store_name' => 'required|string|max:255',
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -45,13 +48,17 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         
-        $user->assignRole('User');
+        $user->assignRole('Store Owner');
+        Store::create([
+            'user_id' => $user->id,
+            'name' => $request->store_name,
+        ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return Inertia::location(route('dashboard'));
-        // return redirect(route('dashboard', absolute: false));
+        // return Inertia::location(route('login'));
+        return redirect(route('login', absolute: false))->with('success', 'Account created successfully. Please check your email for verification.');
     }
 }

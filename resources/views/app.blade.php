@@ -25,6 +25,7 @@ data-sidenav-view="default" data-mode="dark"
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
         @inertia
     </body>
 </html>

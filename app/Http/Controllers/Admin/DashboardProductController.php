@@ -17,7 +17,7 @@ class DashboardProductController extends Controller
 {
     function index() {
         if(auth()->user()->hasRole('Admin')) {
-            $products = Product::with('user')->get();
+            $products = Product::all();
         }else{
             $products = auth()->user()->store()->with('products')->get()->pluck('products')->flatten();
             

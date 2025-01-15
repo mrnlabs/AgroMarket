@@ -1,10 +1,14 @@
 import Logout from '@/Components/dashboard/Logout'
 import MenuItem from '@/Components/dashboard/MenuItem'
-import { Link } from '@inertiajs/react'
-import { BaggageClaim, ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, LogOut, Menu, Store, Users } from 'lucide-react'
+import { usePage } from '@inertiajs/react';
+import { ChartBarStacked, CircleDollarSign, ClipboardCheck, FolderClosed, House, LockKeyhole, LogOut, Menu, Store, Users } from 'lucide-react'
 import React from 'react'
 
+
 export default function SideBar() {
+
+    const auth = usePage().props.auth;
+    console.log(auth.user.store);
   return (
     <div className="app-menu">
 
@@ -50,6 +54,7 @@ export default function SideBar() {
                 href="dashboard.stores.myStores" 
                 icon={Store} 
                 label="Store Management" 
+                isRoute={true} 
             />
             
             <MenuItem 
@@ -80,12 +85,11 @@ export default function SideBar() {
             />
             <li className="menu-title">Profile Management</li>
             <MenuItem 
-                href="profile.show" 
+                href={route("dashboard.stores.edit", { slug: auth.user.store?.slug })} 
                 icon={ChartBarStacked} 
                 label="My Profile" 
-                isRoute={true}
-            />
-           
+                isRoute={false}
+                />
              <Logout />
 
         </ul>

@@ -13,15 +13,15 @@ use App\Models\User;
 class UserController extends Controller
 {
     function index() {
-        $users = User::with('roles','product')->latest()->get();
-        return Inertia::render('Admin/Users/Index',[
+        $users = User::with('roles','store')->latest()->get();
+        return Inertia::render('Dashboard/Users/Index',[
             'users' => $users,
         ]);
     }
 
     function create() {
         $roles = Role::pluck('name', 'id');
-        return Inertia::render('Admin/Users/Create',[
+        return Inertia::render('Dashboard/Users/Create',[
             'roles' => Inertia::defer(fn () => $roles),
         ]);
     }
@@ -63,7 +63,7 @@ class UserController extends Controller
     function edit($slug) {
         $user = User::with('roles')->where('slug', $slug)->first();
         $roles = Role::pluck('name', 'id');
-        return Inertia::render('Admin/Users/Create',[
+        return Inertia::render('Dashboard/Users/Create',[
             'user' => $user,
             'roles' => Inertia::defer(fn () => $roles),
         ]);

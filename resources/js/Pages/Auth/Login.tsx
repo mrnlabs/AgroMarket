@@ -5,14 +5,18 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
-import { FormEventHandler } from "react";
+import './Register.css'
+import { FormEventHandler, useState } from "react";
 export default function Login({
     status,
     canResetPassword,
+    success
 }: {
     status?: string;
     canResetPassword: boolean;
+    success?: string;
 }) {
+    const [showPassword, setShowPassword] = useState(false);
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
@@ -58,6 +62,11 @@ export default function Login({
                     <form onSubmit={submit}>
                         <div className="row g-4">
 
+  {success && (
+    <div className="text-center px-16 py-24 rounded-8 bg-main-50 relative" style={{display: 'block', width: '20%', textAlign: 'center', margin: 'auto'}}>
+    <p className="text-gray-800">{success}</p>
+  </div>
+  )}
                             {/* Can we center our main div here so the form is at the center */}
                             <div className=" flex-grow-0 flex-shrink-0 basis-auto pe-xl-5 flex justify-center items-cente">
                                 <div className="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40 h-full">
@@ -98,7 +107,7 @@ export default function Login({
                                         <div className="relative">
                                             <TextInput
                                                 id="password"
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                                 name="password"
                                                 value={data.password}
                                                 // className="mt-1 block w-full"
@@ -116,8 +125,8 @@ export default function Login({
                                                 message={errors.password}
                                                 className="mt-2"
                                             />
-                                            <span
-                                                className="toggle-password absolute top-[50%] right-0 me-16 translate-y-[-50%] cursor-pointer ph ph-eye-slash"
+                                            <span onClick={() => setShowPassword(!showPassword)}
+                                                className={`${showPassword ? 'ph ph-eye-slash' : 'ph ph-eye'} toggle-password absolute top-[50%] right-0 me-16 translate-y-[-50%] cursor-pointer`}
                                                 id="#password"
                                             ></span>
                                         </div>
@@ -155,22 +164,23 @@ export default function Login({
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="mt-48">
+                                    <div className="mt-48 ">
                                         {canResetPassword && (
                                             <Link
                                                 href={route("password.request")}
-                                                className="text-danger-600 text-sm font-[600] hover-text-decoration-underline"
+                                                className="text-danger-600 mr-4 text-sm font-[600] hover-text-decoration-underline"
                                             >
                                                 Forgot your password?
                                             </Link>
                                         )}
 
-                                        <PrimaryButton
-                                            className="ms-4"
+                                        <Link
+                                            href={route("register")}
+                                            className="ms-4 underline text-sm font-[600] hover-text-decoration-underline"
                                             disabled={processing}
                                         >
-                                            Log in
-                                        </PrimaryButton>
+                                            Register
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
