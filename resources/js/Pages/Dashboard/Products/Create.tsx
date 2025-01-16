@@ -303,6 +303,7 @@ export default function Create({categories, product, tags}: {
                     initialTags={tags}
                     existingTags={existingTags}
                 />
+               
                 <div 
                     onClick={() => setExistingTags(true)} 
                     className="text-sm underline text-blue-500 cursor-pointer">

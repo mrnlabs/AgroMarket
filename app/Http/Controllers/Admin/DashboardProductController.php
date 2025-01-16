@@ -33,11 +33,9 @@ class DashboardProductController extends Controller
     
     function create() {
         $categories = Category::pluck('name', 'id')->toArray();
-        $stores = Store::where('user_id',auth()->id())->pluck('name', 'id')->toArray();
         $tags = Tag::where('user_id',auth()->id())->pluck('name')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'categories' => $categories,
-            'stores'   => $stores,
             'tags' => $tags
         ]);
     }
