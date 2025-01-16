@@ -36,7 +36,7 @@ const StoreHeader  = () => {
         />
         <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
       <DropdownMenuTrigger asChild>
-      <Button onClick={() => setDropdownOpen(!dropdownOpen)} className="absolute right-4 bottom-4 px-4 py-2 bg-white bg-opacity-80 rounded-md text-sm font-medium">
+      <Button onClick={() => setDropdownOpen(!dropdownOpen)} className="absolute right-4 bottom-4 px-4 py-2 bg-gray-900 rounded-md text-sm font-medium">
           Edit cover photo
         </Button>
       </DropdownMenuTrigger>
