@@ -46,6 +46,7 @@ function LogoModal({
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!data.image) { return; }
         const formData = new FormData();
         if (data.image) {
             formData.append('image', data.image);

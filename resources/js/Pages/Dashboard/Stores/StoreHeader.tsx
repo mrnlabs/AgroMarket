@@ -1,5 +1,6 @@
 import { Button } from '@/Components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
+import { usePage } from '@inertiajs/react';
 import { Camera } from 'lucide-react';
 import React, { lazy } from 'react';
 const LogoModal = lazy(() => import("./LogoModal"));
@@ -20,12 +21,16 @@ const StoreHeader  = () => {
     const [dropdownOpen, setDropdownOpen] = React.useState(false);
     const [modalOpen, setModalOpen] = React.useState(false);
     const [uploadType, setUploadType] = React.useState('');
+
+    const auth = usePage().props.auth;
+    const filePath = usePage().props.filePath;
+
   return (
     <div className="relative">
       {/* Cover Photo */}
-      <div className="relative w-full h-72">
+      <div className="relative h-72">
         <img 
-          src="https://cdn.britannica.com/30/94430-050-D0FC51CD/Niagara-Falls.jpg"
+          src={filePath + (auth.user?.store?.cover_image ?? 'default-cover-image-url')}
           alt="Cover" 
           className="w-full h-full object-cover"
         />
@@ -63,7 +68,7 @@ const StoreHeader  = () => {
           <div className="relative">
             <div className="w-32 h-32 rounded-full border-4 border-white overflow-hidden">
               <img 
-                src="https://cdn.britannica.com/30/94430-050-D0FC51CD/Niagara-Falls.jpg" 
+                src={filePath + (auth.user?.store?.image ?? 'default-cover-image-url')}
                 alt={"Cover Image"} 
                 className="w-full h-full object-cover"
               />
@@ -80,7 +85,7 @@ const StoreHeader  = () => {
             </button>
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons 
           <div className="flex gap-2 mb-4">
             <button
               onClick={() =>{}}
@@ -95,6 +100,7 @@ const StoreHeader  = () => {
               Edit profile
             </button>
           </div>
+          */}
         </div>
       </div>
        <LogoModal uploadType={uploadType} open={modalOpen} setOpen={setModalOpen}/>

@@ -89,7 +89,6 @@ class StoreController extends Controller
     
     public function updateStoreImage(Request $request, string $type)
     {
-        // dd(auth()->user()->store);
         $propertyToUpdate = '';
         if($request->hasFile('image')) {
                 $filename = time() . '_' . $request->file('image')->getClientOriginalName();
