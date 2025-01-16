@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('image');
             $table->float('price');
-            $table->string('sku')->unique()->after('id');
+            $table->string('sku')->unique();
             $table->enum('status', ['Published', 'Draft'])->default('Published');
             $table->enum('stock_status', ['in_stock', 'sold_out', 'on_backorder', 'pre_order'])->default('in_stock');
             $table->longText('description');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('is_on_sale')->default('0');
             $table->float('sale_price')->nullable();
             $table->integer('minimum_order')->nullable();
-            $table->string('is_featured')->default('0');
+            $table->boolean('is_featured')->default('0');
             $table->string('slug')->unique();
             $table->timestamps();
         });

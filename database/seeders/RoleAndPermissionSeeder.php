@@ -37,5 +37,6 @@ class RoleAndPermissionSeeder extends Seeder
             'process orders',
             'view reports'
         ]);
+        
     }
 }

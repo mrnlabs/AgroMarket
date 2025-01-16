@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
@@ -39,8 +38,10 @@ class RegisteredUserController extends Controller
             'store_name' => 'required|string|max:255',
             'password' => ['required', Rules\Password::defaults()],
         ]);
+        $store = Store::create(['name' => $request->store_name]);
 
         $user = User::create([
+            'store_id' => $store->id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone' => $request->phone,
@@ -49,10 +50,8 @@ class RegisteredUserController extends Controller
         ]);
         
         $user->assignRole('Store SuperAdmin');
-        Store::create([
-            'user_id' => $user->id,
-            'name' => $request->store_name,
-        ]);
+        $permissions = Permission::all();
+        $user->syncPermissions($permissions);
 
         event(new Registered($user));
 

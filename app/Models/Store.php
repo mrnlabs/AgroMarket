@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Store extends Model
 {
@@ -11,12 +13,12 @@ class Store extends Model
 
     protected $fillable = ['name', 'user_id','image', 'description', 'address', 'location','slug'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    public function users(): HasMany
+{
+    return $this->hasMany(User::class);
+}
 
-    function store_images() {
+    function store_images(): HasMany {
         return $this->hasMany(StoreImage::class);
     }
 
@@ -24,7 +26,9 @@ class Store extends Model
         'location' => 'json',
     ];
 
-    function products() {
+    function products(): HasMany {
         return $this->hasMany(Product::class);
     }
+
+   
 }
