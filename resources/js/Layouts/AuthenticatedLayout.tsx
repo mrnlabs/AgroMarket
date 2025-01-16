@@ -54,7 +54,7 @@ export default function Authenticated({
             </AuthGuard>
             
             <AuthGuard 
-                roles={["Store Owner"]} 
+                roles={["Store SuperAdmin"]} 
                 permissions={["can_manage_system"]}
                 requireAll={true}>
                 <SideBar/>

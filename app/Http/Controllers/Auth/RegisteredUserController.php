@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         
-        $user->assignRole('Store Owner');
+        $user->assignRole('Store SuperAdmin');
         Store::create([
             'user_id' => $user->id,
             'name' => $request->store_name,

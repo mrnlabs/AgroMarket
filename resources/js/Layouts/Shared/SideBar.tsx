@@ -55,6 +55,12 @@ export default function SideBar() {
                 label="Store Management" 
                 isRoute={true} 
             />
+            <MenuItem 
+                href="users.index" 
+                icon={Users} 
+                label="User Management" 
+                isRoute={true} 
+            />
             
             <MenuItem 
                 href="subscriptions.index" 
