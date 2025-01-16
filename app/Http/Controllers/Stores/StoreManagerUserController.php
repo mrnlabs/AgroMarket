@@ -18,11 +18,10 @@ class StoreManagerUserController extends Controller
 
     public function index()
     {
-        $users = Store::where('user_id', Auth::id())
-            ->with('user')
+        $users = Auth::user()->store->users()
+            ->with('roles')
             ->get();
-dd($users);
-        return Inertia::render('Users/Index', [
+        return Inertia::render('Dashboard/StoreAdministration/Index', [
             'users' => $users,
             'roles' => Role::where('name', '!=', 'Store SuperAdmin')->get(),
         ]);
