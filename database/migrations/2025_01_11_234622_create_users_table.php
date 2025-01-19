@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('alt_phone')->nullable();
             $table->string('photo_path', 2048)->nullable();
+            $table->string('cover_photo', 2048)->nullable();
             $table->string('location')->nullable();
             $table->string('is_active')->default(1);
             $table->string('address')->nullable();

@@ -1,18 +1,32 @@
 import { Button } from '@/Components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
-import { usePage } from '@inertiajs/react';
-import { Camera } from 'lucide-react';
+import { Toaster } from '@/Components/ui/toaster';
+import { toast } from '@/hooks/use-toast';
+import { User } from '@/types';
+import { router, usePage } from '@inertiajs/react';
+import { Camera, Trash2 } from 'lucide-react';
 import React, { lazy } from 'react';
 
+const ConfirmDialog = lazy(() => import("@/Components/ConfirmDialog"));
 
-const UserHeader = ({data, errors, setData}: {
+
+const UserHeader = ({data, errors, setData, user}: {
     data: any,
     errors: any,
-    setData: (key: string, value: any) => void
+    setData: (key: string, value: any) => void,
+    user: User
 }) => {
     const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
+       const [modalOpen, setModalOpen] = React.useState(false);
+       const [dialogOpen, setDialogOpen] = React.useState(false);
+
+
     const [photoPathBlob, setPhotoPathBlob] = React.useState<Blob | null>(null);
     const [previewImage, setPreviewImage] = React.useState<string | null>(null);
+    
+    const [cover_photoPathBlob, setCoverPhotoPathBlob] = React.useState<Blob | null>(null);
+    const [previewCoverPhotoImage, setPreviewCoverPhotoImage] = React.useState<string | null>(null);
     const auth = usePage().props.auth;
     const filePath = usePage().props.filePath;
 
@@ -21,10 +35,15 @@ const UserHeader = ({data, errors, setData}: {
         if (!file) return;
 
         const objectUrl = URL.createObjectURL(file);
-        setPreviewImage(objectUrl);
-        setPhotoPathBlob(file);
-        setData('photo_path', file);
-
+        if(type == 'cover_photo'){
+            setPreviewCoverPhotoImage(objectUrl);
+            setCoverPhotoPathBlob(file);
+            setData('cover_photo', file);
+        }else{
+            setPreviewImage(objectUrl);
+            setPhotoPathBlob(file);
+            setData('photo_path', file);
+        }
        
         return () => {
             if (objectUrl) {
@@ -33,11 +52,41 @@ const UserHeader = ({data, errors, setData}: {
         };
     };
 
+
+    const onDeleteCoverPhoto = () => {
+        router.post(route('users.cover_photo.remove', user.slug), undefined, {
+            preserveScroll: true,
+            onSuccess: () => {
+                toast({
+                    title: "Success",
+                    description: "Cover photo deleted successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong",
+                    variant: "destructive",
+                })
+            }
+            
+        });
+    }
+
     return (
         <div className="relative">
             <div className="relative h-72">
+                           <input 
+                                type="file" 
+                                name="cover_photo" 
+                                id="cover_photo" 
+                                className="hidden" 
+                                onChange={(e) => handleFileChange(e, 'cover_photo')}
+                                accept="image/*"
+                            />
                 <img 
-                    src={filePath + (auth.user?.store?.cover_image ?? 'default-cover-image-url')}
+                    src={previewCoverPhotoImage || (user?.cover_photo ? filePath + user?.cover_photo : 'default-cover-image-url')}
                     alt="Cover" 
                     className="w-full h-full object-cover"
                 />
@@ -52,15 +101,20 @@ const UserHeader = ({data, errors, setData}: {
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                             <DropdownMenuItem className="cursor-pointer">
-                                Upload Photo
+                                <label htmlFor="cover_photo">
+                                    Upload Photo
+                                    </label>
+                                
                                 <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        {user?.cover_photo && (
+                            <DropdownMenuItem className='text-red-500 cursor-pointer' onClick={() => setDialogOpen(true)}>
                             Remove
-                            <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+                            <DropdownMenuShortcut><Trash2 /></DropdownMenuShortcut>
                         </DropdownMenuItem>
+                        )}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
@@ -71,7 +125,7 @@ const UserHeader = ({data, errors, setData}: {
                     <div className="relative">
                         <div className="w-32 h-32 rounded-full border-4 border-white overflow-hidden">
                             <img 
-                                src={previewImage || (auth.user?.photo_path ? filePath + auth.user?.photo_path : 'https://avatars.githubusercontent.com/u/56942052?s=400&u=6f22fc54e07a2216c867ae8f60b5d0e03dd821bc&v=4')}
+                                src={previewImage || (user?.photo_path ? filePath + user?.photo_path : 'https://avatars.githubusercontent.com/u/56942052?s=400&u=6f22fc54e07a2216c867ae8f60b5d0e03dd821bc&v=4')}
                                 alt="Profile Image" 
                                 className="w-full h-full object-cover"
                             />
@@ -94,6 +148,13 @@ const UserHeader = ({data, errors, setData}: {
                     </div>
                 </div>
             </div>
+            <ConfirmDialog 
+                message="Are you sure you want to remove cover photo?"
+                dialogOpen={dialogOpen} 
+                setDialogOpen={setDialogOpen}
+                onContinue={onDeleteCoverPhoto}
+             />
+             <Toaster />
         </div>
     );
 };

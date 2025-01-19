@@ -43,6 +43,7 @@ export default function Create({roles, user}:{
         bio: quillValue,
         role: '',
         photo_path: null as File | null,
+        cover_photo: null as File | null,
     });
 
     useEffect(() => {
@@ -99,6 +100,7 @@ const handleUpdate = () => {
         onSuccess: () => {
             reset('first_name', 'last_name', 'email', 'phone', 'alt_phone', 'role', 'bio', 'password');
             setData('photo_path', null);
+            setData('cover_photo', null);
             setShowFileInput(false);
             toast({
                 title: "Success",
@@ -119,19 +121,12 @@ const handleUpdate = () => {
 const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('first_name', data.first_name);
-    formData.append('last_name', data.last_name);
-    formData.append('email', data.email);
-    formData.append('phone', data.phone);
-    formData.append('alt_phone', data.alt_phone);
-    formData.append('bio', data.bio);
-    formData.append('phone', data.password);
     if (data.photo_path) {
         formData.append('photo_path', data.photo_path);
     }
     // console.log(data);return
 
-    // if(user){return handleUpdate();}
+    if(user){return handleUpdate();}
     post(route('users.store'), {
         forceFormData: true,
         preserveScroll: true,
@@ -156,9 +151,9 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
 }
   return (
     <Authenticated>
-    <div className="grid lg:grid-cols-4 gap-6">
-        <div className="col-span-1 flex flex-col gap-6">
-            <div className="card p-6">
+    <div className="grid lg:grid-cols-1 gap-6">
+        <div className="col-span-1 flex flex-col gap-6" style={{display: 'none'}}>
+            <div className="card p-6 ">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="card-title">{user ? 'Edit' : 'Add'} Your Store Image</h4>
                     {user && (
@@ -194,30 +189,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
 
                 
             </div>
-            <div className="flex flex-col gap-3">
-                <div>
-                    {roles && (
-                        <Select
-                        value={data.role || user?.roles[0]?.name}
-                        onValueChange={(value) => setData('role', value)}
-                        >
-                        <SelectTrigger className="w-full form-select">
-                            <SelectValue placeholder="Select role" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {Object.entries(roles).map(([id, name]) => (
-                            <SelectItem key={id} value={name}>
-                                {name}
-                            </SelectItem>
-                            ))}
-                        </SelectContent>
-                        </Select>
-                    )}
-                    {!roles && <Loader className="mx-auto animate-spin" size={20} />}
-                    <InputError message={errors.role} className="mt-1" />
-                    </div>
-
-                </div>
+            
         </div>
 
         <div className="lg:col-span-3 space-y-6">
@@ -228,7 +200,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                     <Info />
                     </div>
                 </div>
-                <UserHeader data={data} errors={errors} setData={setData} />
+                <UserHeader data={data} errors={errors} setData={setData} user={user} />
                 <div className="flex flex-col gap-3">
                 <div className="grid md:grid-cols-2 gap-3">
                         <div>
@@ -278,6 +250,31 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             <InputError message={errors.address} className="mt-1" />
                         </div>
                     </div>
+
+                    <div className="flex flex-col gap-3">
+                <div>
+                    {roles && (
+                        <Select
+                        value={data.role || user?.roles[0]?.name}
+                        onValueChange={(value) => setData('role', value)}
+                        >
+                        <SelectTrigger className="w-full form-select">
+                            <SelectValue placeholder="Select role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {Object.entries(roles).map(([id, name]) => (
+                            <SelectItem key={id} value={name}>
+                                {name}
+                            </SelectItem>
+                            ))}
+                        </SelectContent>
+                        </Select>
+                    )}
+                    {!roles && <Loader className="mx-auto animate-spin" size={20} />}
+                    <InputError message={errors.role} className="mt-1" />
+                    </div>
+
+                </div>
                     
 
                     <div>

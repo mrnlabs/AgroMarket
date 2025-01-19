@@ -90,6 +90,11 @@ class UserController extends Controller
             $user->photo_path = $imagePath;
             $user->save();
         }
+        if($request->hasFile('cover_photo')) {
+            $imagePath = $request->file('cover_photo')->store('users', 'public');
+            $user->cover_photo = $imagePath;
+            $user->save();
+        }
         $user->syncRoles($request->role);
         return back()->with('success', 'User updated successfully.');
     }
@@ -101,6 +106,13 @@ class UserController extends Controller
     }
 
 
+    function removeCoverPhoto($slug) {
+        $user = User::where('slug', $slug)->first();
+        $user->update(['cover_photo' => null]);
+        $user->save();
+        return back()->with('success', 'Cover photo removed successfully.');
+        
+    }
     function destroy($slug) {
         $user = User::where('slug', $slug)->first();
         $user->delete();

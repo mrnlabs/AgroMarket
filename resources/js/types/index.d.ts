@@ -6,6 +6,7 @@ export interface User {
     phone: string;
     alt_phone: string;
     photo_path?: string;
+    cover_photo?: string;
     location?: string;
     is_active: number;
     address?: string;
