@@ -78,3 +78,13 @@ File: Main Css File
       --chart-5: 340 75% 55%;
     }
   }
+
+  // multiselect dark mode
+  .dark\:ring-offset-neutral-950:is([data-mode="dark"] *) {
+    --tw-ring-offset-color: #374151 !important;
+}
+
+.dark\:bg-neutral-950:is([data-mode="dark"] *) {
+  --tw-bg-opacity: 1;
+  background-color: #374151 !important;;
+}
