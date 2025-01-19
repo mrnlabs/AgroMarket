@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,8 +26,8 @@ class UserRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-             Rule::when(request()->routeIs('users.store'), ['required', 'string', 'min:8']),
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            //  Rule::when(request()->routeIs('users.store'), ['required', 'string', 'min:8']),
             'phone' => ['required', 'string', 'max:11'],
             'alt_phone' => ['nullable', 'string', 'max:11'],
             'role' => ['required'],
@@ -35,7 +36,7 @@ class UserRequest extends FormRequest
             // 'state' => ['required', 'string', 'max:255'],
             // 'country' => ['required', 'string', 'max:255'],
             // 'zip_code' => ['required', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'photo_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
 
         ];
     }

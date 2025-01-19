@@ -9,11 +9,12 @@ import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { RolesIndexProps, User } from '@/types'
 import { generatePassword } from '@/utils/generatePassword'
 import { router, useForm, usePage } from '@inertiajs/react'
-import { ArrowLeft, ImagePlus, Loader, Lock } from 'lucide-react'
+import { ArrowLeft, ImagePlus, Info, Loader, Lock, Paperclip } from 'lucide-react'
 import React, { lazy, Suspense, useEffect } from 'react'
 import UserDocument from './UserDocument'
 import UserDangerZone from './UserDangerZone'
 import { Toaster } from '@/Components/ui/toaster'
+import UserHeader from './UserHeader'
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -117,7 +118,6 @@ const handleUpdate = () => {
 
 const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
     const formData = new FormData();
     formData.append('first_name', data.first_name);
     formData.append('last_name', data.last_name);
@@ -129,7 +129,9 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (data.photo_path) {
         formData.append('photo_path', data.photo_path);
     }
-    if(user){return handleUpdate();}
+    // console.log(data);return
+
+    // if(user){return handleUpdate();}
     post(route('users.store'), {
         forceFormData: true,
         preserveScroll: true,
@@ -154,25 +156,30 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
 }
   return (
     <Authenticated>
-<div className="grid lg:grid-cols-4 gap-6">
+    <div className="grid lg:grid-cols-4 gap-6">
         <div className="col-span-1 flex flex-col gap-6">
             <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">{user ? 'Edit' : 'Create'} Profile Picture</h4>
-                    <div className="cursor-pointer inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <ImagePlus size={20} className='text-slate-900 dark:text-slate-200' onClick={() => setShowFileInput(!showFileInput)} />
-                    </div>
+                    <h4 className="card-title">{user ? 'Edit' : 'Add'} Your Store Image</h4>
+                    {user && (
+                        <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                            <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
+                        </div>
+                    )}
                 </div>
 
                 {user?.photo_path && !showFileInput && (
-                    <img alt="gallery" 
-                    className="object-cover object-center rounded" 
-                    src={filePath + user.photo_path}/>
+                    <img 
+                        alt="gallery" 
+                        className="object-cover object-center rounded" 
+                        src={filePath + user.photo_path}
+                    />
                 )}
-                {!user || showFileInput && (
-                    <div className="dropzone text-gray-700 dark:text-gray-300 h-52">
-                    <Suspense fallback={<Loader className="mx-auto" size={20} />}>
-                    <FileUpload 
+
+                {(!user || showFileInput) && (
+                    <div className="dropzone text-gray-700 dark:text-gray-300 h-52">                
+                        <Suspense fallback={<Loader className="mx-auto" size={20} />}>
+                        <FileUpload 
                             onFilesSelected={handleFileSelect}
                             onFileRemove={handleFileRemove}
                             multiple={false}
@@ -180,26 +187,14 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                             maxSize={5 * 1024 * 1024} // 5MB
                             showPreview={true} 
                             />
-                            <InputError message={errors.photo_path} className="mt-1" />
-                            <Toaster />
-                    </Suspense>
-                        <div className=" w-full h-full flex items-center justify-center">
-                            
-                        </div>
+                        </Suspense>
                     </div>
                 )}
-                <div className=""></div>
+                
+
+                
             </div>
-
-            <div className="card p-6">
-                <div className="flex justify-between items-center mb-4">
-                    <p className="card-title">Role <span className="text-red-500">*</span></p>
-                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <Lock size={20} className='text-slate-900 dark:text-slate-200' />
-                    </div>
-                </div>
-
-                <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3">
                 <div>
                     {roles && (
                         <Select
@@ -223,26 +218,17 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
                     </div>
 
                 </div>
-            </div>
-
-            {user && (
-                <UserDocument />
-            )}
-            
-            {user && (
-                <UserDangerZone user={user} />
-            )}
         </div>
 
         <div className="lg:col-span-3 space-y-6">
-            <div className="card p-6" style={{height: '30rem'}}>
+            <div className="card p-6">
                 <div className="flex justify-between items-center mb-4">
                     <p className="card-title">User Details</p>
                     <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                    <ArrowLeft onClick={() => router.get(route('users.index'))} size={20} className='cursor-pointer text-slate-900 dark:text-slate-200' />
+                    <Info />
                     </div>
                 </div>
-
+                <UserHeader data={data} errors={errors} setData={setData} />
                 <div className="flex flex-col gap-3">
                 <div className="grid md:grid-cols-2 gap-3">
                         <div>
@@ -309,13 +295,18 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
             </div>
             <div className="lg:col-span-4 mt-5">
                 <div className="flex justify-end gap-3">
-                    <Button disabled={processing} onClick={handleBack} type='button' className='rounded-[5px] px-4 py-2 bg-red-500 text-white'>Cancel</Button>
-                    <Button disabled={processing} onClick={handleSubmit} type='button' className='rounded-[5px] px-4 py-2 bg-neutral-900 text-white'>
-                       {processing ? <Loader className="animate-spin" size={25} /> : 'Submit'}</Button>
+                    <Button type="button" className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none">
+                        Cancel
+                    </Button>
+                    <Button disabled={processing} onClick={handleSubmit} type="button" className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none">
+                        {user ? 'Update' : 'Create'}
+                    </Button>
                 </div>
             </div>
         </div>
+        <Toaster />
     </div>
-</Authenticated>
+
+    </Authenticated>
   )
 }

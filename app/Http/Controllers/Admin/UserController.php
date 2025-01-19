@@ -28,6 +28,7 @@ class UserController extends Controller
 
     function store(UserRequest $request) {
         try {
+            // dd($request->all());
         $location = IpGeolocation::lookup('197.185.140.98');
         
         $coordinates = [
@@ -35,6 +36,7 @@ class UserController extends Controller
             'lng' => (float) $location['longitude']
         ];
         $user = User::create([
+            'store_id' => auth()->user()->store->id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone' => $request->phone,
@@ -53,6 +55,7 @@ class UserController extends Controller
             $user->photo_path = $imagePath;
             $user->save();
         }
+        
         $user->assignRole($request->role);
         return back()->with('success', 'User created successfully.');
         } catch (\Throwable $th) {

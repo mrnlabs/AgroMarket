@@ -7,9 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Resources\UserResource;
 use App\Http\Controllers\Controller;
-use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
