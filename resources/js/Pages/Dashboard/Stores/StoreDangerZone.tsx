@@ -1,3 +1,4 @@
+import { Button } from '@/Components/ui/button'
 import { Lock } from 'lucide-react'
 import React from 'react'
 
@@ -12,7 +13,7 @@ export default function StoreDangerZone() {
     </div>
 
     <div className="flex flex-col gap-3">
-       Cool stuff here
+    <Button className='w-full'>Upload</Button>
 
     </div>
 </div>

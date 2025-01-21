@@ -28,7 +28,7 @@ Route::prefix('products')->group(function () {
 });
 
 
-Route::get('/file-manager', function () {return Inertia::render('Admin/FileManager/Index');});
+Route::get('/file-manager', function () {return Inertia::render('Dashboard/FileManager/Index');});
 
 
 require __DIR__.'/auth.php';
@@ -42,4 +42,5 @@ Route::middleware('auth')->group(function () {
     require __DIR__.'/role.php';
     require __DIR__.'/category.php';
     require __DIR__.'/dashboard_product.php';
+    require __DIR__.'/fica.php';
 });

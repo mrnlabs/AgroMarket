@@ -12,6 +12,10 @@ import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import StoreDangerZone from './StoreDangerZone';
 import StoreHeader from './StoreHeader';
+import { transcateText } from '@/utils/transcateText';
+import FicaUpload from './FicaDocsModal';
+import FicaDocsModal from './FicaDocsModal';
+import DocsCard from './DocsCard';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -25,10 +29,12 @@ export default function Create({store}: {
 
     const { toast } = useToast();
     
-    const [imageSinglePreview, setImageSinglePreview] = useState<File | null>(null);
+    const [fileName, setFileName] = useState<File | null>(null);
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [showFileInput, setShowFileInput] = React.useState(!store);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [uploadType, setUploadType] = React.useState('');
 
 
     useEffect(() => {
@@ -52,13 +58,7 @@ export default function Create({store}: {
               images: null as File[] | null,
           });
 
-      const handleMainImageFileSelect = (files: File[]) => {
-        setData('image', null)
-        if (files.length > 0) {
-            setImageSinglePreview(files[0])
-           setData('image', files[0]);
-        }
-       };
+      
      const handleFileSelect = (files: File[]) => {
         if (files.length > 0) {
             setImagePreviews(files)
@@ -68,7 +68,7 @@ export default function Create({store}: {
 
     const handleFileRemove = () => {
         setData('image', null);
-        setImageSinglePreview(null);
+        setFileName(null);
     };
     const onRemove = (index: number) => {
         const list = [...imagePreviews];
@@ -109,7 +109,7 @@ export default function Create({store}: {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
-                 setImageSinglePreview(null);
+                 setFileName(null);
                  setImagePreviews([]);
                  setShowFileInput(false);
                  setData('images', null);
@@ -150,7 +150,7 @@ export default function Create({store}: {
                 reset('name', 'address','description');
                 setData('image', null);
                 setData('images', null);
-                 setImageSinglePreview(null);
+                 setFileName(null);
                  setImagePreviews([]);
                 toast({
                     title: "Success",
@@ -169,54 +169,14 @@ export default function Create({store}: {
         });
     }
 
+
   return (
     <Authenticated>
     <div className="grid lg:grid-cols-4 gap-6">
         <div className="col-span-1 flex flex-col gap-6">
-            <div className="card p-6">
-                <div className="flex justify-between items-center mb-4">
-                    <h4 className="card-title">{store ? 'Edit' : 'Add'} Your Store Image</h4>
-                    {store && (
-                        <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-                            <Paperclip onClick={() => setShowFileInput(!showFileInput)} className='cursor-pointer'/>
-                        </div>
-                    )}
-                </div>
+        <DocsCard setModalOpen={setModalOpen} setUploadType={setUploadType}/>
 
-                {store?.image && !showFileInput && (
-                    <img 
-                        alt="gallery" 
-                        className="object-cover object-center rounded" 
-                        src={filePath + store.image}
-                    />
-                )}
-
-                {(!store || showFileInput) && (
-                    <div className="dropzone text-gray-700 dark:text-gray-300 h-52">                
-                        <Suspense fallback={<Loader className="mx-auto" size={20} />}>
-                            <FileUpload
-                                onFilesSelected={handleMainImageFileSelect}
-                                onFileRemove={handleFileRemove}
-                                multiple={false}
-                                acceptedTypes={['image/jpeg', 'image/png']}
-                                maxSize={5 * 1024 * 1024}
-                                showPreview={false} 
-                            />
-                        </Suspense>
-                    </div>
-                )}
-                
-
-                <div className="flex gap-3 mt-2">
-                        <div className="flex -space-x-2">
-                       {imageSinglePreview && (
-                            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700" 
-                            src={URL.createObjectURL(imageSinglePreview)} alt="Main Image" />
-                        )}
-                        </div>
-                    </div>
-                    <InputError message={errors.image} className="mt-9" />
-            </div>
+        
             {store && (
                 <StoreDangerZone/>
             )}
@@ -375,7 +335,13 @@ export default function Create({store}: {
         </div>
         <Toaster />
     </div>
-
+        <Suspense fallback={""}>
+           <FicaDocsModal 
+           documentTitle={'ID Document'}
+           uploadType={'ID'} 
+           open={modalOpen} 
+           setOpen={setModalOpen}/>
+        </Suspense>
     </Authenticated>
   )
 }

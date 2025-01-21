@@ -90,7 +90,7 @@ export default function SideBar() {
             />
             <li className="menu-title">Profile Management</li>
             <MenuItem 
-                href={route("dashboard.stores.edit", { slug: auth.user.store?.slug })} 
+                href={route("users.edit", { slug: auth.user.slug })} 
                 icon={ChartBarStacked} 
                 label="My Profile" 
                 isRoute={false}
