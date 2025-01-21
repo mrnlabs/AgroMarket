@@ -16,6 +16,7 @@ import { AuthGuard } from '@/guards/authGuard';
 import ProductTags from './ProductTags';
 import TinyMCE from '@/Components/editors/TinyMCE';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/Components/ui/select';
+import ProductDangerZone from './ProductDangerZone';
 
 const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
@@ -313,6 +314,9 @@ export default function Create({categories, product, tags}: {
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>
             </div>
+            {product && (
+                <ProductDangerZone product={product} />
+            )}
 
 
         </div>
@@ -394,10 +398,10 @@ export default function Create({categories, product, tags}: {
                             <SelectContent>
                                 <SelectGroup>
                                 <SelectLabel>Stock Status</SelectLabel>
-                                <SelectItem className='text-green-500' value="in_stock">In Stock</SelectItem>
-                                <SelectItem className='text-red-500' value="sold_out">Sold Out</SelectItem>
-                                <SelectItem className='text-yellow-500' value="on_backorder">On Backorder</SelectItem>
-                                <SelectItem className='text-blue-500' value="pre_order">Pre-Order</SelectItem>
+                                <SelectItem className='text-green-500 cursor-pointer' value="in_stock">In Stock</SelectItem>
+                                <SelectItem className='text-red-500 cursor-pointer' value="sold_out">Sold Out</SelectItem>
+                                <SelectItem className='text-yellow-500 cursor-pointer' value="on_backorder">On Backorder</SelectItem>
+                                <SelectItem className='text-blue-500 cursor-pointer' value="pre_order">Pre-Order</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                             </Select>

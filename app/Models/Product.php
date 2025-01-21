@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\HasSku;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\DeletedModels\Models\Concerns\KeepsDeletedModels;
 
 class Product extends Model
 {
-    use HasSlug, HasSku;
+    use HasSlug, HasSku, KeepsDeletedModels;
 
     protected $skuPrefix = 'FUYA';
     protected $skuSuffix = '';

@@ -159,4 +159,10 @@ class DashboardProductController extends Controller
             return back()->with('error', 'Image could not be removed.');
         }
     }
+
+    function destroy($slug) {
+        $product = Product::where('slug', $slug)->first();
+        $product->delete();
+        return to_route('dashboard.stores.myStores')->with('success', 'Product deleted successfully.');
+    }
 }

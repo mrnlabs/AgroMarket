@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/products/edit/{slug}', [DashboardProductController::class, 'show'])->name('dashboard.products.show');
         Route::post('/products/update/{slug}', [DashboardProductController::class, 'update'])->name('dashboard.products.update');
         Route::post('/products/remove-product-image/{id}', [DashboardProductController::class, 'removeProductImage'])->name('dashboard.products.removeProductImage');
-        // Route::delete('/users/destroy/{slug}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::delete('/products/destroy/{slug}', [DashboardProductController::class, 'destroy'])->name('dashboard.products.destroy');
     });
 
 
