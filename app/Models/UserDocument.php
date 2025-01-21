@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\DeletedModels\Models\Concerns\KeepsDeletedModels;
 
 class UserDocument extends Model
 {
+    use KeepsDeletedModels;
+    
     protected $fillable = [
         'store_id',
         'document_id',

@@ -28,4 +28,10 @@ class FICADocsController extends Controller
         ]);
         return back()->with('success', 'Document uploaded successfully.');
     }
+
+    function destroy($id) {
+        $doc = UserDocument::find($id);
+        $doc->delete(); 
+        return back()->with('success', 'Document deleted successfully.');
+    }
 }

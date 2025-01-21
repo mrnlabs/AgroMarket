@@ -187,9 +187,9 @@ export default function Create({store}: {
             </>
     )}
         
-            {/* {store && (
+            {store && (
                 <StoreDangerZone/>
-            )} */}
+            )}
         </div>
 
         <div className="lg:col-span-3 space-y-6">
