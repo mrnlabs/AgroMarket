@@ -14,7 +14,7 @@ class FICADocsController extends Controller
     }
     
     function store(Request $request, $docType) {
-        // docType: 'ID' | 'PASSPORT' | 'PROOF_OF_RESIDENCE' | string;
+        // docType: 'ID/PASSPORT' | 'BUSINESS_REGISTRATION' | 'PROOF_OF_RESIDENCE' | string;
         $request->validate([
             'doc' => 'required|mimes:pdf,png,jpg,jpeg|max:2048',
         ]);

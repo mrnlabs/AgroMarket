@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { Store, StoreImages } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { Info, Loader, Paperclip, X } from 'lucide-react';
+import { FileX, Info, Loader, Paperclip, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import StoreDangerZone from './StoreDangerZone';
@@ -174,12 +174,15 @@ export default function Create({store}: {
     <Authenticated>
     <div className="grid lg:grid-cols-4 gap-6">
         <div className="col-span-1 flex flex-col gap-6">
-        <DocsCard setModalOpen={setModalOpen} setUploadType={setUploadType}/>
+        <DocsCard setModalOpen={setModalOpen} uploadType="ID/PASSPORT" setUploadType={setUploadType}/>
+        
+        <DocsCard setModalOpen={setModalOpen}  uploadType="PROOF_OF_RESIDENCE" setUploadType={setUploadType}/>
+        <DocsCard setModalOpen={setModalOpen}  uploadType="BUSINESS_REGISTRATION" setUploadType={setUploadType}/>
 
         
-            {store && (
+            {/* {store && (
                 <StoreDangerZone/>
-            )}
+            )} */}
         </div>
 
         <div className="lg:col-span-3 space-y-6">
@@ -337,8 +340,8 @@ export default function Create({store}: {
     </div>
         <Suspense fallback={""}>
            <FicaDocsModal 
-           documentTitle={'ID Document'}
-           uploadType={'ID'} 
+           documentTitle={uploadType}
+           uploadType={uploadType} 
            open={modalOpen} 
            setOpen={setModalOpen}/>
         </Suspense>

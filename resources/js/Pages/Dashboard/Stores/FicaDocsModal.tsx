@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
+import { getDocDisplayTitle } from "@/utils/getDocDisplayTitle"
 import { useForm } from "@inertiajs/react"
 import { Loader, Trash2 } from "lucide-react"
 import {  useState } from "react"
@@ -33,20 +34,7 @@ function FicaDocsModal({
         doc: null as File | null
     });
 
-    const getDisplayTitle = () => {
-        if (documentTitle) return documentTitle;
-        
-        switch (uploadType) {
-          case 'ID':
-            return 'Identity Document';
-          case 'PASSPORT':
-            return 'Passport';
-          case 'PROOF_OF_RESIDENCE':
-            return 'Proof of Residence';
-          default:
-            return 'Document';
-        }
-      };
+    
 
     const handleFileSelect = (files: File[]) => {
         if (files.length > 0) {
@@ -79,7 +67,7 @@ function FicaDocsModal({
                     setFileName(null);
                     toast({
                         title: "Success",
-                        description: getDisplayTitle() + " uploaded successfully",
+                        description: getDocDisplayTitle(uploadType) + " uploaded successfully",
                         variant: "default",
                     })
                 },
@@ -98,7 +86,7 @@ function FicaDocsModal({
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="sm:max-w-[425px] top-[10%] translate-y-0">
                 <DialogHeader>
-                    <DialogTitle className="card-title">Upload {getDisplayTitle()}</DialogTitle>
+                    <DialogTitle className="card-title">Upload {getDocDisplayTitle(uploadType)}</DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
