@@ -9,6 +9,7 @@ use App\Models\Store;
 use App\Models\StoreImage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class StoreController extends Controller
@@ -165,8 +166,24 @@ class StoreController extends Controller
         return back()->with('success', 'Image removed successfully.');
     }
    
-    public function destroy(string $id)
+    public function setActiveStatus(string $slug, Request $request)
     {
-        //
+        $store = Store::where('slug', $slug)->first();
+        if($request->status == 'delete') {
+            $store->delete();
+            Auth::logout();
+            return back()->with('success', 'Store deleted successfully.');
+        }
+
+            if($request->status == 'deactivate') {
+                $store->update([
+                    'status' => 'active'
+                ]);
+            }else{
+                $store->update([
+                    'status' => 'inactive'
+                ]);
+            }
+        return back()->with('success', 'Store status updated successfully.');
     }
 }

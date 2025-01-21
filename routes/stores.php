@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
         Route::post('/update-store-image/{type}', [StoreController::class, 'updateStoreImage'])->name('dashboard.stores.update.store_image');
         Route::delete('/destroy/{slug}', [StoreController::class, 'destroy'])->name('dashboard.stores.destroy');
         Route::post('/remove-store-image/{id}', [StoreController::class, 'removeStoreImage'])->name('dashboard.stores.removeStoreImage');
+        Route::post('/set-active-status/{slug}', [StoreController::class, 'setActiveStatus'])->name('dashboard.stores.set_active_status');
     });
 
 

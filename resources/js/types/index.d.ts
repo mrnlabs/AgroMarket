@@ -50,6 +50,7 @@ export interface Store {
     description: string;
     image?: string;
     cover_image?: string;
+    status: string;
     store_images?: StoreImages[];
     store_documents?: StoreDocuments[];
     user?: {

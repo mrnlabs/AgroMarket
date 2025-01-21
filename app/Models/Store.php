@@ -6,12 +6,13 @@ use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\DeletedModels\Models\Concerns\KeepsDeletedModels;
 
 class Store extends Model
 {
-    use HasSlug;
+    use HasSlug, KeepsDeletedModels;
 
-    protected $fillable = ['name', 'user_id','image', 'description', 'address', 'location','slug'];
+    protected $fillable = ['name', 'user_id','image', 'description', 'address', 'status','location','slug'];
 
     public function users(): HasMany
 {

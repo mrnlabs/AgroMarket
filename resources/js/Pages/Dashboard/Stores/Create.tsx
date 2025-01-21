@@ -188,7 +188,7 @@ export default function Create({store}: {
     )}
         
             {store && (
-                <StoreDangerZone/>
+                <StoreDangerZone store={store}/>
             )}
         </div>
 
