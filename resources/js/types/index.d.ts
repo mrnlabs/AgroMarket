@@ -32,6 +32,17 @@ export interface Permission {
     name: string;
     description?: string;
 }
+
+export type StoreDocuments = {
+    id?: number;
+    store_id?: number;
+    document_type: string;
+    document_path: string;
+    document_name: string;
+    created_at: string;
+    updated_at: string;
+}
+
 export interface Store {
     id?: number;
     name: string;
@@ -40,6 +51,7 @@ export interface Store {
     image?: string;
     cover_image?: string;
     store_images?: StoreImages[];
+    store_documents?: StoreDocuments[];
     user?: {
         id?: number;
         slug?: number;
@@ -116,6 +128,7 @@ export type StoreImages = {
     created_at: string;
     updated_at: string;
 }
+
 
 export type Task = {
     id: number;

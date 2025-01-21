@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserDocument extends Model
 {
@@ -13,4 +14,8 @@ class UserDocument extends Model
         'document_path',
         'document_name',
     ];
+
+    function store() : BelongsTo {
+        return $this->belongsTo(Store::class, 'id');
+    }
 }

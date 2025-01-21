@@ -174,11 +174,18 @@ export default function Create({store}: {
     <Authenticated>
     <div className="grid lg:grid-cols-4 gap-6">
         <div className="col-span-1 flex flex-col gap-6">
-        <DocsCard setModalOpen={setModalOpen} uploadType="ID/PASSPORT" setUploadType={setUploadType}/>
-        
-        <DocsCard setModalOpen={setModalOpen}  uploadType="PROOF_OF_RESIDENCE" setUploadType={setUploadType}/>
-        <DocsCard setModalOpen={setModalOpen}  uploadType="BUSINESS_REGISTRATION" setUploadType={setUploadType}/>
 
+            {store && (
+             <>
+                <DocsCard 
+                storeDoc={store.store_documents?.map(doc => doc.document_type).includes('ID/PASSPORT') ? store : null} 
+                setModalOpen={setModalOpen} uploadType="ID/PASSPORT" setUploadType={setUploadType}/>            
+                <DocsCard storeDoc={store.store_documents?.map(doc => doc.document_type).includes('PROOF_OF_RESIDENCE') ? store : null} 
+                setModalOpen={setModalOpen}  uploadType="PROOF_OF_RESIDENCE" setUploadType={setUploadType}/>
+                <DocsCard storeDoc={store.store_documents?.map(doc => doc.document_type).includes('BUSINESS_REGISTRATION') ? store : null} 
+                setModalOpen={setModalOpen}  uploadType="BUSINESS_REGISTRATION" setUploadType={setUploadType}/>
+            </>
+    )}
         
             {/* {store && (
                 <StoreDangerZone/>

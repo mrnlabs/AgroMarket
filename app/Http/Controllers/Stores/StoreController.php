@@ -111,7 +111,7 @@ class StoreController extends Controller
  
     public function edit(string $slug)
     {
-        $store = Store::with('store_images')->where('slug', $slug)->first();
+        $store = Store::with('store_images','store_documents')->where('slug', $slug)->first();
         return Inertia::render('Dashboard/Stores/Create',[
             'store' => $store,
         ]);

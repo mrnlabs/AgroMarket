@@ -21,6 +21,10 @@ class Store extends Model
     function store_images(): HasMany {
         return $this->hasMany(StoreImage::class);
     }
+    
+    function store_documents(): HasMany {
+        return $this->hasMany(UserDocument::class, 'store_id');
+    }
 
     protected $casts = [
         'location' => 'json',
