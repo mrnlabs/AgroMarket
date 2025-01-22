@@ -91,6 +91,7 @@ export type CategoriesTableProps = {
 export type ProductCardProps = {
     product: Product;
     products?: Product[];
+    store?: Store;
 }
 
 export type Product = {
@@ -101,6 +102,13 @@ export type Product = {
     quantity: number;
     image?: string;
     images?: ProductImages[];
+    is_on_sale?: number;
+    sale_price?: number;
+    minimum_order?: number;
+    is_featured?: number;
+    stock_status?: string;
+    short_description?: string;
+    store?: Store;
     categories?: {
         product_id: string;  
         category_id: string; 

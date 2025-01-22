@@ -17,10 +17,9 @@ class DashboardProductController extends Controller
 {
     function index() {
         if(auth()->user()->hasRole('Admin')) {
-            $products = Product::all();
+            $products = Product::with('store')->get();
         }else{
-            $products = auth()->user()->store()->with('products')->get()->pluck('products')->flatten();
-            
+            $products = auth()->user()->store()->with('products')->get()->pluck('products')->flatten();            
         }
         return Inertia::render('Dashboard/Products/Index',[
             'products' => $products

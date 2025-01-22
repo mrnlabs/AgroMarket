@@ -13,7 +13,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Admin/Roles/Index', [
+        return Inertia::render('Dashboard/Roles/Index', [
             'roles' => Role::with('users')->get(),
             'categories' => Category::get(),
         ]);

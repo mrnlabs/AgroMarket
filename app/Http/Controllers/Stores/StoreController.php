@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Stores;
 use App\Facades\IpGeolocation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRequest;
+use App\Models\Product;
 use App\Models\Store;
 use App\Models\StoreImage;
 use App\Models\User;
@@ -22,15 +23,26 @@ class StoreController extends Controller
  
     public function myStores()
     {
-        $store = auth()->user()->store()->get();
+
+        if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin')) {
+            return $this->getAllStores();
+        }
+        $stores = auth()->user()->store()->get();
         $products = auth()->user()->store()->get()->pluck('products')->flatten();
         $canCreateStore = auth()->user()->store()->count() > 0 ? false : true;
         return Inertia::render('Dashboard/Stores/Index',[
-            'stores' => $store,
+            'stores' => $stores,
             'products' => $products,
             'canCreateStore' => $canCreateStore
         ]);
     } 
+
+    function getAllStores() {
+        $stores = Store::with('users')->get();
+        return Inertia::render('Dashboard/InternalPortal/AdminStores/Index',[
+            'stores' => $stores
+        ]);
+    }
     
     public function create()
     {
