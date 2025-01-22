@@ -462,7 +462,7 @@ const Nav = () => {
                     </nav>
                 </div>
             </header>
-            <header className="header bg-white border-b border-gray-100 hidden">
+            <header className="header bg-white border-b border-gray-100 ">
                 <div className="container container-lg">
                     <nav className="header-inner flex justify-between gap-8">
                         <div className="flex items-center menu-category-wrapper">
