@@ -69,10 +69,10 @@ export default function AdminSideBar() {
             />
             
             <MenuItem 
-                href="/file-manager" 
+                href="fica.docs.file-manager" 
                 icon={FolderClosed} 
                 label="File Manager" 
-                isRoute={false}
+                isRoute={true}
             />
 
             {/* <MenuItem 

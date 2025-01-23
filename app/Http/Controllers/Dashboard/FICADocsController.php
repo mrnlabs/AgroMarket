@@ -9,8 +9,17 @@ use Inertia\Inertia;
 
 class FICADocsController extends Controller
 {
+
+    function fileManager() {
+        // $docs  = UserDocument::where('store_id', auth()->user()->store->id)->get();
+        $docs  = UserDocument::with('store')->latest()->get();//its admin get all
+        return Inertia::render('Dashboard/FileManager/Index',
+            [
+                'docs' => $docs
+            ]);
+    }
     function index() {
-        return Inertia::render('Admin/Subscriptions/Index');
+        return Inertia::render('Dashboard/Subscriptions/Index');
     }
     
     function store(Request $request, $docType) {

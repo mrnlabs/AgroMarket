@@ -19,6 +19,6 @@ class UserDocument extends Model
     ];
 
     function store() : BelongsTo {
-        return $this->belongsTo(Store::class, 'id');
+        return $this->belongsTo(Store::class, 'store_id');
     }
 }

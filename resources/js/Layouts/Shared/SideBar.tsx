@@ -68,12 +68,12 @@ export default function SideBar() {
                 label="My Subscriptions" 
             />
             
-            <MenuItem 
+            {/* <MenuItem 
                 href="/file-manager" 
                 icon={FolderClosed} 
                 label="File Manager" 
                 isRoute={false}
-            />
+            /> */}
 
             {/* <MenuItem 
                 href="tasks.index" 
