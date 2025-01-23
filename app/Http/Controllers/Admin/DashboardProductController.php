@@ -16,12 +16,21 @@ use App\Http\Requests\ProductRequest;
 class DashboardProductController extends Controller
 {
     function index() {
-        if(auth()->user()->hasRole('Admin')) {
+        if (request('store')) {
+            // If 'store' parameter is present, filter products by the specified store
+            $store = Store::where('slug', request('store'))->first();
+            $products = Product::where('store_id', $store->id)
+                ->with('store')
+                ->get();
+        } elseif (auth()->user()->hasRole('Admin')) {
+            // For admins, get all products with their stores
             $products = Product::with('store')->get();
-        }else{
-            $products = auth()->user()->store()->with('products')->get()->pluck('products')->flatten();            
+        } else {
+            // For non-admin users, get products from their own store(s)
+            $products = auth()->user()->store()->with('products')->get()->pluck('products')->flatten();
         }
-        return Inertia::render('Dashboard/Products/Index',[
+    
+        return Inertia::render('Dashboard/Products/Index', [
             'products' => $products
         ]);
     }
