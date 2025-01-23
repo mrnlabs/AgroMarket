@@ -19,30 +19,40 @@ export default function Index({ stores = [], canCreateStore }:
       status: ''
   });
 
+  interface Filters {
+    search: string;
+    store: string;
+    status: string;
+  }
+
+  interface QueryParams {
+    [key: string]: string;
+  }
+
   const updateFilters = React.useCallback(
-    debounce((newFilters) => {
-        const queryParams = {};
-        
-        // Only add non-empty filter values to query params
-        Object.keys(newFilters).forEach(key => {
-            if (newFilters[key]) {
-                queryParams[key] = newFilters[key];
-            }
-        });
+    debounce((newFilters: Partial<Filters>) => {
+      const queryParams: QueryParams = {};
+      // console.log('newFilters', newFilters);
+      // Only add non-empty filter values to query params
+      Object.keys(newFilters).forEach(key => {
+        if (newFilters[key as keyof Filters]) {
+          queryParams[key] = newFilters[key as keyof Filters] as string;
+        }
+      });
 
-        router.get(route('dashboard.stores.myStores'), queryParams, {
-            preserveState: true,
-            replace: true
-        });
+      router.get(route('dashboard.stores.myStores'), queryParams, {
+        preserveState: true,
+        replace: true
+      });
 
-        // Update local state
-        setFilters(prevFilters => ({
-            ...prevFilters,
-            ...newFilters
-        }));
+      // Update local state
+      setFilters(prevFilters => ({
+        ...prevFilters,
+        ...newFilters
+      }));
     }, 300), // 300ms delay
     []
-);
+  );
 
   return (
     <Authenticated>
@@ -66,7 +76,7 @@ export default function Index({ stores = [], canCreateStore }:
                 canCreateStore={canCreateStore} 
                 onSearch={(search) => updateFilters({ search })}
                 // onStoreFilter={(store) => updateFilters({ store })}
-                // onStatusFilter={(status) => updateFilters({ status })}
+                onStatusFilter={(status) => updateFilters({ status })}
                  />
     
     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6 mt-2">
