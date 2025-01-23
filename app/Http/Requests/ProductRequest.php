@@ -35,7 +35,9 @@ class ProductRequest extends FormRequest
         'description' => 'required',
         'price' => 'required',
         'quantity' => 'required',
-        'category_id' => 'required|exists:categories,id',
+        'category_id.*' => 'required|exists:categories,id',
+        'crossell_id.*' => 'nullable|exists:products,id',
+        'upsell_id.*' => 'nullable|exists:products,id',
         'image' => $imageRule,
         'images.*' => 'nullable|image|mimes:jpeg,webp,png,jpg|max:2048',
         'tags' => 'nullable|array'

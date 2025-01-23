@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasSku;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\DeletedModels\Models\Concerns\KeepsDeletedModels;
 
 class Product extends Model
@@ -51,4 +52,14 @@ class Product extends Model
                     // ->withPivot('user_id')
                     ->withTimestamps();
     }
+
+      public function crossSells(): BelongsToMany
+      {
+          return $this->belongsToMany(Product::class, 'product_cross_sells', 'product_id', 'cross_sell_product_id');
+      }
+  
+      public function upSells(): BelongsToMany
+      {
+          return $this->belongsToMany(Product::class, 'product_up_sells', 'product_id', 'up_sell_product_id');
+      }
 }

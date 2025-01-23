@@ -6,9 +6,9 @@ import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { CategoriesTableProps } from '@/types';
+import { CategoriesTableProps, ProductCardProps } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { ChartColumnStacked, Info, Loader, Paperclip, Tags, X } from 'lucide-react';
+import { ChartColumnStacked, Info, Link, Loader, Paperclip, Tags, X } from 'lucide-react';
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import { Toaster } from '@/Components/ui/toaster'
 import Checkbox from '@/Components/Checkbox';
@@ -22,10 +22,11 @@ const FileUpload = lazy(
     () => import("@/Components/FileUpload"),
    );
 
-export default function Create({categories, product, tags}: {
+export default function Create({categories, product, tags, products}: {
     categories : CategoriesTableProps,
-    product: any,
-    tags: string[]
+    product: any,//for edit
+    tags: string[],
+    products: ProductCardProps
 }) {
     const filePath = usePage().props.filePath;
     const auth = usePage().props.auth;
@@ -36,11 +37,20 @@ export default function Create({categories, product, tags}: {
     const [imagePreviews, setImagePreviews] = useState<File[]>([]);
     const [quillValue, setQuillValue] = React.useState('');
     const [selectedCategories, setSelectedCategories] = useState<{ value: string; label: string }[]>([]);
+    const [selectedCrossells, setSelectedCrossells] = useState<{ value: string; label: string }[]>([]);
+    const [selectedUpsells, setSelectedUpsells] = useState<{ value: string; label: string }[]>([]);
     const [showFileInput, setShowFileInput] = React.useState(!product);
 
     const [existingTags, setExistingTags] = useState(false);
     
-    const mappedCategories = categories 
+    const mappedProducts = products 
+      ? Object.entries(products).map(([id, title]) => ({
+          value: id,
+          label: title.toString()
+        }))
+      : [];
+      
+      const mappedCategories = categories 
       ? Object.entries(categories).map(([id, name]) => ({
           value: id,
           label: name.toString()
@@ -84,13 +94,28 @@ export default function Create({categories, product, tags}: {
               minimum_order: '',
               is_featured: false,
               category_id: [] as string[],
+              crossell_id: [] as string[],
+              upsell_id: [] as string[],
               image: null as File | null,
               images: null as File[] | null,
               tags: [] as string[]
           });
 
-        const handleCategoriesChange = (selectedCategories: { value: string }[]) => {
-            setData('category_id', selectedCategories.map((category) => category.value));
+        const handleMultiselectChange = (selectedCategories: { value: string }[],type: string) => {
+            switch (type) {
+                case 'categories':
+                    setData('category_id', selectedCategories.map((category) => category.value));
+                    break;
+                case 'crossells':
+                    setData('crossell_id', selectedCategories.map((cross) => cross.value));
+                    break;
+                case 'upsells':
+                    setData('upsell_id', selectedCategories.map((upsell) => upsell.value));
+                    break;
+                default:
+                    break;
+            }
+            
         }
          
       const handleMainImageFileSelect = (files: File[]) => {
@@ -282,7 +307,7 @@ export default function Create({categories, product, tags}: {
                     value={selectedCategories}
                     onSelectionChange={(selected) => {
                         setSelectedCategories(selected); 
-                        handleCategoriesChange(selected);
+                        handleMultiselectChange(selected,'categories');
                     }}
                 />
 
@@ -313,6 +338,37 @@ export default function Create({categories, product, tags}: {
 
                 <InputError message={errors.category_id} className="mt-1" />
                 </div>
+            </div>
+            <div className="card p-6">
+            <div className="flex justify-between items-center mb-4">
+                    <p className="card-title">Linked Products</p>
+                    <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
+                    <Link />
+                    </div>
+                </div>
+                <p>Upsells</p>
+            <MultiSelect
+                    options={mappedProducts}
+                    placeholder="Select product..."
+                    maxSelected={2}
+                    value={selectedUpsells}
+                    onSelectionChange={(selected) => {
+                        setSelectedUpsells(selected); 
+                        handleMultiselectChange(selected,'upsells');
+                    }}
+                />
+                
+                <p className='mt-3'>Crossells</p>
+                    <MultiSelect
+                            options={mappedProducts}
+                            placeholder="Select product ..."
+                            maxSelected={2}
+                            value={selectedCrossells}
+                            onSelectionChange={(selected) => {
+                                setSelectedCrossells(selected); 
+                                handleMultiselectChange(selected,'crossells');
+                            }}
+                        />
             </div>
             {product && (
                 <ProductDangerZone product={product} />

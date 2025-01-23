@@ -40,17 +40,18 @@ class DashboardProductController extends Controller
     }
     
     function create() {
+        $products = Product::where('store_id', auth()->user()->store->id)->pluck('title','id')->toArray();//for upsells and crossells
         $categories = Category::pluck('name', 'id')->toArray();
         $tags = Tag::where('user_id',auth()->id())->pluck('name')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'categories' => $categories,
-            'tags' => $tags
+            'tags' => $tags,
+            'products' => $products
         ]);
     }
 
     function store(ProductRequest $request) {
         try {
-            // dd($request->all());
             $user= User::find(auth()->id());
             $imagePath = null;
             if ($request->hasFile('image')) {
@@ -78,6 +79,13 @@ class DashboardProductController extends Controller
                 })
             );
             $product->categories()->sync($categoryIds);
+
+            if($request->crossell_id) {
+                $product->crossSells()->attach($request->crossell_id);
+            }
+            if($request->upsell_id) {
+                $product->upSells()->attach($request->upsell_id);
+            }
 
             if($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
