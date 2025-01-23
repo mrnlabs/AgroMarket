@@ -1,9 +1,10 @@
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import React from 'react'
-import DProductFilter from './DProductFilter'
+import React, { useState } from 'react'
 import { StoreCardProps } from '@/types'
-import { Link, usePage } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
 import AdminStoreCard from './AdminStoreCard'
+import AdminProductFilter from './AdminProductFilter'
+import { debounce } from 'lodash';
 
 export default function Index({ stores = [], canCreateStore }: 
   {
@@ -11,6 +12,38 @@ export default function Index({ stores = [], canCreateStore }:
     canCreateStore: boolean
   }) {
     const auth = usePage().props.auth;
+
+    const [filters, setFilters] = useState({
+      search: '',
+      store: '',
+      status: ''
+  });
+
+  const updateFilters = React.useCallback(
+    debounce((newFilters) => {
+        const queryParams = {};
+        
+        // Only add non-empty filter values to query params
+        Object.keys(newFilters).forEach(key => {
+            if (newFilters[key]) {
+                queryParams[key] = newFilters[key];
+            }
+        });
+
+        router.get(route('dashboard.stores.myStores'), queryParams, {
+            preserveState: true,
+            replace: true
+        });
+
+        // Update local state
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            ...newFilters
+        }));
+    }, 300), // 300ms delay
+    []
+);
+
   return (
     <Authenticated>
         <section className="bg-gray-50 py-4 antialiased dark:bg-gray-900 md:py-4">
@@ -29,7 +62,12 @@ export default function Index({ stores = [], canCreateStore }:
   :
   (
     <>
-    <DProductFilter canCreateStore={canCreateStore} />
+    <AdminProductFilter 
+                canCreateStore={canCreateStore} 
+                onSearch={(search) => updateFilters({ search })}
+                // onStoreFilter={(store) => updateFilters({ store })}
+                // onStatusFilter={(status) => updateFilters({ status })}
+                 />
     
     <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6 mt-2">
        {stores.map((store: any) => (
@@ -40,8 +78,7 @@ export default function Index({ stores = [], canCreateStore }:
         <div className="col-span-4 md:col-span-3">
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
-              <p className="text-gray-500 dark:text-gray-400">You haven`t added any products yet.<span> 
-                <Link href={route('dashboard.products.create')} className="text-primary">Create product ?</Link></span></p>
+              <p className="text-gray-500 dark:text-gray-400">You haven`t added any products yet.</p>
             </div>
           </div>
         </div>

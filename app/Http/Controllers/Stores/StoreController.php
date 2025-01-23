@@ -21,29 +21,61 @@ class StoreController extends Controller
     }
 
  
-    public function myStores()
-    {
-
-        if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin')) {
-            return $this->getAllStores();
-        }
-        $stores = auth()->user()->store()->get();
-        $products = auth()->user()->store()->get()->pluck('products')->flatten();
-        $canCreateStore = auth()->user()->store()->count() > 0 ? false : true;
-        return Inertia::render('Dashboard/Stores/Index',[
-            'stores' => $stores,
-            'products' => $products,
-            'canCreateStore' => $canCreateStore
-        ]);
-    } 
-
-    function getAllStores() {
-        $stores = Store::with('users')->get();
-        return Inertia::render('Dashboard/InternalPortal/AdminStores/Index',[
-            'stores' => $stores
-        ]);
-    }
     
+    
+
+    public function myStores(){
+    $query = Store::query();
+
+    // Search filter
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('location', 'like', "%{$search}%")
+              ->orWhereHas('users', function($userQuery) use ($search) {
+                  $userQuery->where('name', 'like', "%{$search}%");
+              });
+        });
+    }
+
+    // Status filter
+    if (request('status')) {
+        $query->where('status', request('status'));
+    }
+
+    // Permissions-based filtering
+    if (!auth()->user()->hasRole('Admin') && !auth()->user()->hasRole('SuperAdmin')) {
+        $query->whereHas('users', function($q) {
+            $q->where('id', auth()->user()->id);
+        });
+    }
+
+    $stores = $query->with('users')->get();
+
+    // Products for non-admin users
+    $products = auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin') 
+        ? collect() 
+        : auth()->user()->store()->get()->pluck('products')->flatten();
+
+    $canCreateStore = auth()->user()->store()->count() === 0;
+
+    // Render based on user role
+    $view = auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin') 
+        ? 'Dashboard/InternalPortal/AdminStores/Index'
+        : 'Dashboard/Stores/Index';
+
+    return Inertia::render($view, [
+        'stores' => $stores,
+        'products' => $products,
+        'canCreateStore' => $canCreateStore,
+        'filters' => [
+            'search' => request('search'),
+            'status' => request('status')
+        ]
+    ]);
+}
+
     public function create()
     {
         return Inertia::render('Dashboard/Stores/Create');

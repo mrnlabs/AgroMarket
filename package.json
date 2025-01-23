@@ -52,6 +52,7 @@
         "date-fns": "^4.1.0",
         "fs-extra": "^11.2.0",
         "gridjs": "^5.1.0",
+        "lodash.debounce": "^4.0.8",
         "lucide": "^0.468.0",
         "lucide-react": "^0.468.0",
         "prismjs": "^1.29.0",

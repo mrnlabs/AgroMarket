@@ -20,36 +20,8 @@ import {
 } from "@/Components/ui/popover"
 import { Input } from '@/Components/ui/input';
 
-export default function DProductFilter({ canCreateStore }: { canCreateStore: boolean }) {
+export default function AdminProductFilter({ canCreateStore, onSearch }: { canCreateStore: boolean, onSearch: (searchValue: string) => void  }) {
     const { auth } = usePage().props;
-
-    const data = [
-        {
-            id: 1,
-            name: 'Total Products',
-            count: 85,
-            icon: Store,
-        },
-        {
-            id: 2,
-            name: 'Total Orders',
-            count: 123,
-            icon: ClipboardCheck,
-        },
-        {
-            id: 3,
-            name: 'Total Revenue',
-            count: 123,
-            icon: CircleDollarSign,
-        },
-        {
-            id: 4,
-            name: 'Total Customers',
-            count: 123,
-            icon: CircleDollarSign,
-        }
-    ]
-
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState("")
 
@@ -76,32 +48,28 @@ export default function DProductFilter({ canCreateStore }: { canCreateStore: boo
       },
     ]
 
-    const handleCreate = () => {
-        router.get(route('dashboard.stores.create'));
+    const [searchValue, setSearchValue] = React.useState('');
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearchValue(value);
+        onSearch(value);
     }
+
   return (
 <>
 
                 <div className="bg-white rounded-lg shadow-sm">
           <div className="p-6 border-b">
-            <div className="flex justify-between items-center">
-              {/* <h2 className="text-xl font-semibold ">{auth.user.store?.name}
-                <span className="text-sm text-blue-500 underline ml-3 ">
-                  <Link href={route('dashboard.stores.edit', auth.user.store?.slug)}>Manage</Link>
-                  </span></h2> */}
-              
-                {/* <Link href={route('dashboard.products.create')} className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Product
-                </Link> */}
-            </div>
             <div className="mt-4 flex gap-4">
               <div className="flex-1">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                   <Input
+                    value={searchValue}
+                    onChange={handleSearch}
                     type="text"
-                    placeholder="Search products..."
+                    placeholder="Search store..."
                     className="w-full pl-10 pr-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
