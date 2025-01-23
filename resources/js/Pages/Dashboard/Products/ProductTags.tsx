@@ -29,11 +29,8 @@ const ProductTags = ({
   };
 
   useEffect(() => {
-    // Focus when existingTags becomes true
     if (existingTags) {
-      // Small timeout to ensure DOM is ready
       setTimeout(() => {
-        // Find the input inside TagsInput
         const input = inputRef.current?.querySelector('input');
         input?.focus();
       }, 0);
@@ -45,7 +42,7 @@ const ProductTags = ({
 
   return (
     <div className="w-full" ref={inputRef}>
-      <TagsInput
+      <TagsInput 
         value={value ? value : selected}
         onChange={handleChange}
         name="tags"
