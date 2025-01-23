@@ -4,6 +4,7 @@ import { StoreCardProps } from '@/types'
 import { Link, router, usePage } from '@inertiajs/react'
 import AdminStoreCard from './AdminStoreCard'
 import AdminProductFilter from './AdminProductFilter'
+// @ts-expect-error
 import { debounce } from 'lodash';
 
 export default function Index({ stores = [], canCreateStore }: 

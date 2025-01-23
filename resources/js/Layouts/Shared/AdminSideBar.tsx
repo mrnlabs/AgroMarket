@@ -47,7 +47,7 @@ export default function AdminSideBar() {
             />
 
             <MenuItem 
-                href="dashboard.stores.myStores" 
+                href="admin.stores" 
                 icon={Store} 
                 label="Stores" 
             />
