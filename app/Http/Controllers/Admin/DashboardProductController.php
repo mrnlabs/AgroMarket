@@ -104,11 +104,13 @@ class DashboardProductController extends Controller
     }
 
     function show($slug) {
-        $product = Product::with('store','categories','product_images','tags')->where('slug', $slug)->first();
+        $product = Product::with('store','categories','product_images','tags','crossSells','upSells')->where('slug', $slug)->first();
         $categories = Category::pluck('name', 'id')->toArray();
+        $products = Product::where('store_id', auth()->user()->store->id)->pluck('title','id')->toArray();//for upsells and crossells
         $tags = Tag::where('user_id',auth()->id())->pluck('name')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'product' => $product,
+            'products' => $products,
             'categories' => $categories,
             'tags' => $tags
         ]);

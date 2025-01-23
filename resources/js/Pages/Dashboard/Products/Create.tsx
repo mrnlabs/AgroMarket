@@ -75,6 +75,19 @@ export default function Create({categories, product, tags, products}: {
                 label: category.name
             }));
             setSelectedCategories(defaultCategories); 
+
+            const defaultCrossells = product.cross_sells?.map((crossell: { id: number; title: string }) => ({
+                value: crossell.id.toString(),
+                label: crossell.title
+            }));
+            setSelectedCrossells(defaultCrossells); 
+
+            const defaultUpsells = product.up_sells?.map((upsell: { id: number; title: string }) => ({
+                value: upsell.id.toString(),
+                label: upsell.title
+            }));
+            setSelectedUpsells(defaultUpsells);
+            
             const tags = product.tags.map((tag: { id: number; name: string }) => tag.name);
             setData('tags', tags);
             console.log(data.tags)
