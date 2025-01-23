@@ -1,6 +1,6 @@
 import Authenticated from '@/Layouts/AuthenticatedLayout'
 import React, { useState } from 'react'
-import { StoreCardProps } from '@/types'
+import { Filters, QueryParams, StoreCardProps } from '@/types'
 import { Link, router, usePage } from '@inertiajs/react'
 import AdminStoreCard from './AdminStoreCard'
 import AdminProductFilter from './AdminProductFilter'
@@ -20,40 +20,31 @@ export default function Index({ stores = [], canCreateStore }:
       status: ''
   });
 
-  interface Filters {
-    search: string;
-    store: string;
-    status: string;
-  }
-
-  interface QueryParams {
-    [key: string]: string;
-  }
 
   const updateFilters = React.useCallback(
     debounce((newFilters: Partial<Filters>) => {
       const queryParams: QueryParams = {};
-      // console.log('newFilters', newFilters);
-      // Only add non-empty filter values to query params
-      Object.keys(newFilters).forEach(key => {
-        if (newFilters[key as keyof Filters]) {
-          queryParams[key] = newFilters[key as keyof Filters] as string;
+      
+      // Merge new filters with existing filters
+      const updatedFilters = { ...filters, ...newFilters };
+      
+      // Add non-empty filter values to query params
+      Object.keys(updatedFilters).forEach(key => {
+        if (updatedFilters[key as keyof Filters]) {
+          queryParams[key] = updatedFilters[key as keyof Filters] as string;
         }
       });
-
-      router.get(route('dashboard.stores.myStores'), queryParams, {
+ 
+      router.get(route('admin.stores'), queryParams, {
         preserveState: true,
         replace: true
       });
-
-      // Update local state
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        ...newFilters
-      }));
+ 
+      // Update local state with merged filters
+      setFilters(updatedFilters);
     }, 300), // 300ms delay
-    []
-  );
+    [filters]  // Add filters to dependency array
+ );
 
   return (
     <Authenticated>

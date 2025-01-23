@@ -19,8 +19,13 @@ import {
   PopoverTrigger,
 } from "@/Components/ui/popover"
 import { Input } from '@/Components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
 
-export default function DProductFilter({ canCreateStore }: { canCreateStore: boolean }) {
+export default function DProductFilter({ canCreateStore, onSearch,onStatusFilter }: { 
+  canCreateStore: boolean, 
+  onSearch: (searchValue: string) => void,
+  onStatusFilter: (filterValue: string) => void
+  }) {
     const { auth } = usePage().props;
 
     const data = [
@@ -76,6 +81,13 @@ export default function DProductFilter({ canCreateStore }: { canCreateStore: boo
       },
     ]
 
+    const [searchValue, setSearchValue] = React.useState('');
+    
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setSearchValue(value);
+      onSearch(value);
+    }
     const handleCreate = () => {
         router.get(route('dashboard.stores.create'));
     }
@@ -104,7 +116,7 @@ export default function DProductFilter({ canCreateStore }: { canCreateStore: boo
 
                 </div>
 
-                <div className="bg-white rounded-lg shadow-sm">
+                <div className="bg-white dark:bg-[#1f2937] rounded-lg shadow-sm">
           <div className="p-6 border-b">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold ">{auth.user.store?.name}
@@ -122,7 +134,8 @@ export default function DProductFilter({ canCreateStore }: { canCreateStore: boo
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                   <Input
-                    type="text"
+                  onChange={handleSearch}
+                    type="search"
                     placeholder="Search products..."
                     className="w-full pl-10 pr-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   />
@@ -173,15 +186,15 @@ export default function DProductFilter({ canCreateStore }: { canCreateStore: boo
         </Command>
       </PopoverContent>
     </Popover>
-    <button id="sortDropdownButton1" data-dropdown-toggle="dropdownSort1" type="button" className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
-          <svg className="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
-          </svg>
-          Sort
-          <svg className="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7" />
-          </svg>
-        </button>
+    <Select onValueChange={onStatusFilter}>
+        <SelectTrigger className="flex w-[100px] items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-100">
+          <SelectValue placeholder="Filter By Status" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="Published" className='cursor-pointer text-success'>Published</SelectItem>
+          <SelectItem value="Draft" className='cursor-pointer text-danger'>Draft</SelectItem>
+        </SelectContent>
+      </Select>
             </div>
           </div>
           </div>

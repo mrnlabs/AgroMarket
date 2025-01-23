@@ -176,6 +176,17 @@ export type RolesIndexProps = {
     };
 }
 
+
+interface Filters {
+    search: string;
+    store: string;
+    status: string;
+  }
+
+  interface QueryParams {
+    [key: string]: string;
+  }
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {

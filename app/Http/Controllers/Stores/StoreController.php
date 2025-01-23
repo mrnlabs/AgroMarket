@@ -25,56 +25,37 @@ class StoreController extends Controller
     
 
     public function myStores(){
-    $query = Store::query();
-
-    // Search filter
-    if (request('search')) {
-        $search = request('search');
-        $query->where(function($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%")
-              ->orWhere('location', 'like', "%{$search}%")
-              ->orWhereHas('users', function($userQuery) use ($search) {
-                  $userQuery->where('name', 'like', "%{$search}%");
-              });
-        });
-    }
-
-    // Status filter
-    if (request('status')) {
-        $query->where('status', request('status'));
-    }
-
-    // Permissions-based filtering
-    if (!auth()->user()->hasRole('Admin') && !auth()->user()->hasRole('SuperAdmin')) {
-        $query->whereHas('users', function($q) {
-            $q->where('id', auth()->user()->id);
-        });
-    }
-
-    $stores = $query->with('users')->get();
-
-    // Products for non-admin users
-    $products = auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin') 
-        ? collect() 
-        : auth()->user()->store()->get()->pluck('products')->flatten();
-
-    $canCreateStore = auth()->user()->store()->count() === 0;
-
-    // Render based on user role
-    $view = auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin') 
-        ? 'Dashboard/InternalPortal/AdminStores/Index'
-        : 'Dashboard/Stores/Index';
-
-    return Inertia::render($view, [
-        'stores' => $stores,
-        'products' => $products,
-        'canCreateStore' => $canCreateStore,
-        'filters' => [
-            'search' => request('search'),
-            'status' => request('status')
-        ]
-    ]);
-}
+        $query = Product::query();
+     
+        // Search filter
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('price', 'like', "%{$search}%");
+            });
+        }
+     
+        // Status filter
+        if (request('status')) {
+            $query->where('status', request('status'));
+        }
+     
+   
+     
+        $products = $query->with('store')->get();
+     
+        $canCreateStore = auth()->user()->store()->count() === 0;
+     
+        return Inertia::render('Dashboard/Stores/Index', [
+            'products' => $products,
+            'canCreateStore' => $canCreateStore,
+            'filters' => [
+                'search' => request('search'),
+                'status' => request('status')
+            ]
+        ]);
+     }
 
     public function create()
     {

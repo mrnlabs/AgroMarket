@@ -64,7 +64,7 @@ export default function AdminProductFilter({ canCreateStore, onSearch,onStatusFi
   return (
 <>
 
-                <div className="bg-white rounded-lg shadow-sm">
+                <div className="bg-white rounded-lg dark:bg-[#1f2937] shadow-sm">
           <div className="p-6 border-b">
             <div className="mt-4 flex gap-4">
               <div className="flex-1">
@@ -126,14 +126,14 @@ export default function AdminProductFilter({ canCreateStore, onSearch,onStatusFi
     </Popover>
 
         <Select onValueChange={onStatusFilter}>
-  <SelectTrigger className="flex w-[100px] items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100">
-    <SelectValue placeholder="Filter By Status" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="active" className='cursor-pointer text-success'>Active</SelectItem>
-    <SelectItem value="inactive" className='cursor-pointer text-danger'>Inactive</SelectItem>
-  </SelectContent>
-</Select>
+        <SelectTrigger className="flex w-[100px] items-center justify-between rounded-lg border border-gray-200 dark:text-white bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100">
+          <SelectValue placeholder="Filter By Status" className='dark:text-white' />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="active" className='cursor-pointer text-success'>Active</SelectItem>
+          <SelectItem value="inactive" className='cursor-pointer text-danger'>Inactive</SelectItem>
+        </SelectContent>
+      </Select>
 
             </div>
           </div>
