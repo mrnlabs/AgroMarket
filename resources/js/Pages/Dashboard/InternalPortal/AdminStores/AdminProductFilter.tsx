@@ -68,7 +68,7 @@ export default function AdminProductFilter({ canCreateStore, onSearch }: { canCr
                   <Input
                     value={searchValue}
                     onChange={handleSearch}
-                    type="text"
+                    type="search"
                     placeholder="Search store..."
                     className="w-full pl-10 pr-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   />
