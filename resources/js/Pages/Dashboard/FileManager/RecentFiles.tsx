@@ -2,8 +2,10 @@ import { format } from 'date-fns'
 import React from 'react'
 import DropdownAction from './DropdownAction'
 import { StoreDocuments, StoreDocumentsProps } from '@/types'
+import { usePage } from '@inertiajs/react';
 
 export default function RecentFiles({docs=[]}: StoreDocumentsProps) {
+	const filePath = usePage().props.filePath;
   return (
     <div className="2xl:col-span-4 sm:col-span-2">
 				<div className="card">
@@ -32,7 +34,7 @@ export default function RecentFiles({docs=[]}: StoreDocumentsProps) {
 													<a href="javascript: void(0);" className="font-medium">{doc.store?.name}</a>
 												</td>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
-													<p>{doc.document_name}</p>
+													<p onClick={() => window.open(filePath + doc.document_path, '_blank')} className='line-clamp-1 cursor-pointer underline'>{doc.document_name}</p>
 													
 												</td>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">{doc.document_type}</td>

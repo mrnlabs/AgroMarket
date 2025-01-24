@@ -80,7 +80,7 @@ export default function DropdownAction({doc}: StoreDocumentsProps) {
           Download
         </DropdownMenuItem>
         
-        <DropdownMenuItem className='cursor-pointer' onClick={handleVerify} className='cursor-pointer'>
+        <DropdownMenuItem onClick={handleVerify} className='cursor-pointer'>
           <ShieldCheck className="w-4 h-4 mr-3" />
           Verify
         </DropdownMenuItem>
