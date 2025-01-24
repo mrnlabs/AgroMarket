@@ -39,8 +39,15 @@ export type StoreDocuments = {
     document_type: string;
     document_path: string;
     document_name: string;
+    store?: Store;
     created_at: string;
     updated_at: string;
+}
+
+export type StoreDocumentsProps ={
+    store?: Store;
+    doc?: StoreDocuments;
+    docs?: StoreDocuments[];
 }
 
 export interface Store {
@@ -137,7 +144,6 @@ export type StoreImages = {
     created_at: string;
     updated_at: string;
 }
-
 
 export type Task = {
     id: number;

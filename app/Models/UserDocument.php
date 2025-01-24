@@ -16,6 +16,7 @@ class UserDocument extends Model
         'document_type',
         'document_path',
         'document_name',
+        'verified_at',
     ];
 
     function store() : BelongsTo {

@@ -43,4 +43,10 @@ class FICADocsController extends Controller
         $doc->delete(); 
         return back()->with('success', 'Document deleted successfully.');
     }
+
+    function verify($id) {
+        $doc = UserDocument::find($id);
+        $doc->update(['verified_at' => now()]);
+        return back()->with('success', 'Document verified successfully.');
+    }
 }
