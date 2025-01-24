@@ -7,7 +7,7 @@ import FileManagerHeader from './FileManagerHeader'
 import RecentFiles from './RecentFiles'
 
 export default function Index({docs}: any) {
-	console.log(docs);
+	const [documents, setDocuments] = React.useState(docs);
   return (
     <Authenticated>
 <div className="flex">
@@ -27,7 +27,7 @@ export default function Index({docs}: any) {
 
 			<FileManagerHeader />
 
-			<RecentFiles docs={docs} />
+			<RecentFiles docs={documents} />
 		</div>
 	</div>
 </div>
