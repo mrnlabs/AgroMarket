@@ -65,8 +65,12 @@ class FICADocsController extends Controller
 
     function verify($id) {
         $doc = UserDocument::find($id);
-        $doc->update(['verified_at' => now()]);
-        return back()->with('success', 'Document verified successfully.');
+        if(is_null($doc->verified_at)) {
+            $doc->update(['verified_at' => now()]);
+            return back()->with('success', 'Document verified successfully.');
+        }
+            $doc->update(['verified_at' => null]);
+        return back()->with('success', 'Document unverified successfully.');
     }
 
     function restore($id) {

@@ -4,7 +4,7 @@ import DropdownAction from './DropdownAction'
 import { StoreDocuments, StoreDocumentsProps } from '@/types'
 import { Link, usePage } from '@inertiajs/react';
 import { transcateText } from '@/utils/transcateText';
-import { BadgeAlert, BadgeCheck } from 'lucide-react';
+import { BadgeAlert, BadgeCheck, CircleCheck, CircleX } from 'lucide-react';
 
 export default function RecentFiles({docs=[], isTrashed}: 
 	{docs: StoreDocuments[], isTrashed: boolean}) {
@@ -44,14 +44,11 @@ export default function RecentFiles({docs=[], isTrashed}:
 												</td>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
 													{doc.verified_at ? (
-														<span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-red-100 text-red-800">
-															<BadgeCheck /></span>
+														<CircleCheck color='green' />
 													)
 													:
 													(
-														<span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-green-100 text-green-800">
-															<BadgeAlert />
-														</span>
+													  <CircleX color='red' />
 													)}
 
 

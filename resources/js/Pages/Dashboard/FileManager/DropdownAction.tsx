@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
-import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw } from 'lucide-react';
+import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw, CloudFog } from 'lucide-react';
 import {  StoreDocuments, StoreDocumentsProps } from '@/types';
 import { router, usePage } from '@inertiajs/react';
 import { toast } from '@/hooks/use-toast';
@@ -12,7 +12,7 @@ export default function DropdownAction({doc, isTrashed}: {
   isTrashed: boolean
 }) {
     const filePath = usePage().props.filePath;
-
+console.log('doc', doc);
     const handleCopy = () => {
         navigator.clipboard.writeText(filePath + (doc?.document_path ?? ''));
         toast({
@@ -106,7 +106,7 @@ export default function DropdownAction({doc, isTrashed}: {
         {!isTrashed && (
            <DropdownMenuItem onClick={handleVerify} className='cursor-pointer'>
            <ShieldCheck className="w-4 h-4 mr-3" />
-           Verify
+           {doc.verified_at == null ? 'Verify' : 'Revoke'}
          </DropdownMenuItem>
         )}
         {isTrashed && (
