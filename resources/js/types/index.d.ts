@@ -40,6 +40,7 @@ export type StoreDocuments = {
     document_type: string;
     document_path: string;
     document_name: string;
+    verified_at?: string;
     store?: Store;
     created_at: string;
     updated_at: string;

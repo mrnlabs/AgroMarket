@@ -62,6 +62,26 @@ export default function DropdownAction({doc, isTrashed}: {
             }
         });
     };
+    const restoreFile = () => {
+        router.post(route('dashboard.store.restore_document', doc?.id), undefined, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => {
+                toast({
+                    title: "Success",
+                    description: "Document restored successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong",
+                    variant: "destructive",
+                })
+            }
+        });
+    };
     
   return (
     <>
@@ -90,7 +110,7 @@ export default function DropdownAction({doc, isTrashed}: {
          </DropdownMenuItem>
         )}
         {isTrashed && (
-           <DropdownMenuItem onClick={handleVerify} className='cursor-pointer'>
+           <DropdownMenuItem onClick={restoreFile} className='cursor-pointer'>
            <RotateCcw className="w-4 h-4 mr-3" />
            Restore
          </DropdownMenuItem>

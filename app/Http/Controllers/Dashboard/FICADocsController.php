@@ -69,8 +69,8 @@ class FICADocsController extends Controller
         return back()->with('success', 'Document verified successfully.');
     }
 
-    function trashed() {
-        $deletedStores = DeletedModel::where('model', UserDocument::class)->get();
-        dd($deletedStores);
+    function restore($id) {
+        UserDocument::restore($id);
+        return back()->with('success', 'Document restored successfully.');
     }
 }

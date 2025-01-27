@@ -22,7 +22,7 @@ class DashboardProductController extends Controller
             $products = Product::where('store_id', $store->id)
                 ->with('store')
                 ->get();
-        } elseif (auth()->user()->hasRole('Admin')) {
+        } elseif (isInternalPortalUser()) {
             // For admins, get all products with their stores
             $products = Product::with('store')->get();
         } else {
@@ -106,7 +106,13 @@ class DashboardProductController extends Controller
     function show($slug) {
         $product = Product::with('store','categories','product_images','tags','crossSells','upSells')->where('slug', $slug)->first();
         $categories = Category::pluck('name', 'id')->toArray();
-        $products = Product::where('store_id', auth()->user()->store->id)->pluck('title','id')->toArray();//for upsells and crossells
+        //if the user is an admin, get all products limit to 50
+        if (isInternalPortalUser()) {
+            $products = Product::limit(50)->pluck('title','id')->toArray();
+        } else {
+            $products = Product::where('store_id', auth()->user()->store->id)->pluck('title','id')->toArray();//for upsells and crossells
+        }
+       
         $tags = Tag::where('user_id',auth()->id())->pluck('name')->toArray();
         return Inertia::render('Dashboard/Products/Create',[
             'product' => $product,

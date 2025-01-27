@@ -40,7 +40,7 @@ class AdminController extends Controller
     $stores = $query->with('users')->get();
 
     // Products for non-admin users
-    $products = auth()->user()->hasRole('Admin') || auth()->user()->hasRole('SuperAdmin') 
+    $products = isInternalPortalUser()
         ? collect() 
         : auth()->user()->store()->get()->pluck('products')->flatten();
 

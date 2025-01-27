@@ -2,8 +2,9 @@ import { format } from 'date-fns'
 import React from 'react'
 import DropdownAction from './DropdownAction'
 import { StoreDocuments, StoreDocumentsProps } from '@/types'
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { transcateText } from '@/utils/transcateText';
+import { BadgeAlert, BadgeCheck } from 'lucide-react';
 
 export default function RecentFiles({docs=[], isTrashed}: 
 	{docs: StoreDocuments[], isTrashed: boolean}) {
@@ -23,8 +24,8 @@ export default function RecentFiles({docs=[], isTrashed}:
 									<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
 										<thead className="bg-gray-50 dark:bg-gray-700">
 											<tr className="text-gray-800 dark:text-gray-300">
-												<th scope="col" className="p-3.5 text-sm text-start font-semibold min-w-[10rem]">Store Name</th>
 												<th scope="col" className="p-3.5 text-sm text-start font-semibold min-w-[10rem]">Doc Name</th>
+												<th scope="col" className="p-3.5 text-sm text-start font-semibold min-w-[10rem]">Status</th>
 												<th scope="col" className="p-3.5 text-sm text-start font-semibold min-w-[6rem]">Doc Type</th>
 												<th scope="col" className="p-3.5 text-sm text-start font-semibold min-w-[8rem]">Date </th>
 												<th scope="col" className="p-3.5 text-sm text-start font-semibold">Action</th>
@@ -34,11 +35,26 @@ export default function RecentFiles({docs=[], isTrashed}:
                                             {docs.map((doc: StoreDocuments) => (
                                                 <tr key={doc.id}>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
-													<a href="javascript: void(0);" className="font-medium">{isTrashed ? doc.storeName : doc.store?.name}</a>
+													<p onClick={() => window.open(filePath + doc.document_path, '_blank')} 
+													className="font-medium cursor-pointer">{transcateText(doc.document_name ?? '', 70,'...')}</p>
+													<span className="text-xs underline">
+														<Link href={route('dashboard.stores.edit', doc.store?.slug)} target="_blank">
+														{isTrashed ? doc.storeName : doc.store?.name}</Link>
+													</span>
 												</td>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
-													<p onClick={() => window.open(filePath + doc.document_path, '_blank')} className='line-clamp-1 cursor-pointer underline'>
-														{transcateText(doc.document_name ?? '', 70,'...')} </p>
+													{doc.verified_at ? (
+														<span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-red-100 text-red-800">
+															<BadgeCheck /></span>
+													)
+													:
+													(
+														<span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-green-100 text-green-800">
+															<BadgeAlert />
+														</span>
+													)}
+
+
 													
 												</td>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">{doc.document_type}</td>
@@ -52,6 +68,15 @@ export default function RecentFiles({docs=[], isTrashed}:
 												
 											</tr>
                                             ))}
+											{!docs.length && (
+												<tr>
+													<td colSpan={5} className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
+														<div className="flex items-center justify-center">
+															<p className="text-sm text-gray-700 dark:text-gray-400">No files found</p>
+														</div>
+													</td>
+												</tr>
+											)}
 
 										</tbody>
 									</table>
