@@ -15,8 +15,7 @@ export default function DropdownAction({doc, isTrashed}: {
 }) {
     const filePath = usePage().props.filePath;
 
-    const [modalOpen, setModalOpen] = useState(false);
-        const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(filePath + (doc?.document_path ?? ''));

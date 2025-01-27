@@ -2,22 +2,53 @@ import { UserCardProps } from '@/types'
 import { transcateText } from '@/utils/transcateText';
 import { Link, router, usePage } from '@inertiajs/react';
 import { format } from "date-fns";
-import { CalendarArrowUp, ShoppingCart } from 'lucide-react';
+import { CalendarArrowUp, ShieldBan, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import StarRatingDashboard from './StarRatingDashboard';
+import UserDropdownAction from './UserDropdownAction';
+import { toast } from '@/hooks/use-toast';
 
 export default function UserCard({ user }: UserCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const bioLength = user.bio?.length ?? 0;
   const shouldShowSeeMore = bioLength > 150;
   const filePath = usePage().props.filePath;
+  const auth = usePage().props.auth;
 
   const toggleBio = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const isMyProfile = () => {
+    return auth.user.slug === user.slug;
+  };
+
+  const onDelete = (user: any) => {
+    if(user?.store) {
+      if(!confirm('Are you sure you want to delete this user?')) return;
+    }
+    router.delete(route('users.destroy', user?.slug), {
+      preserveScroll: true,
+      preserveState: true,
+      onSuccess: () => {
+          toast({
+              title: "Success",
+              description: "User deleted successfully",
+              variant: "default",
+          })
+      },
+      onError: () => {
+          toast({
+              title: "Error",
+              description: "Something went wrong",
+              variant: "destructive",
+          })
+      }
+  });
+  }
+
   const displayBio = () => {
-    if (!user.bio) return '';
+    if (!user.bio) return '-';
     
     if (shouldShowSeeMore && !isExpanded) {
       return (
@@ -48,17 +79,14 @@ export default function UserCard({ user }: UserCardProps) {
     );
   };
 
-  const showUserProducts = (slug: string) => {
-    if(!slug) return;
-    router.get(route('dashboard.user.products', slug));
-  };
 
   return (
     <div className="card">
       <div className="card-header">
         <Link href={route('users.edit', user.slug)} prefetch className="flex justify-between items-center">
         <img 
-        src={user.photo_path ? filePath + user.photo_path : "https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg"} alt={user.first_name} className="h-12 w-12 rounded"/> <h5 className="card-title">{user.first_name} {user.last_name}</h5>
+        src={user.photo_path ? filePath + user.photo_path : "https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg"} alt={user.first_name} className="h-12 w-12 rounded"/> 
+        <h5 className="card-title">{user.first_name} {user.last_name} {isMyProfile() && '(You)'}</h5>
           <div className={`${user.is_active == 1 ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
             <span>{user.is_active == 1 ? 'Active' : 'Inactive'}</span>
           </div>
@@ -103,18 +131,24 @@ export default function UserCard({ user }: UserCardProps) {
 
         <div className="border-t p-5 border-gray-300 dark:border-gray-700">
           <div className="grid lg:grid-cols-2 gap-4">
+           
             <div className="flex items-center justify-between gap-2">
               <div className="text-sm flex">
-                <CalendarArrowUp className="me-2" size={16}  />
-                <span className="align-text-bottom">{format(user.created_at, 'dd MMM yyy')}</span>
+                <CalendarArrowUp className="me-2" size={16} />
+                <span className="align-text-bottom">
+                  {format(user.created_at, 'dd MMM yyy')}
+                </span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-            <StarRatingDashboard 
-              totalStars={5}
-              initialRating={3}
-              onRatingChange={(rating) => console.log(`Rated: ${rating}`)}
-            />
+
+            <div className="flex items-center gap-2 ml-auto">
+              {!isMyProfile() && (
+                <UserDropdownAction 
+                user={user}
+                onDelete={onDelete} 
+                />
+              )}
+              {isMyProfile() && (<ShieldBan size={16} color='red' />)}
             </div>
           </div>
         </div>
