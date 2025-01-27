@@ -1,18 +1,17 @@
-import React from 'react';
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
-import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw, CloudFog } from 'lucide-react';
-import {  StoreDocuments, StoreDocumentsProps } from '@/types';
+import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw } from 'lucide-react';
+import {  StoreDocuments } from '@/types';
 import { router, usePage } from '@inertiajs/react';
 import { toast } from '@/hooks/use-toast';
 import { Toaster } from '@/Components/ui/toaster';
-import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 
 export default function DropdownAction({doc, isTrashed}: {
   doc: StoreDocuments,
   isTrashed: boolean
 }) {
     const filePath = usePage().props.filePath;
-console.log('doc', doc);
+
     const handleCopy = () => {
         navigator.clipboard.writeText(filePath + (doc?.document_path ?? ''));
         toast({
@@ -41,27 +40,28 @@ console.log('doc', doc);
         document.body.removeChild(link);
     };
 
-    const handleVerify = () => {
-
-        router.post(route('dashboard.store.verify_document', doc?.id), undefined, {
-            preserveScroll: true,
-            preserveState: true,
-            onSuccess: () => {
-                toast({
-                    title: "Success",
-                    description: "Document verified successfully",
-                    variant: "default",
-                })
-            },
-            onError: () => {
-                toast({
-                    title: "Error",
-                    description: "Something went wrong",
-                    variant: "destructive",
-                })
-            }
-        });
-    };
+    // In your DropdownAction component
+const handleVerify = () => {
+  router.post(route('dashboard.store.verify_document', doc?.id), undefined, {
+      preserveScroll: true,
+      preserveState: true,
+      onSuccess: (page) => {
+        doc.verified_at == null ? doc.verified_at = new Date().toISOString() : doc.verified_at = undefined;
+          toast({
+              title: "Success",
+              description: doc.verified_at ? "Document verified successfully" : "Document unverified successfully",
+              variant: "default",
+          });
+      },
+      onError: () => {
+          toast({
+              title: "Error",
+              description: "Something went wrong",
+              variant: "destructive",
+          });
+      }
+  });
+};
     const restoreFile = () => {
         router.post(route('dashboard.store.restore_document', doc?.id), undefined, {
             preserveScroll: true,

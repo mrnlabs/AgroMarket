@@ -18,7 +18,8 @@ export default function Index({docs}: any) {
 	const [documents, setDocuments] = React.useState(docs);
 	const searchParams = new URLSearchParams(window.location.search);
 	const isTrashed = searchParams.get('trashed') === '1';
-console.log(docs);
+
+
 	const filterBy = (type: string) => {
 		switch (type) {
 			case 'images':
@@ -84,7 +85,7 @@ console.log(docs);
 
 			<FileManagerHeader />
 
-			<RecentFiles docs={documents} isTrashed={isTrashed} />
+			<RecentFiles docs={documents} isTrashed={isTrashed}/>
 		</div>
 	</div>
 </div>
