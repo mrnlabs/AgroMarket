@@ -32,7 +32,7 @@ export default function RecentFiles({docs=[], isTrashed}:
 										</thead>
 										<tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                                             {docs.map((doc: StoreDocuments) => (
-                                                <tr>
+                                                <tr key={doc.id}>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
 													<a href="javascript: void(0);" className="font-medium">{isTrashed ? doc.storeName : doc.store?.name}</a>
 												</td>

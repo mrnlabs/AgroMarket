@@ -20,9 +20,18 @@ class FICADocsController extends Controller
                 $doc['storeName'] = Store::find($doc['store_id'])->name;
                 return $doc;
             });
+        }else if(request('search')) {
+            $searchTerm = request('search');
+            $docs = UserDocument::whereHas('store', function($query) use ($searchTerm) {
+                $query->where('name', 'like', '%'.$searchTerm.'%');
+            })
+            ->orWhere('document_name', 'like', '%'.$searchTerm.'%')
+            ->with('store')
+            ->get();
         } else {
             $docs  = UserDocument::with('store')->latest()->get();//its admin get all
         }
+      
         return Inertia::render('Dashboard/FileManager/Index',
             [
                 'docs' => $docs
