@@ -14,7 +14,7 @@ export default function RecentFiles({docs=[], isTrashed}:
     <div className="2xl:col-span-4 sm:col-span-2">
 				<div className="card">
 					<div className="card-header">
-						<h4 className="text-lg font-semibold text-gray-800 dark:text-gray-300">{isTrashed ? 'Deleted Files' : 'Recent Files'}</h4>
+						<h4 className="text-lg font-semibold text-gray-800 dark:text-gray-300">{isTrashed ? 'Deleted Files' : 'Documents'}</h4>
 					</div>
 
 					<div className="flex flex-col">
