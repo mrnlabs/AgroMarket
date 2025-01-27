@@ -10,7 +10,7 @@ export default function Index({docs}: any) {
 	const [documents, setDocuments] = React.useState(docs);
 	const searchParams = new URLSearchParams(window.location.search);
 	const isTrashed = searchParams.get('trashed') === '1';
-console.log(docs)
+
 	const filterBy = (type: string) => {
 		switch (type) {
 			case 'images':
@@ -20,8 +20,6 @@ console.log(docs)
 				setDocuments(docs.filter((doc: any) => doc.type === 'video'));
 				break;
 			case 'documents':
-				const test = (docs.filter((doc: any) => doc.document_name.includes('.pdf') || doc.document_name.includes('pdf')));
-				console.log('test', test)
 				setDocuments(docs.filter((doc: any) => doc.document_name.includes('.pdf') || doc.document_name.includes('pdf')));
 				break;
 			default:
