@@ -1,8 +1,16 @@
+import { formatFileSize } from '@/utils/formatFileSize'
 import { router } from '@inertiajs/react'
 import { FileText, House, Image, Trash, Video } from 'lucide-react'
 import React from 'react'
 
-export default function FileManagerSidebar({setDocuments, isTrashed, filterBy}: {setDocuments: (docs: any) => void, isTrashed: boolean, filterBy: (type: string) => void}) {
+export default function FileManagerSidebar({setDocuments, isTrashed, filterBy, totalFileSize, maxStorage, percentageStorageEstimate}: {
+    setDocuments: (docs: any) => void, 
+    isTrashed: boolean, 
+    filterBy: (type: string) => void,
+    totalFileSize: number,
+    maxStorage: number,
+    percentageStorageEstimate: number
+}) {  
 
     const getDocuments = (trashed: boolean) => {
         router.get(route('fica.docs.file-manager', {trashed: trashed}),undefined, {
@@ -48,16 +56,23 @@ export default function FileManagerSidebar({setDocuments, isTrashed, filterBy}: 
 </div>
 
 <div className="mt-6">
-				<span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400 open:opacity-0">Free</span>
-				<h6 className="text-uppercase mt-3">Storage</h6>
-				<div className="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700 mt-4">
-                    {/* @ts-ignore */}
-					<div className="flex flex-col justify-center overflow-hidden bg-primary" role='progressbar' 
-                    style={{ width: "46%" }} 
-                    aria-valuenow="46" aria-valuemin="0" aria-valuemax="100"></div>
-				</div>
-				<p className="text-gray-500 mt-4 text-xs">7.02 GB (46%) of 15 GB used</p>
-			</div>
+    <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400 open:opacity-0">
+        Free
+    </span>
+    <h6 className="text-uppercase mt-3">Storage</h6>
+    <div className="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700 mt-4">
+        <div 
+            className="flex flex-col justify-center overflow-hidden bg-primary" 
+            role='progressbar'
+            style={{ width: `${percentageStorageEstimate}%` }}
+            aria-valuenow={percentageStorageEstimate} 
+            aria-valuemin={0} 
+            aria-valuemax={100}></div>
+    </div>
+    <p className="text-gray-500 mt-4 text-xs">
+        {formatFileSize(totalFileSize)} ({percentageStorageEstimate}%) of 10 GB used
+    </p>
+</div>
 </>
   )
 }

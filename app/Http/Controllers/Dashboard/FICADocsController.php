@@ -32,10 +32,17 @@ class FICADocsController extends Controller
         } else {
             $docs  = UserDocument::with('store')->latest()->get();//its admin get all
         }
-       
+
+        $totalFileSize = $docs->sum('document_size');
+        $maxStorage = 10 * 1024 * 1024 * 1024; // 10GB in bytes
+        $percentage = round(($totalFileSize / $maxStorage) * 100);
+
         return Inertia::render('Dashboard/FileManager/Index',
             [
-                'docs' => $docs
+                'docs' => $docs,
+                'totalFileSize' => $totalFileSize,
+                'maxStorage' => $maxStorage,
+                'percentageStorageEstimate' => $percentage
             ]);
     }
     function index() {
@@ -53,6 +60,7 @@ class FICADocsController extends Controller
             'store_id' => auth()->user()->store->id,
             'document_type' => $docType,
             'document_name' => $file->getClientOriginalName(),
+            'document_size' => $file->getSize(),
             'document_path' => $path,
         ]);
         return back()->with('success', 'Document uploaded successfully.');

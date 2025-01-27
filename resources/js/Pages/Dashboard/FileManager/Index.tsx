@@ -14,7 +14,7 @@ interface Filters {
 	search: string
 }
 
-export default function Index({docs}: any) {
+export default function Index({docs, totalFileSize, maxStorage, percentageStorageEstimate}: any) {
 	const [documents, setDocuments] = React.useState(docs);
 	const searchParams = new URLSearchParams(window.location.search);
 	const isTrashed = searchParams.get('trashed') === '1';
@@ -73,7 +73,10 @@ export default function Index({docs}: any) {
 <div className="flex">
 	<div id="default-offcanvas" className="lg:block hidden top-0 left-0 transform h-full min-w-[16rem] me-6 card rounded-none lg:rounded-md fc-offcanvas-open:translate-x-0 lg:z-0 z-50 fixed lg:static lg:translate-x-0 -translate-x-full transition-all duration-300" tabIndex={-1}>
 		<div className="p-5">
-			<FileManagerSidebar setDocuments={setDocuments} isTrashed={isTrashed} filterBy={filterBy} />
+			<FileManagerSidebar setDocuments={setDocuments} isTrashed={isTrashed} filterBy={filterBy} 
+			totalFileSize={totalFileSize} 
+			maxStorage={maxStorage} 
+			percentageStorageEstimate={percentageStorageEstimate}/>
 		</div>
 	</div>
 

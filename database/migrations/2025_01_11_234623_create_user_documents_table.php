@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('document_type');
             $table->string('document_name');
+            $table->integer('document_size');
             $table->string('document_path');
             $table->dateTime('verified_at')->nullable();
             $table->timestamps();
