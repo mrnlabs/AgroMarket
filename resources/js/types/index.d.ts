@@ -35,6 +35,7 @@ export interface Permission {
 
 export type StoreDocuments = {
     id?: number;
+    storeName?: string;
     store_id?: number;
     document_type: string;
     document_path: string;

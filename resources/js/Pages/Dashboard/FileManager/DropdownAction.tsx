@@ -1,13 +1,16 @@
 import React from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
-import { MoreVertical,  Link, Share2, Download, ShieldCheck } from 'lucide-react';
-import {  StoreDocumentsProps } from '@/types';
+import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw } from 'lucide-react';
+import {  StoreDocuments, StoreDocumentsProps } from '@/types';
 import { router, usePage } from '@inertiajs/react';
 import { toast } from '@/hooks/use-toast';
 import { Toaster } from '@/Components/ui/toaster';
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 
-export default function DropdownAction({doc}: StoreDocumentsProps) {
+export default function DropdownAction({doc, isTrashed}: {
+  doc: StoreDocuments,
+  isTrashed: boolean
+}) {
     const filePath = usePage().props.filePath;
 
     const handleCopy = () => {
@@ -80,10 +83,19 @@ export default function DropdownAction({doc}: StoreDocumentsProps) {
           Download
         </DropdownMenuItem>
         
-        <DropdownMenuItem onClick={handleVerify} className='cursor-pointer'>
-          <ShieldCheck className="w-4 h-4 mr-3" />
-          Verify
-        </DropdownMenuItem>
+        {!isTrashed && (
+           <DropdownMenuItem onClick={handleVerify} className='cursor-pointer'>
+           <ShieldCheck className="w-4 h-4 mr-3" />
+           Verify
+         </DropdownMenuItem>
+        )}
+        {isTrashed && (
+           <DropdownMenuItem onClick={handleVerify} className='cursor-pointer'>
+           <RotateCcw className="w-4 h-4 mr-3" />
+           Restore
+         </DropdownMenuItem>
+        )}
+       
       </DropdownMenuContent>
     </DropdownMenu>
     <Toaster />

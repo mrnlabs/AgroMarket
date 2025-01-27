@@ -1,6 +1,16 @@
+import { router } from '@inertiajs/react'
+import { FileText, House, Image, Trash, Video } from 'lucide-react'
 import React from 'react'
 
-export default function FileManagerSidebar() {
+export default function FileManagerSidebar({setDocuments, isTrashed, filterBy}: {setDocuments: (docs: any) => void, isTrashed: boolean, filterBy: (type: string) => void}) {
+
+    const getDocuments = (trashed: boolean) => {
+        router.get(route('fica.docs.file-manager', {trashed: trashed}),undefined, {
+            onSuccess: () => {
+                setDocuments([]);
+            }
+        })
+    }
   return (
     <>
     <div className="relative">
@@ -10,38 +20,31 @@ export default function FileManagerSidebar() {
 
 	</div>
     <div className="space-y-2 mt-4">
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="home" className="me-3.5 w-4"></i>
+    <div onClick={() => getDocuments(false)} className={`${!isTrashed ? 'bg-slate-100 dark:bg-gray-700' : ''} cursor-pointer flex items-center py-2 px-4 text-sm rounded text-gray-500 dark:hover:bg-gray-700  hover:text-slate-700 dark:text-gray-400 dark:hover:text-gray-300`} id="headingOne">
+        <House className="me-3.5 w-4" /> 
         <span>Home</span>
-    </a>
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="file-text" className="me-3.5 w-4"></i>
+    </div>
+    <div onClick={() => filterBy('documents')} className="cursor-pointer flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+    <FileText className="me-3.5 w-4" />
         <span>Documents</span>
-    </a>
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="download" className="me-3.5 w-4"></i>
-        <span>Downloads</span>
-    </a>
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="music" className="me-3.5 w-4"></i>
-        <span>Music</span>
-    </a>
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="image" className="me-3.5 w-4"></i>
+    </div>
+    
+    <div onClick={() => filterBy('images')} className="cursor-pointer flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+        <Image className="me-3.5 w-4" />
         <span>Pictures</span>
-    </a>
+    </div>
     <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="video" className="me-3.5 w-4"></i>
+        <Video className="me-3.5 w-4" />
         <span>Video</span>
     </a>
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
+    {/* <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
         <i data-feather="clock" className="me-3.5 w-4"></i>
         <span>Recent</span>
-    </a>
-    <a href="#!;" className="flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id="headingOne">
-        <i data-feather="trash" className="me-3.5 w-4"></i>
+    </a> */}
+    <div onClick={() => getDocuments(true)} className={`${isTrashed ? 'bg-slate-100 dark:bg-gray-700' : ''}  cursor-pointer flex items-center py-2 px-4 text-sm rounded text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300`} id="headingOne">
+    <Trash className="me-3.5 w-4" />
         <span>Bin</span>
-    </a>
+    </div>
 </div>
 
 <div className="mt-6">

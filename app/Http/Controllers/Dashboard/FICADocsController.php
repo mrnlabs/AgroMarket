@@ -3,16 +3,26 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Store;
 use App\Models\UserDocument;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\DeletedModels\Models\DeletedModel;
 
 class FICADocsController extends Controller
 {
 
     function fileManager() {
         // $docs  = UserDocument::where('store_id', auth()->user()->store->id)->get();
-        $docs  = UserDocument::with('store')->latest()->get();//its admin get all
+        if(request('trashed')) {
+            $docs = collect(DeletedModel::where('model', UserDocument::class)->get(['values']))->map(function($doc) {
+                $doc = $doc->values;
+                $doc['storeName'] = Store::find($doc['store_id'])->name;
+                return $doc;
+            });
+        } else {
+            $docs  = UserDocument::with('store')->latest()->get();//its admin get all
+        }
         return Inertia::render('Dashboard/FileManager/Index',
             [
                 'docs' => $docs
@@ -48,5 +58,10 @@ class FICADocsController extends Controller
         $doc = UserDocument::find($id);
         $doc->update(['verified_at' => now()]);
         return back()->with('success', 'Document verified successfully.');
+    }
+
+    function trashed() {
+        $deletedStores = DeletedModel::where('model', UserDocument::class)->get();
+        dd($deletedStores);
     }
 }
