@@ -39,7 +39,7 @@ export default function RecentFiles({docs=[], isTrashed}:
 													className="font-medium cursor-pointer">{transcateText(doc.document_name ?? '', 70,'...')}</p>
 													<span className="text-xs underline">
 														<Link href={route('dashboard.stores.edit', doc.store?.slug)} target="_blank">
-														{isTrashed ? doc.storeName : doc.store?.name}</Link>
+														{doc.store?.name}</Link>
 													</span>
 												</td>
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">

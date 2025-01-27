@@ -17,7 +17,8 @@ class FICADocsController extends Controller
         if(request('trashed')) {
             $docs = collect(DeletedModel::where('model', UserDocument::class)->get(['values']))->map(function($doc) {
                 $doc = $doc->values;
-                $doc['storeName'] = Store::find($doc['store_id'])->name;
+                $doc['store'] = Store::find($doc['store_id']);
+                $doc['is_trashed'] = true;
                 return $doc;
             });
         }else if(request('search')) {
@@ -31,7 +32,7 @@ class FICADocsController extends Controller
         } else {
             $docs  = UserDocument::with('store')->latest()->get();//its admin get all
         }
-      
+       
         return Inertia::render('Dashboard/FileManager/Index',
             [
                 'docs' => $docs

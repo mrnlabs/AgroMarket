@@ -1,16 +1,22 @@
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
-import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
+import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw, Trash2 } from 'lucide-react';
 import {  StoreDocuments } from '@/types';
 import { router, usePage } from '@inertiajs/react';
 import { toast } from '@/hooks/use-toast';
 import { Toaster } from '@/Components/ui/toaster';
+import { lazy, Suspense, useState } from 'react';
+
+const ConfirmDialog = lazy(() => import("@/Components/ConfirmDialog"));
 
 export default function DropdownAction({doc, isTrashed}: {
   doc: StoreDocuments,
   isTrashed: boolean
 }) {
     const filePath = usePage().props.filePath;
+
+    const [modalOpen, setModalOpen] = useState(false);
+        const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(filePath + (doc?.document_path ?? ''));
@@ -82,6 +88,28 @@ const handleVerify = () => {
             }
         });
     };
+
+    const deleteDoc = () => {
+        router.post(route('fica.docs.destroy', doc?.id), undefined, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => {
+                toast({
+                    title: "Success",
+                    description: "Document deleted successfully",
+                    variant: "default",
+                })
+            },
+            onError: () => {
+                toast({
+                    title: "Error",
+                    description: "Something went wrong",
+                    variant: "destructive",
+                })
+            }
+        });
+    };
+   
     
   return (
     <>
@@ -115,10 +143,28 @@ const handleVerify = () => {
            Restore
          </DropdownMenuItem>
         )}
-       
+      {!isTrashed && (
+        <>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem className='cursor-pointer' onClick={() => setDialogOpen(true)}>
+          <Trash2 className="w-4 h-4 mr-3" color='red'/>
+            <span className='text-[#FF0000]'>Delete</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        </>
+       )}
       </DropdownMenuContent>
     </DropdownMenu>
     <Toaster />
+         <Suspense fallback={""}>
+              <ConfirmDialog 
+                message="Are you sure you want to delete this document?"
+                dialogOpen={dialogOpen} 
+                setDialogOpen={setDialogOpen}
+                onContinue={deleteDoc}
+             />
+        </Suspense>
     </>
   );
 };

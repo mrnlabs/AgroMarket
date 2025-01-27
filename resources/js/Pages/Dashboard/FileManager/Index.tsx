@@ -57,13 +57,11 @@ export default function Index({docs}: any) {
 			preserveState: true,
 			replace: true,
 			onSuccess: (page) => {
-				// Update documents state with the new search results
 				setDocuments(page.props.docs);
 				setFilters(updatedFilters);
 			  },
 		  });
 	 
-		  // Update local state with merged filters
 		  setFilters(updatedFilters);
 		}, 300),
 		[filters]
@@ -83,7 +81,7 @@ export default function Index({docs}: any) {
 		<div className="grid 2xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6">
 			<FileManagerSearch  onSearch={(search) => onSearch({ search })} />
 
-			<FileManagerHeader />
+			<FileManagerHeader docs={documents} />
 
 			<RecentFiles docs={documents} isTrashed={isTrashed}/>
 		</div>
