@@ -23,6 +23,7 @@ class ProductController extends Controller
     {
         // pull  all products from the database with pagination
         $products = Product::paginate(6);
+        // dd($products);
         return Inertia::render('FrontPages/Products/Products', ['products' => $products]);
     }
 
