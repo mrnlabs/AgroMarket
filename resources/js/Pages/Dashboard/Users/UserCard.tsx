@@ -105,14 +105,27 @@ export default function UserCard({ user }: UserCardProps) {
   return (
     <div className="card">
       <div className="card-header">
-        <Link href={route('users.edit', user.slug)} prefetch className="flex justify-between items-center">
-        <img 
-        src={user.photo_path ? filePath + user.photo_path : "https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg"} alt={user.first_name} className="h-12 w-12 rounded"/> 
-        <h5 className="card-title">{user.first_name} {user.last_name} {isMyProfile() && '(You)'}</h5>
-          <div className={`${user.is_active ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
-            <span>{user.is_active ? 'Active' : 'Inactive'}</span>
-          </div>
-        </Link>
+      <Link href={route('users.edit', user.slug)} prefetch className="flex items-center gap-4">
+
+      <img
+        src={user.photo_path ? filePath + user.photo_path : "https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg"}
+        alt={user.first_name}
+        className="h-12 w-12 rounded"
+      />
+
+      <div className="flex flex-col">
+        <h5 className="card-title">
+          {user.first_name} {user.last_name} {isMyProfile() && '(You)'}
+        </h5>
+        <span className="text-sm block">{user.email}</span>
+      </div>
+
+      <div
+        className={`${user.is_active ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium ml-auto`}
+        role="alert">
+        <span>{user.is_active ? 'Active' : 'Inactive'}</span>
+      </div>
+    </Link>
       </div>
       <div className="flex flex-col">
         <div className="py-3 px-6">
