@@ -1,4 +1,4 @@
-import { UserCardProps } from '@/types'
+import { User, UserCardProps } from '@/types'
 import { transcateText } from '@/utils/transcateText';
 import { Link, router, usePage } from '@inertiajs/react';
 import { format } from "date-fns";
@@ -25,7 +25,7 @@ export default function UserCard({ user }: UserCardProps) {
 
   const onDelete = (user: any) => {
     if(user?.store) {
-      if(!confirm('Are you sure you want to delete this user?')) return;
+      if(!confirm('User is associated with a store. Are you sure you want to delete this user?')) return;
     }
     router.delete(route('users.destroy', user?.slug), {
       preserveScroll: true,
@@ -46,6 +46,28 @@ export default function UserCard({ user }: UserCardProps) {
       }
   });
   }
+
+  const handleBlock = (user: User) => {
+    router.post(route('users.set_active_status', user?.slug), undefined, {
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: (page) => {
+          user.is_active ? user.is_active = false : user.is_active = true;
+            toast({
+                title: "Success",
+                description: user.verified_at ? "User activated successfully" : "User deactivated successfully",
+                variant: "default",
+            });
+        },
+        onError: () => {
+            toast({
+                title: "Error",
+                description: "Something went wrong",
+                variant: "destructive",
+            });
+        }
+    });
+  };
 
   const displayBio = () => {
     if (!user.bio) return '-';
@@ -87,8 +109,8 @@ export default function UserCard({ user }: UserCardProps) {
         <img 
         src={user.photo_path ? filePath + user.photo_path : "https://coderthemes.com/konrix/layouts/assets/images/users/avatar-2.jpg"} alt={user.first_name} className="h-12 w-12 rounded"/> 
         <h5 className="card-title">{user.first_name} {user.last_name} {isMyProfile() && '(You)'}</h5>
-          <div className={`${user.is_active == 1 ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
-            <span>{user.is_active == 1 ? 'Active' : 'Inactive'}</span>
+          <div className={`${user.is_active ? 'bg-success' : 'bg-danger'} text-xs text-white rounded-md py-1 px-1.5 font-medium`} role="alert">
+            <span>{user.is_active ? 'Active' : 'Inactive'}</span>
           </div>
         </Link>
       </div>
@@ -146,6 +168,7 @@ export default function UserCard({ user }: UserCardProps) {
                 <UserDropdownAction 
                 user={user}
                 onDelete={onDelete} 
+                handleBlock={handleBlock}
                 />
               )}
               {isMyProfile() && (<ShieldBan size={16} color='red' />)}

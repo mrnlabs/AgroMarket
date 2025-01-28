@@ -9,9 +9,10 @@ import { lazy, Suspense, useState } from 'react';
 
 const ConfirmDialog = lazy(() => import("@/Components/ConfirmDialog"));
 
-export default function UserDropdownAction({user, onDelete}: {
+export default function UserDropdownAction({user, onDelete, handleBlock}: {
   user: any,
-  onDelete: (user: User) => void
+  onDelete: (user: User) => void,
+  handleBlock: (user: User) => void
 }) {
     const filePath = usePage().props.filePath;
 
@@ -20,27 +21,7 @@ export default function UserDropdownAction({user, onDelete}: {
 
 
     // In your DropdownAction component
-const handleVerify = () => {
-  router.post(route('dashboard.store.verify_document', user?.id), undefined, {
-      preserveScroll: true,
-      preserveState: true,
-      onSuccess: (page) => {
-        user.verified_at == null ? user.verified_at = new Date().toISOString() : user.verified_at = undefined;
-          toast({
-              title: "Success",
-              description: user.verified_at ? "Document verified successfully" : "Document unverified successfully",
-              variant: "default",
-          });
-      },
-      onError: () => {
-          toast({
-              title: "Error",
-              description: "Something went wrong",
-              variant: "destructive",
-          });
-      }
-  });
-};
+
  
 
     const deleteUser = () => {
@@ -56,7 +37,7 @@ const handleVerify = () => {
         <MoreVertical className="w-4 h-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40">
-        <DropdownMenuItem className='cursor-pointer' >
+        <DropdownMenuItem className='cursor-pointer' onClick={() => handleBlock(user)}>
           <ShieldX className="w-4 h-4 mr-3" />
           {user.is_active ? 'Block' : 'Unblock'}
         </DropdownMenuItem>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('photo_path', 2048)->nullable();
             $table->string('cover_photo', 2048)->nullable();
             $table->string('location')->nullable();
-            $table->string('is_active')->default(1);
+            $table->boolean('is_active')->default(1);
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

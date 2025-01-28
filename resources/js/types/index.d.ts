@@ -8,7 +8,7 @@ export interface User {
     photo_path?: string;
     cover_photo?: string;
     location?: string;
-    is_active: number;
+    is_active: boolean;
     address?: string;
     city?: string;
     state?: string;
@@ -25,6 +25,7 @@ export interface User {
       permissions?: Permission[];
     store?: Store
     slug?: string;
+    verified_at?: string;
     created_at: string;
 }
 
