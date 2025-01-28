@@ -358,9 +358,11 @@ const Products = ( { products = [] }: ProductCardProps) => {
                             {/* Product Grid */}
                             {/* Product Cards Section */}
                             <div className="list-grid-wrapper">
-                            {products.map((product, index) => (
+                            {products.data.map((product, index) => (
                                 <ProductCard key={index} product={product} />
                             ))}
+
+
 
                                 {/* Add more product cards */}
                             </div>
