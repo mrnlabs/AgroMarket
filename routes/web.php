@@ -44,4 +44,5 @@ Route::middleware('auth')->group(function () {
     require __DIR__.'/dashboard_product.php';
     require __DIR__.'/fica.php';
     require __DIR__.'/admin.php';
+    require __DIR__.'/notify.php';
 });

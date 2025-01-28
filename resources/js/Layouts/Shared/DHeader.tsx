@@ -3,6 +3,7 @@ import { Fullscreen, Menu, Minimize, Moon } from 'lucide-react'
 import React from 'react'
 import DFullScreen from './DFullScreen'
 import DHeaderProfile from './DHeaderProfile'
+import NotificationBell from './NotificationBell'
 
 export default function DHeader() {
   return (
@@ -42,7 +43,7 @@ export default function DHeader() {
     <DFullScreen />
 
     {/* <!-- Notification Bell Button --> */}
-    
+    <NotificationBell />
 
     {/* <!-- Light/Dark Toggle Button --> */}
     <div className="flex">

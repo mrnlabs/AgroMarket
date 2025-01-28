@@ -6,11 +6,12 @@ use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 use Spatie\DeletedModels\Models\Concerns\KeepsDeletedModels;
 
 class Store extends Model
 {
-    use HasSlug, KeepsDeletedModels;
+    use HasSlug, KeepsDeletedModels, Notifiable;
 
     protected $fillable = ['name', 'user_id','image', 'description', 'address', 'status','location','slug'];
 
