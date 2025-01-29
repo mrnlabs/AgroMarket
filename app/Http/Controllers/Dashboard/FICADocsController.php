@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Store;
 use App\Models\UserDocument;
+use App\Notifications\DocumentUnverified;
+use App\Notifications\DocumentVerified;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\DeletedModels\Models\DeletedModel;
@@ -74,11 +76,23 @@ class FICADocsController extends Controller
 
     function verify($id) {
         $doc = UserDocument::find($id);
+        
         if(is_null($doc->verified_at)) {
+            // Verify document
             $doc->update(['verified_at' => now()]);
+            
+            // Send verification notification to the document owner
+            $doc->store->notify(new DocumentVerified($doc));
+            
             return back()->with('success', 'Document verified successfully.');
         }
-            $doc->update(['verified_at' => null]);
+        
+        // Unverify document
+        $doc->update(['verified_at' => null]);
+        
+        // Send unverification notification
+        $doc->store->notify(new DocumentUnverified($doc));
+        
         return back()->with('success', 'Document unverified successfully.');
     }
 

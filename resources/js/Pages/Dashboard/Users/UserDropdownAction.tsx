@@ -1,9 +1,8 @@
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
-import { MoreVertical,  Link, Share2, Download, ShieldCheck, RotateCcw, Trash2, ShieldX } from 'lucide-react';
-import {  StoreDocuments, User } from '@/types';
-import { router, usePage } from '@inertiajs/react';
-import { toast } from '@/hooks/use-toast';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu';
+import { MoreVertical, Share2, Trash2, ShieldX } from 'lucide-react';
+import {  User } from '@/types';
+import { usePage } from '@inertiajs/react';
 import { Toaster } from '@/Components/ui/toaster';
 import { lazy, Suspense, useState } from 'react';
 
@@ -15,18 +14,10 @@ export default function UserDropdownAction({user, onDelete, handleBlock}: {
   handleBlock: (user: User) => void
 }) {
     const filePath = usePage().props.filePath;
-
-   
-        const [dialogOpen, setDialogOpen] = useState(false);
-
-
-    // In your DropdownAction component
-
- 
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const deleteUser = () => {
-      onDelete(user);
-      
+      onDelete(user);      
     };
    
     
@@ -44,12 +35,7 @@ export default function UserDropdownAction({user, onDelete, handleBlock}: {
         <DropdownMenuItem className='cursor-pointer' >
           <Share2 className="w-4 h-4 mr-3" />
           Share
-        </DropdownMenuItem>
-        <DropdownMenuItem className='cursor-pointer'>
-          <Download className="w-4 h-4 mr-3" />
-          Download
-        </DropdownMenuItem>
-        
+        </DropdownMenuItem>      
      
         <>
         <DropdownMenuSeparator />
