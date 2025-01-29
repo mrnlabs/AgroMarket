@@ -137,6 +137,9 @@ class StoreController extends Controller
  
     public function edit(string $slug)
     {
+        $notification = auth()->user()->store->notifications->findOrFail(request("ref"));//ref is the notification id
+        $notification->markAsRead();
+
         $store = Store::with('store_images','store_documents')->where('slug', $slug)->first();
         return Inertia::render('Dashboard/Stores/Create',[
             'store' => $store,

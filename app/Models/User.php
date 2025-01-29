@@ -51,5 +51,10 @@ class User extends Authenticatable
     function store() {
        return $this->belongsTo(Store::class);
     }
+
+    public static function getAdmins()
+    {
+        return self::where('role', 'Admin')->get();
+    }
     
 }

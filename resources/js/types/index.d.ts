@@ -29,6 +29,23 @@ export interface User {
     created_at: string;
 }
 
+export type NotificationsProps = {
+    notifications: Notification[];
+}
+
+export type Notification = {
+    id?: number;
+    title: string;
+    message: string;
+    read_at: boolean;
+    data: {
+        title: string;
+        message: string;
+        model_slug: string;
+        model_route: string;
+    };
+    created_at: string;
+}
 export interface Permission {
     name: string;
     description?: string;

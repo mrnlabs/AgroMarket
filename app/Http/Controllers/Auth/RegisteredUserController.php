@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Store;
 use App\Models\User;
+use App\Notifications\NewUserRegistered;
 use Illuminate\Auth\Events\Registered;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
@@ -54,6 +55,12 @@ class RegisteredUserController extends Controller
         $user->syncPermissions($permissions);
 
         event(new Registered($user));
+
+        // $admins = User::getAdmins();
+        // foreach($admins as $admin) {
+        //     $admin->notify(new NewUserRegistered($user));
+        // }
+    
 
         // Auth::login($user);
 

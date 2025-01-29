@@ -82,7 +82,7 @@ class FICADocsController extends Controller
             $doc->update(['verified_at' => now()]);
             
             // Send verification notification to the document owner
-            $doc->store->notify(new DocumentVerified($doc));
+            $doc->store->notify(new DocumentVerified($doc, $doc->store,'dashboard.stores.edit'));
             
             return back()->with('success', 'Document verified successfully.');
         }
@@ -91,7 +91,7 @@ class FICADocsController extends Controller
         $doc->update(['verified_at' => null]);
         
         // Send unverification notification
-        $doc->store->notify(new DocumentUnverified($doc));
+        $doc->store->notify(new DocumentUnverified($doc, $doc->store,'dashboard.stores.edit'));
         
         return back()->with('success', 'Document unverified successfully.');
     }
