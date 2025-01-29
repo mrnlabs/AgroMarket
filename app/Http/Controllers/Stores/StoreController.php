@@ -17,7 +17,16 @@ class StoreController extends Controller
 {
   
     public function index(){
-      return Inertia::render('FrontPages/AllStores/Stores');
+          // pull all stores  here  and  paginate  with  10
+          $query = Store::query();
+          $stores = $query->paginate(10)->onEachSide(1);
+
+         
+          return Inertia("FrontPages/AllStores/Stores", [
+              "stores" => $stores
+          ]);
+  
+      
     }
 
  
@@ -110,7 +119,13 @@ class StoreController extends Controller
    
     public function show(string $id)
     {
-        //
+        // pull all stores  here  and  paginate  with  10
+        $query = Store::query();
+        $stores = $query->paginate(10)->onEachSide(1);
+        return Inertia("FrontPages/AllStores/Stores", [
+            "stores" => $stores
+        ]);
+
     }
     
     public function updateStoreImage(Request $request, string $type)
