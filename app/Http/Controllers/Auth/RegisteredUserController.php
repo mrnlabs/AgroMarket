@@ -54,15 +54,13 @@ class RegisteredUserController extends Controller
         $permissions = Permission::all();
         $user->syncPermissions($permissions);
 
+        $admins = User::getAdmins();
+        
+        foreach($admins as $admin) {
+            $admin->notify(new NewUserRegistered($user));
+        }
+
         event(new Registered($user));
-
-        // $admins = User::getAdmins();
-        // foreach($admins as $admin) {
-        //     $admin->notify(new NewUserRegistered($user));
-        // }
-    
-
-        // Auth::login($user);
 
         // return Inertia::location(route('login'));
         return redirect(route('login', absolute: false))->with('success', 'Account created successfully. Please check your email for verification.');

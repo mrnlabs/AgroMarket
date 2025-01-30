@@ -50,6 +50,10 @@ export default function AdminSideBar() {
                 href="admin.stores" 
                 icon={Store} 
                 label="Stores" 
+                activeRoutes={[
+                    'dashboard.stores.create',
+                    'dashboard/store'
+                  ]}
             />
             <MenuItem 
                 href="users.index" 
@@ -60,6 +64,9 @@ export default function AdminSideBar() {
                 href="dashboard.products.index" 
                 icon={BaggageClaim} 
                 label="Products" 
+                activeRoutes={[
+                    'dashboard/products'
+                  ]}
             />
             
             <MenuItem 

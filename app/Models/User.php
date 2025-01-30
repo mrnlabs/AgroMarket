@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Traits\HasSlug;
-use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,7 +53,7 @@ class User extends Authenticatable
 
     public static function getAdmins()
     {
-        return self::where('role', 'Admin')->get();
+        return self::role('Admin')->get();
     }
     
 }

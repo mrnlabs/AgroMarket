@@ -9,6 +9,7 @@ interface MenuItemProps {
   isRoute?: boolean;
   className?: string;
   active?: string;
+  activeRoutes?: string[];
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ 
@@ -17,7 +18,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
   label, 
   isRoute = true,
   className = '',
-  active
+  active,
+  activeRoutes = []
 }) => {
     const { url } = usePage();
 
@@ -28,8 +30,19 @@ const MenuItem: React.FC<MenuItemProps> = ({
       ? route((href as any).name, (href as any).params || {}) // For named routes with parameters
       : href?.toString() || '';
 
-    const isActive = active 
-      ? url.startsWith(active)
+      const isActive = activeRoutes.length > 0
+      ? activeRoutes.some(routeName => {
+          try {
+            // Get the base route without parameters
+            const routePath = route(routeName).split('?')[0];
+            return url.startsWith(routePath);
+          } catch (error) {
+            // If route() throws an error (missing parameters), 
+            // just check if the URL includes the route name pattern
+            const routePattern = routeName.replace(/\./g, '/');
+            return url.includes(routePattern);
+          }
+        })
       : url === processedHref;
 
     const linkProps = {

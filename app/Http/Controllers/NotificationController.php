@@ -9,10 +9,11 @@ class NotificationController extends Controller
 {
     public function index()
     {
-        // dd(auth()->user()->store->notifications);
-        if (!auth()->user()->store) {
-            // Handle case where user doesn't have a store
-            return back();
+        if (isInternalPortalUser()) {
+            return response()->json([
+                'notifications' => auth()->user()->unreadNotifications,
+                'unreadCount' => auth()->user()->unreadNotifications->count(),
+            ]);
         }
         
         return response()->json([
@@ -23,6 +24,14 @@ class NotificationController extends Controller
     }
 
     function viewAllNotifications() {
+        if (isInternalPortalUser()) {
+            $notifications = auth()->user()->notifications;
+            $unreadCount = auth()->user()->unreadNotifications->count();
+            return Inertia::render('Dashboard/Notifications/Index', [
+                'notifications' => $notifications,
+                'unreadCount' => $unreadCount,
+            ]);
+        }
         $notifications =auth()->user()->store->notifications;
         $unreadCount = auth()->user()->store->unreadNotifications->count();
         return Inertia::render('Dashboard/Notifications/Index', [
