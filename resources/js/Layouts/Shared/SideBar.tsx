@@ -54,12 +54,16 @@ export default function SideBar() {
                 icon={Store} 
                 label="Store Management" 
                 isRoute={true} 
+                activeRoutes={[
+                    'dashboard/store'
+                  ]}
             />
             <MenuItem 
                 href="store.user-management.index" 
                 icon={Users} 
                 label="User Management" 
                 isRoute={true} 
+                
             />
             
             <MenuItem 

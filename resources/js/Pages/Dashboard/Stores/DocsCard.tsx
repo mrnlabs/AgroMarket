@@ -4,15 +4,15 @@ import { toast } from '@/hooks/use-toast';
 import CustomTooltip from '@/Layouts/Shared/CustomTooltip';
 import { getDocDisplayTitle } from '@/utils/getDocDisplayTitle';
 import { router } from '@inertiajs/react';
-import { CircleCheck, CircleX, FileX } from 'lucide-react';
+import { CircleCheck, CircleX } from 'lucide-react';
 import React, { lazy, useState } from 'react';
 
 const ConfirmDialog = lazy(() => import("@/Components/ConfirmDialog"));
 
 export default function DocsCard({ storeDoc, setModalOpen, setUploadType,uploadType }: any) {
     const [dialogOpen, setDialogOpen] = useState(false);
- const isDocVerified = storeDoc?.store_documents.find((doc: any) => doc.document_type === uploadType)?.verified_at
- console.log(isDocVerified);
+    const isDocVerified = storeDoc?.store_documents.find((doc: any) => doc.document_type === uploadType)?.verified_at
+
     const handleDocUpload = () => {
         if (storeDoc) {
             setDialogOpen(true);
