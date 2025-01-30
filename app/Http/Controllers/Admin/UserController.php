@@ -64,6 +64,10 @@ class UserController extends Controller
     }
 
     function edit($slug) {
+        if(request("ref")){
+            $notification = auth()->user()->notifications->findOrFail(request("ref"));//ref is the notification id
+            $notification->markAsRead();
+            }
         $user = User::with('roles')->where('slug', $slug)->first();
         $roles = Role::pluck('name', 'id');
         return Inertia::render('Dashboard/Users/Create',[

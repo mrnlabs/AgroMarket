@@ -1,6 +1,7 @@
 import { Button } from '@/Components/ui/button';
 import { Toaster } from '@/Components/ui/toaster';
 import { toast } from '@/hooks/use-toast';
+import CustomTooltip from '@/Layouts/Shared/CustomTooltip';
 import { getDocDisplayTitle } from '@/utils/getDocDisplayTitle';
 import { router } from '@inertiajs/react';
 import { CircleCheck, CircleX, FileX } from 'lucide-react';
@@ -10,7 +11,8 @@ const ConfirmDialog = lazy(() => import("@/Components/ConfirmDialog"));
 
 export default function DocsCard({ storeDoc, setModalOpen, setUploadType,uploadType }: any) {
     const [dialogOpen, setDialogOpen] = useState(false);
-
+ const isDocVerified = storeDoc?.store_documents.find((doc: any) => doc.document_type === uploadType)?.verified_at
+ console.log(isDocVerified);
     const handleDocUpload = () => {
         if (storeDoc) {
             setDialogOpen(true);
@@ -43,16 +45,20 @@ export default function DocsCard({ storeDoc, setModalOpen, setUploadType,uploadT
         })
     }
   return (
-    <div className="card p-6">
+    <div className="card p-6">{uploadType}
       <div className="flex justify-between items-center mb-4">
         <p className="card-title">
           Upload {getDocDisplayTitle(uploadType)} <span className="text-red-500">*</span>
         </p>
         <div className="inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 w-9 h-9">
-            {storeDoc ? (
-                <CircleCheck size={20} className='text-green-900 dark:text-green-500' />
+            { isDocVerified ? (
+              <CustomTooltip content="Verified">
+                <CircleCheck size={20} className="text-green-900 dark:text-green-500" />
+              </CustomTooltip>
             ) : (
+              <CustomTooltip content="Unverified">
                 <CircleX size={20} className='text-red-900 dark:text-red-500' />
+              </CustomTooltip>
             )
             }
         </div>
@@ -61,9 +67,15 @@ export default function DocsCard({ storeDoc, setModalOpen, setUploadType,uploadT
       <div className="flex flex-col gap-3 items-center">
         <div className="flex justify-center">
             {storeDoc ? (
-                <CircleCheck size={70} className="text-green-900 dark:text-green-500" />
+              <CustomTooltip content="Document uploaded">
+               <CircleCheck size={70} className="text-green-900 dark:text-green-500" />
+            </CustomTooltip>
+               
             ) : (
-                <CircleX size={70} className="text-red-500 dark:text-red-500" />
+              <CustomTooltip content="Document not uploaded">
+              <CircleX size={70} className="text-red-500 dark:text-red-500" />
+              </CustomTooltip>
+                
             )
             }
         
