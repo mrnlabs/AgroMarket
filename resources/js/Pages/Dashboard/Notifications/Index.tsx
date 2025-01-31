@@ -24,6 +24,10 @@ export default function Index({notifications=[]}: NotificationsProps) {
     }
 
     const redirectToModel = (notification: Notification) => {
+        if(notification.type = "App\\Notifications\\DocumentSubmittedNotification"){
+                router.post(route('notifications.markAsReadRoute', notification.id));
+                router.visit(notification.data.model_route);
+        }
         router.visit(route(notification.data.model_route, notification.data.model_slug) + `?ref=${notification.id}`);
     }
   return (

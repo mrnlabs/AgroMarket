@@ -35,6 +35,7 @@ export type NotificationsProps = {
 
 export type Notification = {
     id?: number;
+    type: string;
     title: string;
     message: string;
     read_at: boolean;

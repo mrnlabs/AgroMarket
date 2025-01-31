@@ -1,14 +1,35 @@
 import { format } from 'date-fns'
-import React from 'react'
 import DropdownAction from './DropdownAction'
-import { StoreDocuments, StoreDocumentsProps } from '@/types'
+import { StoreDocuments } from '@/types'
 import { Link, usePage } from '@inertiajs/react';
 import { transcateText } from '@/utils/transcateText';
-import { BadgeAlert, BadgeCheck, CircleCheck, CircleX } from 'lucide-react';
+import { CircleCheck, CircleX } from 'lucide-react';
+import { useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function RecentFiles({docs=[], isTrashed}: 
 	{docs: StoreDocuments[], isTrashed: boolean}) {
 	const filePath = usePage().props.filePath;
+
+	const params = new URLSearchParams(window.location.search);
+	const notifRef = params.get('ref');
+	const docId = params.get('doc');
+  
+	// Scroll to highlighted row
+	useEffect(() => {
+	  if (notifRef === 'notif' && docId) {
+		const element = document.getElementById(`doc-row-${docId}`);
+		if (element) {
+		  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  
+		  // Optional: Remove highlight after 5 seconds
+		  setTimeout(() => {
+			element.classList.remove('animate-pulse', 'bg-primary/10', 'border-primary');
+		  }, 5000);
+		}
+	  }
+	}, [notifRef, docId]);
+  
 
   return (
     <div className="2xl:col-span-4 sm:col-span-2">
@@ -33,7 +54,14 @@ export default function RecentFiles({docs=[], isTrashed}:
 										</thead>
 										<tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                                             {docs.map((doc: StoreDocuments) => (
-                                                <tr key={doc.id}>
+                                                <tr key={doc.id}  
+												id={`doc-row-${doc.id}`} 
+												className={cn(
+													"transition-all duration-300",
+													notifRef === 'notif' && docId === (doc.id ?? '').toString() && 
+													'animate-pulse bg-primary/10 border-2 border-primary'
+												  )}
+												  >
 												<td className="p-3.5 text-sm text-gray-700 dark:text-gray-400">
 													<p onClick={() => window.open(filePath + doc.document_path, '_blank')} 
 													className="font-medium cursor-pointer">{transcateText(doc.document_name ?? '', 70,'...')}</p>

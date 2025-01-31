@@ -56,7 +56,6 @@ class NotificationController extends Controller
 
     function redirectToModel($id) {
         $notification = auth()->user()->store->notifications->findOrFail($id);
-        dd($notification);
         $notification->markAsRead();
         return redirect($notification->data['url']);
         

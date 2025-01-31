@@ -16,6 +16,7 @@ class UserDocument extends Model
         'document_type',
         'document_path',
         'document_name',
+        'document_size',
         'verified_at',
     ];
 

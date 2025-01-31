@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Store;
+use App\Models\User;
 use App\Models\UserDocument;
+use App\Notifications\DocumentSubmittedNotification;
 use App\Notifications\DocumentUnverified;
 use App\Notifications\DocumentVerified;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
 use Spatie\DeletedModels\Models\DeletedModel;
 
@@ -58,13 +61,19 @@ class FICADocsController extends Controller
         ]);
         $file = $request->file('doc');
         $path = $file->store('fica', 'public');
-        UserDocument::create([
+        $document = UserDocument::create([
             'store_id' => auth()->user()->store->id,
             'document_type' => $docType,
             'document_name' => $file->getClientOriginalName(),
             'document_size' => $file->getSize(),
             'document_path' => $path,
         ]);
+
+        $admins = User::getAdmins();
+        Notification::route('mail', 'mazisimsebele18@gmail.com')->notify(new DocumentSubmittedNotification($document, auth()->user()->store));
+        // foreach ($admins as $admin) {
+        //     $admin->notify(new DocumentSubmittedNotification($document, auth()->user()->store));
+        // }
         return back()->with('success', 'Document uploaded successfully.');
     }
 
